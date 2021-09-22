@@ -1,0 +1,1203 @@
+---
+title: "Espacios Vectoriales"
+author: "yo"
+date: "9/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Espacios vectoriales
+
+**Espacio vectorial.** Un espacio vectorial sobre un cuerpo conmutativo $\mathbb{K}$ es un conjunto $E$ no vacío **(Debe tener elementos Afuerzas)** y cerrado con las siguientes operaciones definidas:
+
+- Ley de composición interna
+$$\forall\vec{x},\vec{y}\in E\Rightarrow \vec{x}+\vec{y}\in E$$, dados dos elementos del espacio $E$ para todos los elementos $\vec{x},\vec{y}$, sumando elemntos del espacio deben salir elementos de dicho espacio, **Sumar vectores salen vectores** 
+- Ley de composición externa$$\forall\vec{x}\in E,\alpha\in\mathbb{K}\Rightarrow\alpha\vec{x}\in E$$, dado un elemento del espacio y un escalar del cuerpo $\mathbb{K}$ sobre el que esta montado el espacio, el producto del escalar por el elemnto del espacio debe pertenecer al espacio, **El producto escalar de un cuerpo por un vector nos da un vector**
+
+que cumplen las siguientes condiciones
+
+**Ojo: **Un vector es un elemnto que vive en un espacio vectorial (Sean Matrices, Vectores o Funciones)
+
+**Condiciones de la ley de composición interna.**
+
+- Propiedad conmutativa: $$\vec{x}+\vec{y} = \vec{y}+\vec{x}\quad \forall\vec{x},\vec{y}\in E$$
+- Propiedad asociativa (Mover parentesis): $$\vec{x}+(\vec{y}+\vec{z}) = (\vec{x}+\vec{y})+\vec{z}\quad \forall\vec{x},\vec{y},\vec{z}\in E$$
+- Elemento neutro de la suma: $\exists\vec{0}\in E:\ \vec{x}+\vec{0}= \vec{x}\quad \forall\vec{x}\in E$, El espacio vectorial debe contener un vector 0 Que sumado con cualquier vector da ese mismo vector dentro del espacio vectorial
+- Existencia del opuesto: $\forall\vec{x}\in E,\ \exists-\vec{x}\in E:\ \vec{x}+(-\vec{x}) = (-\vec{x})+\vec{x} = \vec{0}$, existe otro vector perteneciente al espacio y asi sumandolo nos tiene que dar el vector 0 **Fijarse que este no es el numero 0. Es el Vector 0 por eso tiene una flecha Arriba**
+
+**Condiciones de la ley de composición externa.**
+
+- Propiedad asociativa: $$\alpha(\beta\vec{x}) = (\alpha\beta)\vec{x}\quad \forall\vec{x}\in E,\alpha,\beta\in\mathbb{K}$$, Multiplicar Esclares de diferetes formas por el vector nos dan el mismo resultado
+- Elemento neutro del producto: $\exists1\in\mathbb{K}:\ 1\vec{x} = \vec{x}\quad \forall\vec{x}\in E$, tipicamente lo llamamos 1 pero puede ser cualquiera en distintos casos, Un numero del cuerpo multiplicado por cualquier vector nos tiene que dar ese vector
+- Propiedad distributiva del producto respecto de la suma de vectores (Quitr parentecis):$$\alpha(\vec{x}+\vec{y}) = \alpha\vec{x}+\alpha\vec{y}\quad \forall\vec{x},\vec{y}\in E,\alpha\in\mathbb{K}$$
+- Propiedad distributiva del producto respecto de la suma de escalares:$$(\alpha+\beta)\vec{x} = \alpha\vec{x}+\beta\vec{x}\quad \forall\vec{x}\in E,\alpha,\beta\in\mathbb{K}$$
+
+**Vectores.** Nombre que reciben los elementos de $E$ que viva dento del espacio vectorial a pesar de no ser vectores en el sentido clasico de numeros en filas (Matrices y Funciones pueden formar esapcios vectorail)
+
+**Escalares.** Nombre que reciben los elementos de $\mathbb{K}$ del cuerpo
+
+En este caso un espaciovectorail estara formado por vectores y utilizaremos como operacion el producto por escalares Uelemntos del cuerpo)
+
+**Observación.** En la definición anterior y en las propiedades aparecen dos sumas diferentes que denotamos del mismo modo por `+`. La suma de los elementos de $E$ (la suma de vectores) y la suma de los elementos de $\mathbb{K}$ (la suma de escalares). Del mismo modo, los elementos neutros de ambas sumas también los denotamos iguales, por 0 **(Esta el 0 del escalar y el 0 del espacio)**, aunque sean diferentes (uno es un vector y, el otro, es un escalar). Con las **Condiciones** que se explicaron arriba como en el caso del (Vector 0, Que es un vector **NO** un numero) vimos como serepresentaba al ser vector con una flecha arriba y si no tiene espor que es un escalar, ala hora de la practica no es necesario represantar asi. El contexto nos dirá en cada momento a qué suma y a qué elemento neutro nos estamos refiriendo **(Al del Cuerpo o Al del Espacio Vectorial)**, si hay confuncion poner una flecha todo lo que sea parte del espacio vectorial. Lo del cuerpo (Numeros) tipicamente seusaran letras Griegas como $\alpha$ o letras minusculas mientras que los de espacio vectorial se usaran como $x$ u otrasletras como en las ecuaciones.
+
+Ocurre lo mismo con el producto. En caso de que pueda haber confusión, no se denotará ningún símbolo a la hora de referirnos a un producto de escalares, mientras que el producto de un escalar por un vector lo denotaremos por $\alpha\cdot \vec{x}$. Aunque no siempre seremos capaces de mantener esa notación, del mimso modo que denotaremos indistintamente como vectores $x$ o $\vec{x}$
+
+## Ejemplos de espacios Vectoriales
+
+Lo que hay que comprobar si es un espacio vectorial es verificando si si cumplen las traas propiedades (Cerrado, Suma de vectores nos da vectores, el producto por un elemento del cuerpo nos da un vector mas las otras)
+
+**Ejemplo 1**
+
+A continuación se muestran ejemplos de espacios vectoriales, (El mas sencillo es el de los vectores)
+
+- $\mathbb{R}^n$ formado por los vectores de $n$ componentes $(x_1,x_2,\dots,x_n)$ los elemntos que viven en $\mathbb{R}^n$ estan represantos es en $x_n$ en el que cada $x$ seria un numero real, **Verificando las propiedades: ** es no vacio el conjunto porque podemos definir un vector que se nos de la gana y cabe dentro de este espacio vectorial y si multiplicamos un escalar por un vector de n componentes el resultado es un vector de n componentes, El Cuerpo $k$ sobre el que se monta la mayoria que mas usamos es el numeros reales
+- El conjunto $P_n(\mathbb{K}) = \{a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0:\ a_i\in\mathbb{K},\ \forall0\le i\le n\}$, son los polinomios a coeficientes en K de grado menor o igual que $n$, **¿Existe un polinimos de este grado?**, Si el numero 0 cumple esta condicion (Si es mas facil en lugar de pensar en $n$ pensemos en un polinomio de grado menor o igual a 2, Vemos los diferentes connjuntos a formar), Si los **Sumamos** los polinomios se agrupan dependiendo del grado del monomio y si los **Multiplicamos** como solo se multiplica el coeficiente el exponente no se modifica
+- El espacio $\mathcal{M}_2(\mathbb{K})$ de las matrices de orden 2 con coeficientes sobre $\mathbb{K}$
+- El conjunto de las funciones continuas definidas sobre un cuerpo $\mathbb{K}$, estas funciones son las que podemos dibujar sin levantar el lapiz del papel, Ejemplo: la Funcion: $0$, totalmente horizontal es continua, La suma de funciones continua el resultado nos da una funcion continua, sila multiplicamos por un numero seguira ciendo una funcioon continua
+
+Todo lo Anterior son Espacios Vectoriales:
+
+**Ejemplo 2**
+
+No son espacios vectoriales:
+
+- El conjunto de matrices $\mathcal{M}_{m\times n}(\mathbb{Z})$
+- El conjunto de polinomios de grado exactamente igual a 3 con coeficientes reales
+
+**Ejercicio 1**
+
+¿Por qué los conjuntos anteriores no son espacios vectoriales?
+
+**Proposición.** Sea $E$ un $\mathbb{K}$-e.v.(espacio vectorial), entonces el neutro de la suma y el opuesto de un elemento cualquiera $x\in E$ son únicos.
+
+**Demostración**
+
+Para ver la unicidad del elemento neutro, supongamos que Existen dos vectores Neutros Diferentes $0_1$ y $0_2$ son dos neutros del espacio vectorial $E$. Entonces, $$0_1 = 0_1 + 0_2 = 0_2$$, Cumplen esto.
+
+Con lo cual, $0_1 = 0_2$ tal y como queríamos ver. **El Neutro de Un Espacio Vectorial Es Unico**
+
+Ahora, para ver la unicidad del elemento opuesto, supongamos que $x\in E$ tiene dos elementos opuestos: $y,z$. Entonces viendo propiedades del espacio vectorial, tendríamos $$y = y+0 = y + (x+z) = (y+x)+z = 0+z = z$$, Este Desmadre anterior nos dice que $y$ se puede poner como $y+0$ por que el $0$ es el Neutro de la suma, pero el $0$ se puede escribir como $(x+z)$ porque $z$ es el opuesto de $x$ (Recordemos que el opuesto es aquel tal que sumado con el original nos da el neutro) ya que esta suma $x+z$ nos da $0$, despues del $=$ podemos aplicar la propiedad asociativa y juntar $y+x$ y dejar la $z$ suelta pero esta suma de $y+x$ nos da cero porque $y$ tambein es un opesto de $x$
+
+Con lo cual, $y = z$ tal y como queríamos demostrar si hubieran dos opestos de un vector $x$ estos dosopestos serian iguales. Por tanto EL **Neutro** y **Opuesto** son Unicos
+
+**Proposición.** De la definición de $\mathbb{K}$-e.v. se deducen las siguientes propiedades, Todos los Elemntos despues del Igual llevarian flecha arriba por que son elementos del espacio vectorial entonses son Vectores:
+
+- $0\cdot x = 0$, Nota: El 0 que multiplica es un escalar, mientras que el 0 de resultado es vecto
+- $\lambda\cdot 0 = 0$, Aqui ahora el 0 es un vector y el lambda es un escalar
+- Si $\lambda\cdot x = 0$, entonces uno de los dos $x = 0$ o $\lambda = 0$
+- $(-\lambda)\cdot x = -(\lambda\cdot x) = \lambda\cdot (-x)$. En particular, $(-1)\cdot x = -x$, una consecuencia de esta propiedad el opesto de un elemento es multiplicar el propio vector por $-1$
+- $\lambda\cdot (x-y) = \lambda\cdot x -\lambda \cdot y$
+- $(\lambda-\mu)\cdot x = \lambda \cdot x-\mu\cdot x$
+
+**Ejercicio 2.** Demostrar estas 6 propiedades formalmente.
+
+## Subespacios vectoriales
+
+**Subespacio vectorial.** Sea $F$ un subconjunto $F\subseteq E$ un subconjunto no vacío del espacio vectorial $E$ sobre un cuerpo $\mathbb{K}$. Diremos que el pequeño que es el que esta dentro de $F$ es un subespacio vectorial de $E$ si, y solo si, se verifica
+
+- La suma de dos elementos de $F$ es otro elemento de $F$: $$\forall\vec{x},\vec{y}\in F\Rightarrow\vec{x}+\vec{y}\in F$$, Por tanto la suma de elemnentos del subespacio pertenece al propio subespacio
+- El producto de un escalar por un elemento del subespacio $F$ es otro elemento de $F$: $$\forall\vec{x}\in F,\ \alpha\in\mathbb{K}\Rightarrow\alpha\vec{x}\in F$$
+
+Por asi decir es un espacio vectorial dentro de un espacio vectorial, tiene que quedar todo cerrado dentro del subespacio al **sumar subvectoresdel subespacio** tienen que dar un subvector del subespacio, al **Multiplicar un vector** del subespacio por un escalar del cuerpo tiene que pertenecer a tambbien al subespacio
+ 
+Cualquier espacio vectorial que se nos pase por la cabeza simpre tiene 2:  **Subespacios triviales.** Si $E$ es un $\mathbb{K}$-espacio vectorial, se verifica siempre que **Todo el conjunto es subespacio de si mismo** $E$ y degradado unicamente al conjunto $\{0\}$ que solo tiene el neutro son subespacios vectoriales de $E$. Estos se denominan subespacios vectoriales triviales de $E$ o impropios del espacio original. Estos son los dos subespacios vectoriales (el total y el cero).
+
+De las diapositivas anteriores, se deduce fácilmente que,
+
+**Proposición.** Si $F$ es un subespacio vectorial de $E$, entonces 
+
+- $\vec{0}\in F$, Tiene ue contener al 0, Siempre cualquier subespacio vectorial tiene que tener al vector 0 del espacio si no lo tiene, **NO** es subespacio, no se considera un subespacio vectorial
+- Si $\vec{x}\in F$, entonces $-\vec{x}\in F$, para cualquier elemntos del subespacio (para cualquier vector x de $F$ el -x tambien tiene que pertenecer al subespacio)
+
+**Ejercicio 3.** Demostrar formalmente esta proposición.
+
+Una gran utilidad de esta proposición es que si se comprueba que $\vec{0}\not\in F$, entonces este conjunto no puede ser nunca un espacio vectorial.
+
+**Proposición.** Sea $E$ un $\mathbb{K}$-e.v. y $F$ un subconjunto no vacío, entonces son equivalentes las siguientes afirmaciones:
+
+- $F$ es un subespacio vectorial (No vacio, cerrado para sumas y productos con escalares)
+- $F$ es un $\mathbb{K}$-espacio vectorial con las mismas operaciones de $E$ restringidas a $F$
+- $F$ verifica $ax+by\in F\quad\forall a,b\in\mathbb{K}$ y $\forall x,y\in F$, esta propiedad nos junta las dos propiedades del los subespacios junta el hecho de que la suma pertenesca a $F$ y  que el produco por un escalar pertenesca a $F$ y esta forma es la mas comoda de mesotraar ala hora de demostrr que pertenesca aun subespacio
+- Cualquier combinación lineal de vectores de $F$ es un vector de $F$, es decir, $\sum a_ix_i\in F\quad\forall a_i\in\mathbb{K}$ y $\forall x_i\in F$, no solo vale para $ax+by$ si no que es para toda las $a_n$ $x_n$ simempre tiene que pertenecer a $F$ para culaquier conjunto de numeros
+
+**Ejercicio 4.** Demostrar formalmente esta proposición.
+
+**Proposición.** Sea $E$ un $\mathbb{K}$-espacio vectorial
+
+- Si $(F_i)_{i\in I}$, Fijarse que la interseccion es arbitaria en la parte $i\in I$ $i$ perteneciente a una $I$ es una familia cualquiera de subespacios vectoriales de $E$ (Podria ser Finita, Numerable o Infinita). La interseccion de todos ellos los vectores que pertenecen ala vez a todos los subespacios forman un subespacio vectorial de $E$, entonces $\bigcap_{i\in I}F_i$ es un subespacio vectorial de $E$ contenido en todos los $F_i$ con $i\in I$, asi que si nos dan dos subespacios la interseccion (Los elemnotsque estan ala vez en un subespacio y en otro tambien es un subespacio vectorial), Es el subespacio vectorial mas **grande** metido dentro de todos los $f_i$  
+- Si $F_1,\dots,F_n$ son subespacios vectoriales de $E$, entonces la suma de los subespacios $F_n$ que se define como sumar un vector de cada subespacio $x_n$, La suma solo es valida para conjuntos Finitos
+
+$$\sum_{i = 1}^nF_i = F_i+\cdots+F_n = \{x_1+\cdots+x_n\ |\ x_i\in F_i,\ i = 1,\dots, n\}$$
+
+es un subespacio vectorial de $E$ llamado **subespacio vectorial suma** que contiene todos los $F_i$ con $i = 1,\dots, n$, tiene la propiedad de ser el mas **pequeño** subespacio que contiene a todos los $F_i$
+
+**Ejercicio 5.** Demostrar formalmente esta proposición.
+
+Lo que nos dice la proposición anterior, en otras palabras, es que la intersección **infinita** (Arbitaria) de subespacios vectoriales es a su vez subespacio vectorial.
+
+No obstante, la unión **No lo es** (finita o arbitraria) de subespacios vectoriales no es subespacio vectorial. Si nosotros unimos los vectores de un conjunto con los de otro podria ser que la union de esos dos conjuntos no sea un subespacio vectorial
+
+Por su parte, una suma **finita** desde $1$ hasta $n$ de subespacios vectoriales sí es subespacio vectorial y sus elementos son de la forma descrita anteriormente. es decir un vector pertenece ala suma de $F_i$ si se puede escribir como lasuma de un Vector de cada una de las $F_n$
+
+**Ejemplo 3**
+
+En el $\mathbb{R}$ espacio vectorial $\mathbb{R}^2$, consideremos los subespacios vectoriales $F,G$ dados por los ejes de coordenadas cartesianas. Así pues, $F$ es ese subespacio vectorial de puntos donde $x$ es numero real, esto sobre el plano (Espacio vectorial R2) nos define el eje de la $x$, analizando la situacion donde si tomamos dos vectores sobre el eje de las $x$ y los sumamos siguen estando en ele eje de las $x$ y si cojemos un vector en el eje de las $x$ y lo multiplicamos por un escalar sigu estando en el eje de las $x$ por lo tanto ya sabemos que $F$ es un subespacio vectorial de $\mathbb{R}^2$, en el caso de $G$ seria el mismo rollo
+
+$$F = \{(x,0)\ |\ x\in\mathbb{R}\}\qquad G = \{(0,y)\ |\ y\in\mathbb{R}\}$$
+
+Entonces, es fácil ver cual es la interseccion de cada uno de sus ejes $F\cap G =\{(0,0)\}$ este es el unico punto que es ala vez sobre el eje de la $x$ y sobre el eje de l $y$ es este por lo tanto el subespacio interseccion es el subespacio trivial y que $F+G = \mathbb{R}^2$ en efecto si tomamos un elemnto de $F$ y lo sumamos con un elemnto de $G$ basicamente lo que sale es cualquier punto de $\mathbb{R}^2$, que son efectivamente subespacios vectoriales (de hecho son los impropios).
+
+En cambio, si hacemos la unióin, tenemos $F\cup G = \{(x,y)\in\mathbb{R}^2\ |\ x=0\text{ o }y = 0\}$ serian los puntos que estan sobre el eje de las $x$ o sobre el eje de ls $y$, pero esto no es subespacio vectorial de $\mathbb{R}^2$, ya que tomando los elementos que estos ambos vectores pertenecen a cada uno de la union $(1,0), (0,1)\in F\cup G$ estos subvectores cumplen que estan en cadauno de los ejes,Sin emborga por ser subespacios deberia ocurrir que su suma deberia de pertenecer a ese conjunto sin embargo su suma nos da, $(1,1)\not\in F\cup G$ por esa la union de subespacios vectoriales no suele ser en general un subespacio vectorial
+
+## Ejemplo de Espacios Vectoriales
+
+Si $E$ es un $\mathbb{K}$-e.v. (Un espacio vectorial sobre un cuerpo $\mathbb{K}$). Siempre existen dos subespacios vectoriales de $E$: 
+- El subespacio vectorial que solo tiene el vector {0} **Subespacio Trivial** 
+- El subespacio vecotrial que son todos los vectores del espacio vectorial $E$ **Subespacio Total**
+
+Los dos se llaman **subespacios impropios** porque son triviales, cualquier otro subespacio vecotrial que no sean estos dos sera **Subespacio Propio**. Por Ejemplo:
+
+Dentro de $\mathbb{R}^3$ (El conjunto de vectores con 3 coordenadas). Si tomamos el conjunto $F = \{(x,y,z)\in\mathbb{R}^3\ x+y+z=0\}$, esto es un subespacio vectorial de $\mathbb{R}^3$, en general cualquier conjunto de soluciones de un sistema de $M$ ecuaciones lineales con $n$ incognitas que sea homogenio **(Que este igualado a 0 sobre un cuerpo $\mathbb{K}$)** sera el subespacio vectorial del espacio vectorial $\mathbb{K}^n$ donde la $n$ sera igual al numero de incognitas, Dentro de $\mathbb{R}^3$ seria un plano que pasa por el origen, con este plano si tomamos vectores que cumplan esta condicion, Ejemplo: Tomamos el vector $(x_1,y_1,z_1)\in F$ *Como estos pertenecen a F* Se cumple que $x_1+y_1+z_1=0$ y $(x_2,y_2,z_2)\in F$ igual para este vector $x_2+y_2+z_2=0$ por ser de $F$. Tomamos los escalares $\alpha,\beta \in \mathbb{K}$ cuando hacemos la combinacion lineal con estos: **Con la suma de vectores** $\alpha(x_1+y_1+z_1)+\beta(x_2,y_2,z_2) =$ y el resutado **¿Pertenece a F?** $(\alpha{x_1}+\beta{x_2}+\alpha{y_1}+\beta{y_2}+\alpha{z_1}+\beta{z_2}\in F$, En caso de pertenecer cumpliria la ecuacion igual a 0, Si lo ponemos como coordenadas: $(\alpha{x_1}+\beta{x_2})+(\alpha{y_1}+\beta{y_2})+(\alpha{z_1}+\beta{z_2})$ fijaros si lo reodenamos podemos juntar u ordenar asi: $\alpha(x_1+y_1+z_1)+\beta(x_2,y_2,z_2)$, por la propiedad inicial $x+y+z=0$, las partes quedan en $\alpha(x_1+y_1+z_1)=0+\beta(x_2,y_2,z_2)=0$ y $\alpha$ por 0 mas $\beta$ por 0, nos da 0 y como se cumple la ecuacion igual a cero conluimos que la combinacion lineal $\in F$ y por lo tanto se trta de un subespacio vectorial, **Si tenemos un sistema de ecuaciones homogeneo sobre un cuerpo K este siempre sera subespacio vectorial tiene que estar igualado a 0**
+
+Por ejemplo: En $\mathbb{R}^2$ cualquier recta que pase por el origen sera un subespacio vectorial propio de este
+
+Pero si nos dan esta ecuacion:
+
+$$G = \{(x,y,z,t)\in\mathbb{R}^4:\ x+y=0,z=0,t=1\}$$, Nunca odre ser un subespacio vectorial porque no es un subsistema de ecuaciones homogeneo o en otras palabras porque no pasa por el origen, recordar una conidicion para que unconjunto sea subespacio vectorial es que el vector cero pertenesca al conjunto,en este caso el vector cero seria $\vec{0}=(0,0,0,0)$ por cada letra como en este caso $t=1$ por lo tanto el vector cero no pertenence.
+
+Podemos elegir el espcio vectorial $\mathbb{R}^\mathbb{R}$ que basicamente es el conjunto de funciones definidas con dominio en $\mathbb{R}$ y variable real hacia numero reales, el conjunto de todas las funciones que existen serian un espacio vectorial, aqui lo que viven son funciones de una sola variable, dentro de este $\mathbb{R}^\mathbb{R} = \{F:\mathbb{R}-\mathbb{R}\}$, podemos tomar dos subespacios vectoriales:
+- Tenemos el de las **funciones continuas** de $\mathbb{R}$ en $\mathbb{R}$, basicamente son las funciones que podemos dibujar sin usar un lapiz, el cero esuna funcion continua, la suma de continuas es continua y una continua por un escalar es continua
+- Es el conjunto de **funciones Derivables** estas no tienen pinchitos, el valor absoluto no es deribavle por eso, con pinchitos nos referimos que al dibujar la funcion en el plano vemo que tiene una forma como letra $V$ con ese pico o pincho, la suma de funciones derivlables es deribale o el producto de una funcion deriblae por un escalar tambein es derivable
+
+Mas ejemplo de Subespacios vectoriales como elegir sobre el conjunto de los polinomios hasta cierto grado en lo que su derivada es 0 o cumplan que la primera componente y la ultima sea la misma, la suma de los coeficientes de los polinimos de cero,**Todo lo que tenga ver con 0 esta bien**, pero si no involucra a este no es subespacio vectorial.
+
+# Demostracion de los Ejercicios 3,4 y 5
+
+**Ejercicio 3: **
+
+Si $F$ es un subespacio vectorial siempre se cumple que el vector 0 pertenece a $F$ $\vec{0}\in F$ y si $\vec{x}\in F$ entonces el Opuesto $\vec{-x}\in F$ para cualquier valor X del subespacio $F$
+
+Al ser $F$ un espacio vectorial una de las condiciones es que no sea vacio $F\not=0$ entonces tiene cualquier elemento $\vec{x}\in F$, La segunda condicion de subespacio decia que si: $\lambda\vec{x}\in F\ \forall\lambda\in\mathbb{K}$, esto nos dice que podemos tomar:
+ $\lambda=0\Rightarrow0\cdot{\vec{x}}=\vec{0}\in F$, con esto se demuestra que el elemnto $0$ siempre pertenece al subespacio vectorial $F$, de otra forma si es: $\vec{x}\in F$ usando la misma propiedad podriamos escoger $\lambda=-1$ que tambien es del cuerpo y lo que pasa es que el vector $-1\cdot\vec{x}$ nos da el Opuesto de $x$, $\vec{-x}\in F$
+ 
+**Ejercicio 4: **Habira que demostrar:
+
+- 1.- $F$ es un subespacio vectorial
+- 2.- $F$ es un $\mathbb{K}_{ev}$ con las misma operaciones Restringidas (Teniniendo en cuenta solo los elementos del connjunto $F$ con las mismas operaciones de $e$ restringidas a $F$)
+- 3.- $ax+by\in F\ \forall_{xy}\in F, a,b \in \mathbb{K}$ sobre el que este construido el espacio vectorial
+- 4.- Cualquier combinacion lineal $a_ix_i\in F\ \forall_{a_i}\in\mathbb{K}, x_i\in F$
+
+Cuando en matematicas queremos demostrar tantas equivalencias lo mas normal es crear un circulo, Demostras que el 1 implica a 2 y el 2 a 3 y el 3 a 4 y el 4 al 1, Ahora tratamos todas estas implicaciones:
+
+Que 1 implica a 2: Si $F$ es un subespacio vectorial las operaciones de $e$ definene las mismas operaciones de $F$, las sumas y productos son de $F$, como en el ejercicio 4 hemos garantizado que el 0 y los opuestos son de $F$
+
+Que 2 implica a 3: Es trivial apartir de la definicion $\mathbb{K}$ espacio vectorial, en particular en un espacio vectorial se cumplia la ecuacion: $ax+by\in F$ solo que aqui se ha restringido al subespacio $F$, como en el punto 2 me aseguraba que $F$ es tambien un espacio vectorial, el punto 3 es tirvial es por la definion de que $F$ es a su vez un espacio vectorial y sabemos que en un espacio vectorial se verifica que $ax+by\in F$
+
+Que 3 implique 4: Se puede realizar por induccion sobre $n$ en el numero de vectores de la combinacion lineal, para $n=2$ para suma de dos elemntos es la hipotesis numero 3 que ya la tenemos porque suponemos que es cierta, Si la suponemos sierta hasta $n-1$ esto significa que el $\sum{a_ix_i}$ desde $i=1$ hasta $n-1$ pertenece a $F$ para cualquier $a_i$ del cuerpo y $x_i$. y tambien demostrar que en lugar de escoger $n-1$, elegieramos $m$: $\sum_{i=1}^{m}a_ix_i$ que tambien es de $F$ y esta cosa se puede separr en dos: $(\sum_{i=1}^{n-1}a_ix_i)+a_mx_m$, fijese que el que sta encerrado en parentesis pertence a $F$ por hipotesis de induccion y $+a_mx_m$ tambien pertence a $F$ porque es un escalar por un elemnto de $F$, entonces la suma de dos elemntos de $F$ al final es de $F$ porque $F$ es un subespacio vectorial
+
+Que la 4 implica 1: Si tomamos la propiedad 4 como la podemos aplicar a cualquier numero de elemntos, si la ponemos como: $\sum_{i=1}^{m}a_ix_i\in F\ \forall_{a_i}\in\mathbb{K}, x_i\in F$ tomamos esta propiedad y la aplicamos para $n=2$ (2 vectores) y tomar en el primer caso $x_1$ y $x_2$ dos elemntos cualesquiera y $\alpha_1$ y $\alpha_2$ los escalares igual a $1$ para obtener las $x+i$ cualquier $x$ mas cualquier $i$ pertenecerian a $F$ y en segundo lugar cualuier $\alpha$ multiplicado con cualquier $x$ con solo $n=1$, para demostrar que $F$ es un subespacio vectorial se tiene que $x+i$ pertenece a $F$ para todo $X$ e $i$ de $F$, tomamos $\alpha_1=1,\alpha_2=1$ e $x_i$ que es la propiedad 4 y por otro lado que $\lambda x$ siempre es de $F$ tomamos esa misma propiedad $n=1$ y tomamos un escalar y vector cualquiera obtener que la suma de vectores es de $F$ y el producto de un escalar por $F$ tambien y asi se completa la demostracion en circulo 
+
+**Ejercicio 5: ** es la generalizacion de la interseccion y la suma de subespacios
+
+- La interseccion arbitaria de cualquier numeros de subespacios es un espacio vectorial: $\displaystyle\bigcap_{i\in I}{F_i}$ de $F$ es un subespacio vectorial, si $F_1$ es una parte cualquiera de espacios vectoriales de $E$, la seccion de todos ellos es un subespacio vectorial de $E$ que ademas esta contenido dentro de todos los $F_i$ estes es un subespacio vectorial mas pequeño contenido dentro de todos los $F_i$ que forman parte de la interseccion y la segunda parte decia parecido con la suma $\displaystyle\sum_{i=1}^n F_i$ es un subespacio vectorial de $E$ que en este caso contienen a todos los $F_i$ por tanto dada una coleccion arbitaria la interseccion de todos los subespacios vectoriales es el subespacio vectorial mas grande contenido en el interior de $F_i$ y por el contrario la suma de una coleccion finita de subespacio es el subespacio vectorial mas pequeño que los continene todos ellos.
+
+Para demostrarla iremos primero ala interseccion hay que demostrar que es un suubespacio, La Interseccion es arbitario (No es vacio) $\displaystyle\bigcap_{i\in I}{F_i}\not=0$ porque no es vacio ya que 0 es un elemnto que pertenece a todos los $F_i$: $\vec{0}\in F_i\ \forall_i\in I$, si cero pertenece a todos entonces cero pertenece ala Interseccion de los $F_i$ que no es vacio, Primera condicion de Subespacio cumplida, Segundo tomemos $a,b\in \mathbb{K}$ dos escalares del cuerpo K y tomemos $x,y$ que son dos vectores que pertenescan ala interseccion arbitaria de los espacios $F_i$: $x,y\in \displaystyle\bigcap_{i\in I}{F_i}$ entonces tanto $x$ como $Y$ pertenecen a todos los $F_i$ para todo $i$ de la coleccion arbitaria y como a su vez cada $F_i$ es un subespacio vectorial por separado de $E$ la combinacion lineal $ax+by \in F_i\ \forall_i\in I$ entoncese $ax+by\in \displaystyle\bigcap_{i\in I}{F_i}$
+
+Con respecto ala Suma supongamos que tengamos: $Z,Z^{'}$ dos vectores de la suma de los subespacios $F_1+F_2+...+F_n$ esto quiere decir que existen vectores de cada uno de los subespacios tales que $Z$ se puede poner como suma de cada uno de ellos y $Z^{'}$ tambien por tanto existirian vectores $x_i$ de cada uno de los $F_i$ tales que $Z$ se puede escribir como $Z=x_1+x_2+...+x_n$ cada una de estas $x$ pertenece a su respectivo subespacio $F_n$, $n$ segun el numero y lo mismo existiran vectores $Y_i$ que pertencen a $F_i$ tal que el vector $Z^{'}=Y_1+Y_2+...+Y_n$ por tanto si hacemos una combinacion lineal de todos estos (Como ya sabes cual serian los valores de $Z y Z^{'}$): $aZ+bZ^{'}=(ax_1+by_1)+(ax_2+by_2)+...+(ax_n+by_n)$, el primer grupo $(ax_1+by_1)$ pertenece a $F_1$ por que este es un espacio vectorial y estamos haciendo combinaciones lineales de ese espacio y el otro gurpo pertenece a $F_2$ y el otro $F_n$ por tanto la suma pertenece a $F_1+F_2+...+F_n$, ademas cada $F_i$ esta contenido dentro del subespacio suma ya que si tomamos un elemento $X_i$ de algun $F_i$ cualquiera este tambien pertenece ala suma porque lo podemos escribir 0+0+0+... porque este pertenece a cada uno de su subespacios a $x_i=0+0+0+...+0+x_i+0+...+0$ en la cordenada e-nesima podriamos $x_i$ y luego seriamos llenando con 0 ya que por propia definicion los 0 pertenecen a cualquiera de los $F_i$ entonces cualquier vector de los $F_i$ se puede escribir como perteneciente al subespacio vectorial suma $F_1+F_2+...+F_i+...+F_n$ y esta es la demostracion de que la suma tambien es un subespacio
+
+En un subespacio vectorial sum $F+G$, En ese nuevo subespacio la expresión de cada elemento como suma de un elemento de $F$ más un elemento de $G$ no tiene por qué ser única y, por lo general, no lo es. Podria ser que para obtener un elemnto de ese sub espacio suma se tendria de varias formas distintas
+
+En este sentido, podemos dar las siguientes definiciones: (Clasificar los subespacio suma)
+
+**Suma directa.** Sean $E$ un $\mathbb{K}$-e.v. y $F,G$ subespacios vectoriales de $E$. Entonces, si cada elemento del subespacio vectorial suma $F+G$ se escribe de manera única como suma de un elemento de $F$ más un elemento de $G$ (Solo se puede escriir de una unica forma), se dice que la suma de $F$ y $G$ es directa y se denota por $F\oplus G$ y tiene la particualaridad que cualuqier elemento de $F$ o $G$ se puede escribir de forma unica como un elemnto de $F$ mas un elemnto de $G$ 
+
+**Complementarios en $E$.** Si además de tener $F\oplus G$ se verifica que $E$ es el total, el espacio donde viven $F$ y $G$: $E = F\oplus G$, se dice que $F$ y $G$ son complementarios en $E$.
+
+**Proposición.** Sean $F$ y $G$ dos subespacios vectoriales de un $\mathbb{K}$-e.v. $E$. Entonces, la suma de $F$ y $G$ es directa (O lo que es lo mismo cad vector de $F$ mas $G$ se puede escribir de forma unica entonces el unico vector que vive ala vez dentro de $F$ y dentro $G$ es el vector 0) si, y solo si, $F\cap G = \{0\}$
+
+**Ejercicio 6.** Demostrar formalmente esta proposición.
+
+Ademas una consecuencia de la proposicion anterior
+
+**Corolario.** Sean $E$ un $\mathbb{K}$-e.v. y $F,G$ subespacios vectoriales de $E$. Los subespacios $F,G$ serán complementarios si verifican
+
+- $\forall x\in E$, $\exists y\in F,\ z\in G\ :\ x = y+z$, Para cualquier vector $x$ del espacio vectorial $E$ existen un $y$ de $F$ y un $z$ de $G$ de modo que $x$ se puede escribir como $y+z$ asi solo es reformular que $F$ es suma directa con $G$, cualquier vector de $E$ se puede escribir de forma unica como suma de un elemento de $y$ de $F$ y un elemento $z$ de $G$ 
+- $F\cap G = \{0\}$, ademas la interseccion entre estos es el Vacio ya que sean complementarios hace que la unica ineterseccion sea el vacio 
+
+Recordemos el `Ejemplo 3`: 
+
+En el $\mathbb{R}$-e.v $\mathbb{R}^2$ (Este es un espacio vectorial) habíamos considerado, tenemos el subespacio $F$ (Un Subespacio es el conjunto de puntos que viven sobre el eje X es decir de la forma (X,0) donde X es un numero Real)
+
+$$F = \{(x,0)\ |\ x\in\mathbb{R}\}\qquad G = \{(0,y)\ |\ y\in\mathbb{R}\}$$
+
+y habíamos visto que $F+G = \mathbb{R}^2$ y que $F\cap G = \{0\}$. Aqui tenemos la propia definicion que $F$ es complementario a $G$ o que la suma directa de estos dos nos da $\mathbb{R}^2$, Volviendo al corolario cualquie punto de $\mathbb{R}^2$ se puede escribir como suma de un vector sobre el eje de las $x$ mas un vector sobre el eje de las $y$ y ese $G_x$ y $G_y$ tiene como interseccion el vector 0 punto (0,0)
+
+Con lo cual, tenemos que son suma directa y complementarios $F\oplus G = \mathbb{R}^2$
+
+El concepto de suma directa lo podemos generalizar a $n$ sumandos del siguiente modo:
+
+**Suma directa.** Sean $E$ un $\mathbb{K}$-e.v. y $F_1,\dots,F_n$ subespacios vectoriales de $E$. Entonces, diremos que la suma de esos subespacios $F_1+\cdots +F_n$ es directa si cada elemento de $F_1+\cdots +F_n$ se escribe de manera única como suma de elementos de cada uno de ellos $F_1,\dots,F_n$. Se denota por $F_1\oplus\cdots\oplus F_n$. La suma de subespacios simplemente es tomar un vector de caada uno de los subespacios y sumarlos, y la suma directa ademas implica que ese vector que resulta de la suma se opuede obtener de forma unica como suma de un vector de cada uno de los subespacios
+
+**Ejercicio 7**
+
+Se puede demostrar de forma parecida al caso $n = 2$, que la suma $F_1+\cdots +F_n$ es directa si, y solo si, para todo $i = 2,\dots,n$ se tiene $$F_i\cap(F_1+\cdots+F_{i-1}) = \{0\}$$
+
+En ocasiones disponemos de un subconjunto $S$ de $E$ que no es subespacio vectorial, pero estamos interesados en el más pequeño subespacio vectorial (con respecto a la inclusión) que contiene este subconjunto $S$.
+
+Este subespacios siempre existe ya que solo debemos considerar la familia de todos los subespacios vectoriales de $E$ que contienen a $S$ y entonces sabemos que su intersección es otro subespacio vectorial que, evidentemente, contiene a $S$ y este será el más pequeño con la propiedad.
+
+## Ejercicios 6 y 7
+
+**Ejercicio 6:**
+
+Si $F$,$G$ son subespacios vectoriales de $F$ entonces $F\oplus G$ si solo si $F\cap G=\{\vec{0}\}$, es el elemnto neutro (Cuando intersecamos estas dos el unico elemento que existe en los dos subespacios a la vez es el vector 0)
+
+Para demostrarlo hay que demostrar dos implicaciones, de Izquierda a derecha y de derecha a Izquierda:
+
+De izquierda a derecha: Supongamos que $F\oplus G$ y consideremos $x\in F\cap G$, si $x$ pertenece ala interseccion de los dos se puede escribir como la suma directa por un lado: $x=x+0$ ya que $x \in F$ y tambien se podria poner como: $x=0+x$ pero esta perteneceria a $x \in G$, ya que pertenece a la misma interseccion y ademas como son suma directa un elemneto cualquiera de estos dos se puede escribir como ya pusimos en la igualdad de la $x$, pero como la exprecion de cualuqier espacio vectorial es unica (solo se puede poner de un modo) entonces no podriamos tener que un objeto se pueda escribir como un elemento de $F$ mas $G$ ($x=x+0$) y otro como un elemento de $G$ mas el 0 de $F$ ($x=0+x$), La unica forma que hay de que esta igualdad que tenemos sea verdadera es que elemento de $x$ se el elemento $0$, ($x=0$), de donde el unico elemento que pertenece a $F\cap G$ es el 0, Aqui tenemos demostrado que si un elemento es de la interseccion enotonses tienen que ser el 0.
+
+De derecha a Izquierda: Si $F\cap G=\{0\}$, si $F$ interseccion $G$ es el elemnto Neutro entonses la suma de $F,G$ es directa. Tomamos un elemento de la Suma: $z\in F+G$, (de momento no sabemos que es directa) si se pudiera escribir de dos formas diferentes significaria que la suma no seria directa, en cuyo caso: $z = x+y,x\in F,y\in G $ pero tambien se podria escribir como: $z = x^{'}+y^{'},x^{'}\in F,y^{'}\in G $, esto si NO fuera suma directa, viendo $z$ es igual a $z$, $x+y=x^{'}+y^{'}$ esto seria equivalente a decir que $x^{'}-x=y-y^{'}$, fijense que $x^{'}-x$ por un lado es de $F$ y $y-y^{'}$ son de $G$ asi podemos garantizar que este numero $\in F\cap G$ pero pro hipotesisi el unico numero que pertenece a esa interseccion es $\{0\}$ asi la conclucion es que $x^{'}-x=0$ que seria $x=x^{'}$, $y-y^{'}=0$ que seria $y=y^{'}$ por lo tanto $z=z^{'}$, $Z$ tiene directamente una unica representacion por lo que si un elemnto tendira dos representaciones esta seria la misma entonces la suma de $F+G$ es directa que es lo que queriamos demostrar
+
+El **Ejercicio 7** se podria representar formalmente que si $n=2$ en lugar de dos subespacios tenemos $n$ en general, la suma $F_1+F_2+\cdots+F_n$ es directa si y solo si cada $F_i\cap (F_1\cap F_2\cdots\cap F_{i-1})={0}$ el $i-1$ se refiere a todos los anteriores, esto se puede por induccion, el caso base ya es el ejercicio 6 y la inductiva suponiendo que los $n-1$ son suma directa que pasaria cuando sumamos con el siguente, separar una suma de $n$ elemntos con el $n-1$ primeros con el ultimo.
+
+En ocasiones disponesmos de un subconjunto de vectores $S$ de $E$ que no es subespacio vectorial (Cumplirarn todas las propiedades), pero estamos interesados en el mas pequeño en el mas pequeño subespacio vectorial (con respecto la inclusion) que contiene este subconjunto $S$ es decir que todos y cada uno de ese subconjuntos $S$ forman parte de ese subespacio vectorial.
+
+Si nos encontramos una serie de vectores que no tendiran porque formar un subespacio pero que al buscarle la casa mas pequeña que es el subespacio mas pequeño donde vivien en cada uno de los vectores
+
+Este subespacio siempre existe ya que solo debemos considerar la familia de todos los subespacios vectoriales de $E$ que contienen a $S$ y entonces sabemos que su interseccion es otro subespacio vectorial que, evidentemente, contienen a $S$ y este que es la interseccion sera el subespacio mas pequeño con la propiedad que lo contienen uno de cada ellos.
+
+Por porpia construccion si tenemos un conjunto $S$ buscaremos todos los subespacios de $E$ que contienen a $S$ hacemos la interseccion de todos ellos y ese va a ser el sub espacio vactorial mas pequeño que contien el conjunto $S$ 
+
+**Subespacio vectorial generado por $S$.** Subespacio vectorial más pequeño que existe y que contiene a todos los vetores del conjunto $S$. Lo denotamos por $\langle S\rangle$
+
+Diremos también que $S$ es un conjunto o sistema generador de ese subespacio vectorial o que $S$ genera a $\langle S\rangle$.
+
+En definitiva, hemos visto que el subespacio vectorial generado por $S$ es la interseccion de todos los $F$ subespacios que contienen a S.(Interseccion de todos los $F$ donde $F$ es un subespacio vectorial de que contiene a $S$, la interseccion de todos ellos sera ese subespacio vectorial mas pequeño que contiene a $S$)
+
+$$\langle S\rangle = \bigcap_{\begin{matrix}S\subseteq F\\
+F\text{ subespacio}\end{matrix}}F$$
+
+Si tenemos que ir buscando todos los subespacios vectoriales de un espacio vectorial que contiene a un conjunto igual sera dificil porque podria haber infinitos, nesecitaremos de una caracterisacion mejor que no esta anterior.
+
+De forma más general, definimos sistema generador como
+
+**Sistema generador.** Dado un conjunto de vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n\in E$(Estos serian los elemntos del conjunto $S$), se dice que forman un sistema generador del espacio vectorial $E$ si cualquier vector $\vec{u}\in E$ se puede expresar como una combinación lineal de ellos. Es decir
+
+Ese conjunto para cualquier vector $u$ de $E$, existe una combinacion lineal de escalares $\alpha$ del cuerpo $\mathbb{K}$ tal que $u$ se puede escribir como es sumatoria, es decir nos regalan un vector de $E$ con esas $u$ seran un sistema generador de ese espacio vectorial  si podemos encontrar escalares tal que aplicando la sumatoria multiplicando escalar por su $u$ nos da ese vector $\vec{u}$
+
+$$\forall\vec{u}\in E,\ \exists\alpha_1,\alpha_2,\dots,\alpha_n\in\mathbb{K}:\ \vec{u} = \sum_{i = 1}^n\alpha_i\vec{u}_i$$
+
+**Proposición.** Sea $S$ un subconjunto cualquiera de un $\mathbb{K}$-e.v. $E$. Entonces
+
+El subespacio vectorial generado por $S$ es las combinaciones lineales posibles de los elemntos del conjunto ($\alpha\cdot x$), donde n es cualquier numero entero positivo y los $x_i$ son elementos del subconjunto $S$ y los $\alpha_i$ son escalares, es decir que el generado por $S$ no es mas que buscar numeros que se nos de la gana y multiplicarlos por los $x_i$ respectivos y sumarlos 
+
+$$\langle S \rangle = \{\alpha_1\cdot x_1+\cdots +\alpha_n\cdot x_n\ |\ n\in\mathbb{Z}^+;\ x_i\in S;\ \alpha_i\in\mathbb{K},\ i = 1,\dots,n\}$$
+
+Es decir, $\langle S\rangle$ es el subespacio formado por todas las combinaciones lineales posibles de elementos de $S$ asi obtenemos el subespacio vectorial generado por $S$ 
+
+**Ejercicio 8.** Demostrar formalmente esta proposición.
+
+**Observación.** A partir de la caracterización de subespacio generado por un subconjunto, queda claro que si tenemos dos subconjuntos de $E$ de forma que $S\subseteq S'$($S$ esta contenido en $S^{'}$ es decir que la S prima tiene los mimos vectores que tenia S y unos pocos mas), entonces resulta que el generado por $S$ $\langle S\rangle\subseteq\langle S'\rangle$, esta contenido en el subespacio generado por S prima, De modo que cualquier vector que perteneciera a $S$ tambien pertenese al generado por $S'$ 
+
+En el caso en que $S$ es finito(En el numero de vectores), $S = \{x_1,\dots,x_n\}$, entonces se puede escribir que el generado por $S$ es el generado por esos elemntos $x$ (son el subespacio generado por elemntos que viven dentro de $S$) y en este caso se puede escribir directamente que los elementos del subespacio generado por $x$, la diferencia es que aqui siempre tenemos $n$ sumas mientras que en la propocision de arriba el numero de sumas podria ser variable porque depende del enetero $n$, en el segundo caso si ya el conjunto generador es finito (tiene un numero finito de elementos) entonces se puede escribir directamente que el subespacio generado por $S$ sus elementos son de la forma de abajo  
+
+$$\langle S\rangle = \langle x_1,\dots,x_n\rangle = \{\alpha_1\cdot x_1 +\cdots +\alpha_n\cdot x_n\ |\ \alpha_i\in\mathbb{K},\ i=1,\dots,n\}$$
+
+**Ejemplo 4**
+
+Los vectores $(1,0,0,\dots,0),\ (0,1,0,\dots,0),\ (0,0,1,\dots,0),\dots,(0,0,0,\dots,1)$, Estos son n vectores donde el primero tiene todos 0 salvo la primera pocicion, el segundo tiene todos 0 salvo la segunda posicion, El tercero tienen todos ceros salvo la tercera pocicion, etc. forman un sistema generador de $\mathbb{K}^n$. 
+
+Por lo tanto, podemos decir que $\mathbb{K}^n$ está finitamente generado. Cualquier vector que se nos pase por la cabeza se puede escribir: un numero por cada uno de los vectores de arriba mas un numero por el otro vector y asi sucesivamente, cualuiqer vector se puede escribir como combinacion lineal de estos vectores de arriba
+
+**Ejemplo 5**
+
+Análogamente, los vectores $\{1,x,x^2,\dots,x^n\}$ forman un conjunto de generadores del $\mathbb{K}$-e.v. (de polinomios, sobre el cuerpo **K**, de grado menor o igual que **n**, porque cualquier polinomio de esos se puede escribir como, **Ejemplo en los vectores de arriba:** un numero por uno mas un numero por **x** mas un numero por **$x^2$**, mas un numero por **$x☻^n$**) $\mathbb{K}_n[x]$, que es por lo tanto los polinomios de grado menor o igual que n son finitamente generado.
+
+En cambio, $\mathbb{K}[x]$ (Polinomios en general (No estan limitados en Grados) sobre un cuerpo **K**),**NO** es un $\mathbb{K}$-e.v. que no es finitamente generado. Si suponemos que $p_1(x),\dots,p_k(x)$ forma un conjunto finito de generadores de este espacio vectorial (Si con **K** polinomios nos vastara para general el conjunto de todos los polinomios habidos y por haber), Si consideramos **n** el maximo de los grados de estos polinomios $n = \max{(\deg(p_1),\dots,\deg(p_k))}$, todo polinomio de grado superior a $n$ (n+1) no podría ser expresado como combinación lineal de los $p_i(x)$ Porque al sumar polinomios de grado como mucho **n** nos sale un polinomio como mucho de grado **n** asi que el polinomio $x^n+1$ no se podria generar con esos $p_1(x),\dots,p_k(x)$, $i= 1,\dots,k$. Llegamos así a contradicción (Por ejemplo el polinomio $p^{n+27}$ si pertenecese a todos el conjuto de los polinomios habidos). Observemos pues que $\mathbb{K}[x]$ (El conjunto de todos los polinomiios en una variable construido sobre el cuerpo K) tiene un conjunto infinito (numerable) de generadores: $\{1,x,\dots,x^n,\dots\}$
+
+**Ejemplo 6**
+
+Dentro de $\mathbb{R}^3$ consideramos el subconjunto $F = \{(x,y,z)\ |\ 5x-y+3z = 0\}$. (Como el conjunto de puntos x,y,z tal que se cumpla la ecuacioon de al lado), esto es un Subespacio vectorial, basicamente si tomamos dos puntos de estaforma y lo sumamos sigue cumpliendo la ecuacion, si tomamos un punto de esta forma y multiplicamos por un escalar tambien sigue cumpliendo la ecuacion asi que $F$ es un subespacio 
+
+Entonces, está claro que $F$ es un subespacio vectorial y que además, todo elemento de $F$ es de la forma $(x,5x+3z,z)$ (Lo que se ha hecho es de la formula como ya sabemos que lo puntos de $F$ cumplen esa ecuacion de arriba y despejamos la $y$ esta queda como $5x+3z$ con $x$ y $z$ libre, asi que) variando $x,z\in\mathbb{R}$ por eso se ponen los puntos de $F$, Si vamos variando los valres de $x$ y $z$ respectivamente nos van a salir todos los posibles punto de este subespacio. Así, todo elemento de $F$ se escribe de la forma $$u = x\cdot (1,5,0)+z\cdot (0,3,1)$$ (Lo que es lo mismo **Sacando x y z factorcomun** de dos vectores respectivamente cualquier elemnto de $F$ se podria esribir como asi arriba igualado a $u$, EN el primer vector en la tercera cmponente como no hay una $x$ se le one un $0$, asi para el segundo vector en su componente) Cuaquier punto que cumpla la ecuacion incial o sea que pertenesca al subespacio $F$ se puede escribir como un numero $x$ mutiplicado por el vector $(1,5,0)$ y mas otro numero $z$ multiplicado por el vector $(0,3,1)$ (Esta es la definicion de que los vectores son un sistema generador de $F$), por tanto, los vecotres $(1,5,0)$ y $(0,3,1)$ generan todo $F$ (Ese sistema generador si cualuqier punto se puede escribir como una combinacion lineal de esos vectores como lo dice en la igualacion a $u$)
+
+**Ejercicio 9**
+
+- Demostrar que $F$ es un subespacio vectorial de $E$
+- Detallar por qué los elementos de $F$ tienen esa forma
+
+**Proposición.** Sea $E$ un $\mathbb{K}$-e.v. y $S\subseteq E$ (Que S es un subconjunto de E). Si (u ya pertence al generado por S, o sea que es un elemnnento que se puede escribir como combinacion lineal de los elmentos de S) $u\in\langle S\rangle$, entonces se tiene $\langle S\cup \{u\}\rangle = \langle S\rangle$, (Dice que al generado por S y el generado por S añadiendole la u son el mismo subespacio vectorial), es decir que al espacio vectorial generado por un conjunto S le añadimos un nuevo vector que ya esta generado por los vectores de S el subespacio que sale es el mismo, No se amplia el subespacio
+
+Lo que nos viene a decir esta proposición es que un mismo espacio o subespacio vectorial puede tener conjuntos de generadores diferentes. Importante si nos da mutiples sistemas generadores de un subespacio habran mas interesantes unos de otros, si nos diccen que un subespacio vectorial se puede generar con 5 vectores y otro se genera solo con 2 vectores, con cual nos quedariamos, con el que tiene menos elemntos seria el mejor
+
+**Ejercicio 10.** Demostrar formalmente esta proposición.
+
+## Ejercicio 8 y 10
+
+**Ejercicio 8: **
+
+Propiciones que tienen que ver con el subespacio vectorial geneado por un conjunto vectores, Este se puede escribir como las cominaciones lineales de $\alpha$, $$\langle S\rangle = \{\ \alpha_1 x_1 + \alpha_2 x_2+..+\alpha_n x_n \ |\ n\in \mathbb{Z}^+,\ x_i\in S,\ \alpha_i\in \mathbb{K}\ i=1...n \}$$, donde $n$ es un numero arbitario cualesquiera y cada elemnto de los $x_i$ son elemntos de $S$ y los $\alpha_i$ que serian escalares del cuerpo que estemos usando, Basicamente si este el conjunto formado por una serie de vectores haciendo todas las posibles combinaciones lineales de los elemntos de $S$ lo que sale es el sbespacio vectorial generado por $S$ vector.
+
+En primer lugar el conjunto de combinaciones lineales de elementos de $S$ es un subespacio vectorial que contiene a $S$, es decir el conjunto generado por una serie de vectores $S$ esto es un subespacio vectorial que contiene a $S$ es decir el propio conjnto $S$ esta contenido dentro de este espacio vectorial: $$S\subseteq \langle S\rangle e.v$$
+
+ya que la suma de las combinaciones lineales es una combinacion lineal y el producto de un escalar por una combinacion lineal tambien seria una combinacion lineal de los elemntos de $S$
+
+Que contiene a $S$ ya lo tenemos, que es un espacio vectorial tambien, solo nos hace falta el subespacio vectorial mas pequeño que contiene a $S$, que no existe un subespacio vectorial mas pequeño que el generado por $S$ para esto supongamos que $F$ fuera un subespacio vectorial que contiene a $S$ mas pequeño que el generado por $S$ es decir: Si $F$ fuera un subespacio vectorial que contenga al conjunto $S$ y fuera mas pequeño que el subespacio vectorial generado por $S$: $$S\subseteq F \subseteq \langle S\rangle$$
+
+ya sabemos que cualquier combinacion lineal de elementos de $S$ en particcular serian de $F$ porque este si es un subespacio vectorial, si tomamos una combinacion lineal de elemnentos de $S$ esa combinacion lineal tambien seria de $F$, Pero culaquier combinacion lineal de elementos de $S$ es la definicion de generado por $\langle S\rangle$ ya que ver como este esta definido en un inici por combinaciones lineales de elmentos de $S$ asi que demostrariamos que el generado por $\langle S\rangle$ esta contenido dentro del subespacio vectorial de $F$.
+
+Por tanto al final $F$ y $S$ al final son exactamente el mismo, los dos subespacios vectoriales son iguales, en particular apartir de esta carcterisacion del subespacio vectorial generado por un subconjunto es muy facil demostrar que en el caso de conjunto si tenemos: $$S\subseteq S'$$ entonces el $\langle S\rangle\subseteq\langle S'\rangle$ , el generado de s es un subespacio vectorial del genrado por S prima.
+
+Esta demostracion nos permite decir que el generado por un conjunto de vectores $S$ es el subespacio vectorial mas pequeño que contnene ese conjunto de vectores.
+
+Si tomamos un sobconjunto de R3 que sea subespacio vetorial tal que se cumple esa ecuacion, $F=\{(x,y,z)\in\mathbb{R}\ |\ 2x-y+z=0\}$, podriamos demostrar que es un subespacio vectorial porque es una ecuacion lineal homogenea. De aqui se puede escribir despejando $y$: $y=2x+z$ o lo que es lo mismo cualquier de la forma $(x,y,z)$ cumple que su coordenada $y$ es dos veces la primera mas la tercer o sea que se puede escribir como: $(x,y,z) = (x,2x+z,z)$ Vease que extrayendo la combinacion lineal de vectores  se podria escribir como el vetor $(x,2x,0)$ osea un vector que solo tubiera $x$ y un vector que solo tuviera $Z$ que seria $(0,z,z)$ o lo que es lo mismo: $x(1,2,0)+z(0,1,1)$, asi que podiramos decir que $F$ es el subespacio vectorial generado por los vetores: $F=\langle(1,2,0),(0,1,1)\rangle$, esta tecnica es la base de trabajar con espacios vectoriales, ser capases de buscar sistemas generadores de un espacio vectorial
+
+**Ejercicio 10: **
+
+Esta decia que si $E$ es un $\mathbb{K}-e.v$ y $S\subseteq E$, si el vector $u\in\langle S\rangle$, Entonces el Generado por S y le añadimos el vector $u$, es lo mismo que el generado por $S$; $\langle S\cup \{u\}\rangle=\langle S\rangle$, Aqui lo que tenemos que demostrar es una doble inclusion, hay que demostrar que $S$ union $u$ el geenreado por ellos esta contenido dentro del generado por S y hay que demsotrar tambien lo contrario que el generado por S esta dentro del anterior.
+
+Una de estas es Trivial, Antes se habia dicho que $\langle S\rangle\subseteq\langle S'\rangle$ si el subconjunto $S$ esta contenido dentro de $S'$ entonces si lo aplicamos aqui, de las dos $S\subseteq S\cup\{u\}$ porque el segundo connjunto tienen un elmento mas que el primero, asi que aplicando aquel colorario que vimos: $\langle S\rangle\subseteq \langle S\cup\{u\} \rangle$, es trivial de demostrar por quel colorario, asi que de las dos implicaciones la que va hacia la izquierda es la facil y la que va a la derecha no llevara mas tiempo asi que tomando un elmento: $x\in \langle S\cup\{u\} \rangle$, en este conjunto el elemento $x$ que tomamos se puede escribir como una combinacion lineal; $x=\alpha\vec{u}+\alpha_1x_1+\alpha_2x_2+...+\alpha_nx_n$ aqui se esta supioniendo que el conjunto $S$ continene a los vectores $x$, entonces seria una combinacion lineal de estos elemntos con los $x_i\in S\ \alpha_i,\ \alpha\in\mathbb{K}$ y el vector $u$ que ya conocemos, Como tenemos que por hipotesis que $u\in \langle S\rangle$ enotnces $u\in S$, $u$ se puede escribir como la forma de cierta combinacion lineal de los elemntos de $s$ es decir: $u=\beta_1y_1+\beta_2y_2+...+\beta_ky_k$ donde en este caso $y_i\in S$ y $\beta_i\in\mathbb{K}$, antes se habia dicho que era finitimente generado y no necesarimente lo que si es asi es la ocmbinacion lineal entonces el primero tiene $n$ elemntos y el segundo $k$ elemntos en el conjunto $s$ asi juntando lo primero con lo segundo en las $x$ la $u$ que tenemos la podemos remplazar por la igualdad que es $u$ que es la ultima expresion desarrollada y obtener que el vector $x$ es igual a: $$x=\alpha(\beta_1y_1+\beta_2y_2+...+\beta_ky_k)+\alpha_1x_1+\alpha_2x_2+...+\alpha_nx_n$$
+
+Se podira escribir asi Tambien: $x=(\alpha\beta_1)y_1+(\alpha\beta_2)y_2+...+(\alpha\beta_k)y_k+\alpha_1x_1+\alpha_2x_2+...+\alpha_nx_n$, vijaros pues que escrito de este modo $x$ es combinacion lineal de elemntos de $S$ poque las $y$ y $x$ son elemntos de $S$, asi que tenemos un elentos que es cominacion lineal de elemntos de $s$, en otras palabras $x\in \langle S\rangle$,Asi comprobamos que si un vector ya es combinacion lineal de otros el generado por ese conjunto mas el vector nuevo es igual que  solo tomar los vectores sin contar que el que añadimos al final
+
+# Dependencia e Independencia Lineal de vectores
+
+## Combinaciones lineales
+
+Recordemos la definición de Combinación Lineal (CL)
+
+**Combinación lineal.** Dados $p$ vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_p\in\mathbb{K}^n$ (Que pertenescan al mismo espacio $\mathbb{K}^n$) y los escalares $\alpha_1,\alpha_2,\dots,\alpha_p\in\mathbb{K}$, una combinación lineal de esos $p$ vectores es un vector (Tambien de $\mathbb{K}^n$) dado por una expresión de la forma
+
+$$\alpha_1\vec{u}_1+\alpha_2\vec{u}_2+\cdots+\alpha_p\vec{u}_p\in\mathbb{K}^n$$
+Una comobinacion lineal simplemente es una suma de Productos ya que en si en este caso en particular es escalar por vector y se van sumando para **obtener un vector de la misma dimencion**
+
+**Ejemplo 7**
+
+Expresar el vector $(2,-4)$ como combinación lineal de los vectores $(1,1)$ y $(-2,0)$, En otras palabras: Cuanto tengo que alargar el vector $(1,1)$ y el vector $(-2,0)$ para conseguir el vector $(2,-4)$
+
+Necesitamos (Estamos buscando dos escalares) $\alpha,\beta\in\mathbb{R}$ tales que (Que tiene que valer $\alpha$ y que tiene que valer $\beta$ para que esta ecuacion vectorial sea cierta)
+
+$$(2,-4) = \alpha(1,1)+\beta(-2,0)$$
+
+Con lo cual, se trata de resolver el sistema coordenada a coordenada, Escribiendo el sistema de ecuaciones para cada una de las componentes como $\alpha -2\beta = 2$ para la componente $x$ y $\alpha= -4$ para la componente $y$ fijensen que este sistema con dos ecuaciones y dos incognitas tiene una solucion trivial porque el sistema ya esta escalonado   $$\left\{\begin{matrix}
+\alpha &-&2\beta &=& 2\\
+&& \alpha&=& -4\end{matrix}\right.$$
+
+Así pues, ya tenemos que $\alpha = -4$. Con lo cual, $$2\beta = \alpha-2 = -6\Rightarrow\beta = -3$$
+
+Entonces, la combinación lineal que buscábamos es
+
+$$(2,-4) = (-4)(1,1)+(-3)(-2,0)$$
+Por lo que el el vector $(2,-4)$ es combinacion lineal de los vectores $(1,1)$ y $(-2,0)$
+
+## Dependencia lineal
+
+**Dependencia lineal.** (Linealmente dependiente: Uno vector se puede escribir como cominacion lineal del resto de vecctores) Dados los vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_p\in\mathbb{K}^n$, diremos que son linealmente dependientes (LD) si la ecuación vectorial de la combinacion lineal de esos vectores donde las incognitas son $\alpha_i$
+
+$$\sum_{i = 1}^p\alpha_i\vec{u}_i = \vec{0}$$
+
+Estos vectores son linealmente dependientes si esta ecuacion tiene infinitas soluciones y por tanto los escalares $\alpha_i\in\mathbb{K}$ pueden tomar (ininitos) valores no nulos, Lo que estamos buscando para que sea linealmente dependiente es que esta ecuacion vectorial tenga infinitas soluciones o que los $\alpha$
+
+Dados los vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_p\in\mathbb{K}^n$, diremos que son linealmente dependientes (LD) si alguno de ellos se puede expresar como una combinación lineal del resto:
+
+Es decir que si algun $u_i$ de por ahi en el medio se puede expresar como una cominacion lineal hasta el $u_p$ sin contar el i-esimo, si algun $u_i$ se puede escribir como este sumatorio
+
+$$\exists1\le i\le p:\ \sum_{k\ne i}\alpha_k\vec{u}_k = \vec{u}_i$$
+Esta cuacion es consecuencia de la ecuacion de mas arriba $$\sum_{i = 1}^p\alpha_i\vec{u}_i = \vec{0}$$ ya que si este conjunto de vectores es linealmente dependiente se puede escribir esta ecuacion con algun $\alpha_i$ no cero, al no ser cero lo que podemos hacer es dividir toda la ecuacion por $\alpha_i$ y despejar el $\alpha_i$ respectivo, este quedara despejado en funcion del resto porque se puede despejar porque su coeficiente no es cero y como lo podemos despejar (Que es lo que dice la segunda definicion) algunos de los $u_i$ (no necesariamente todos) se puede expresar como combinacion lineal de los restantes asi como en el **Ejercicio 7** en el que los vectores son linealmente dependiente porque el primero se puede escribir como combinacion lineal del resto y es presisamente la segunda definicion dada de los vectores linealmente dependientes.**Esto nos permite saber si exite una solucion que permite despejar un vector en funcion de otro** 
+
+## Independencia lineal
+
+**Independencia lineal.** Dados los vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_p\in\mathbb{K}^n$, diremos que son linealmente independientes (LI) si la ecuación vectorial, La misma de antes nos dice que si la combinacion lineal de estos vectores donde $\alpha$ son las incognitas
+
+$$\sum_{i = 1}^p\alpha_i\vec{u}_i = \vec{0}$$
+
+tiene como única solución la solución trivial (donde los $\alpha_p$ son $0$). Es decir, $\alpha_i = 0\ \forall i=1,2,\dots,p$, La diferencia es que si los vectores son **linealmente dependientes**, algunos de los escalares ($\alpha$) de la ecuacion vectorial pueden no ser cero de modo que se puden despejar algunos de los vectores en funcion del resto Pero si los vectores son **Linealmente Independientes** de forma inmediata, todos y cada uno de los $\alpha_i$ deben ser exactamente igual a $0$
+
+En este sentido si los vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_p\in\mathbb{K}^n$ son linealmente dependientes entonces no sera posible nunca expresar esta combinacion lineal como esta que tenemos aqui, Nunca podremos despejar algunos de los $u_i$ en funcion de todos los demas, nunca podremos escribir $u_i$ igual al sumatorio para $k$ diferente de $i$ porque de forma inmediata la solucion al sistema anterior es de puros $0$ y no se puede despejar ningun $u_i$ porque pasariamos a dividir un $0$, entonces otra forma de caracterizar a los vectores linealmente independientes es que nunca es posible expresar uno como combinacion lineal de los demas por eso son linealmente independientes
+
+Dados los vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_p\in\mathbb{K}^n$, diremos que son linealmente independientes (LI) si no es posible expresarlos como una combinación lineal del resto.
+
+$$\not\exists1\le i\le p:\ \sum_{k\ne i }\alpha_k\vec{u}_k  = \vec{u}_i$$
+
+## Dependencia e Independencia Lineal de vectores
+
+En el caso de que tengamos un conjunto $S\ne\emptyset$ (No Vacio), $S\subseteq E$ (y subconjunto del espacio vectorial $E$) finito o no, diremos que $S$ como conjunto es linealmente independiente si cualquier subconjunto finito de $S$ lo es. Es decir que aunque el conjunto sea infinito nosotros estudiamos por subconjunto finitos de $S$ y sus elemntos. Si ese conjunto tiene cualquier suconjunto finito linealmente independiente por extencion se dice que $S$ es un conjunto linealmente independiente.
+
+Es decir, si cualquier combinación lineal de un número finito de elementos de $S$ es igual a 0, implica que todos los escalares deben ser 0. Entonces el conjunto $S$ es un conjunto lineal mente independiente. Esto es por si queremos pensar en conjuntos infinitos como ocurria con los vectores que generaban el conjunto $k$ de $x$ es decil los polinmos de cualquier grado sobre el cuerpo $\mathbb{K}$ si vamos estudiando y todos y cada uno de ellos es sus subconjuntos finitos son todos linealmente independiente el grande por extencion tambien lo es.
+
+De forma análoga, diremos que $S$ es linealmente dependiente si existen un número finito de elementos de $S$ y una combinación lineal suya igual a 0 donde no todos los escalares son 0, es decir que existen un conjunto finito de elementos de $S$ tal que alguno de ellos es combinacion lineal del resto
+
+## Dependencia e Independencia Lineal de vectores
+
+Se ah dicho que los vectores linealmente independientes con la ecuacion vectorial tienen como unica solucion la trivial y que son vectores dependientes en el caso en que la solucion de la ecuacion vectorial tenga alguna solucion ademas de la de puros ceros.
+
+**Proposición.** Sea $E$ un $\mathbb{K}$-espacio vectorial, entonces los vectores $x_1,x_2,\dots,x_n\in E$ son linealmente dependientes si, y solo si, uno de ellos es combinación lineal del resto.
+
+Se da como definicion alternativa de la dependencia lineal, esta proposicion ya que en muchos casos, es asi. Si los conjuntos o los vectores son linealmente
+dependientes osea que uno es combinacion lineal del resto.
+
+Se dijo que si el conjunto es linealmente dependiente tiene como solucion que se puede dividir toda la ecuacion por $\alpha_i$ y despejar explicitamente ese $u_i$ en funcion del resto.
+
+**Observación.** Como habréis notado, nosotros habíamos dado como definición alternativa de dependencia lineal esta proposición. En muchos casos es así y en otros muchos se toma como propiedad. Por eso aquí hemos incluído ambas opciones.
+
+Tenemos que demostrar que son dependientes. La combinacion lineal de uno se puede expresar en funcion del resto y que si uno se puede expresar como combinacion lineal del resto el sistema y hasta el $\alpha_n u_i$ tiene alguna solucion diferente de la trivial.
+
+Ambas definiciones son validas: cuando queremos demostrar que un conjunto es linealmente dependiente podriamos usar la del sistema de ecuaciones que es mas facil en el sentido de que es mas mecanico. Uno se pone a escribir la ecuacion vectorial y ver que en efecto o todos los $\alpha_i$ son ceros o algunos no son cero, en cuyo caso son independientes o dependientes respectivamente pero la definicion alternativa nos dice que uno es combinacion lineal del resto, si nos fijamos bien como se componen los vectores y tambien vale para ver la dependencia o independencia lineal.
+
+**Ejercicio 11.** Demostrar formalmente esta proposición.
+
+**Proposición.** Sea $E$ un $\mathbb{K}$-espacio vectorial y $S\subseteq E$ un conjunto linealmente independiente. Si $u\not\in \langle S\rangle$, entonces $S\cup\{u\}$ es linealmente independiente
+
+En otras palabras si tenemos un conjunto que es linealmente independiente y conseguimos un vector que no esta generado o que no pertenezca al subespacio generado por $S$, no se puede escribir como una combinacion lineal de los vectores de $S$, entonces $S\cup \{u\}$ sigue siendo linealmente independiente si uno se puede escribir como combinacion lineal de $S$, añadiendo $u$ al conjunto $S$ que teniamos sigue siendo linealmente independiente
+
+Es que si nos dan dos vectores linealmente independientes y nos dan un tercero que no es combinacion lineal de esos dos primero, los tres vectores tambien son linealmente independientes. De estos tres vectores independientes nos dan otro nuevo vector que no es combinacion lineal de esos tres vectores que ya teniamos, ahora los cuatro vectores tambien son linealmente independientes. Y esta es la idea de ir haciendo crecer el conjunto de vectores linealmente independientes a base de encontrar vectores que no sean combinacion lineal de ellos. Esto esto va a ser una tecnica llamada buscar una base de un espacio vectorial.
+
+**Ejercicio 12.** Demostrar formalmente esta proposición.
+
+
+# Bases de un espacio vectorial
+
+**Base de $E$.** Un conjunto de vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n\in E$ son una base de $E$ si 
+
+- $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n$ es un sistema generador de $E$
+- $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n$ son linealmente independientes
+
+**Teorema.** Sean $E$ un $\mathbb{K}$-e.v. y $B\subseteq E$. Entonces, $B$ es una base de $E$ si, y solo si todo vector $\vec{u}\in E$ se puede expresar como una combinación lineal de $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n\in B$ de manera única
+
+$$\forall\vec{u}\in E,\ \exists!\alpha_1,\alpha_2,\dots,\alpha_n\in\mathbb{K}:\ \vec{u} = \sum_{i = 1}^n\alpha_i\vec{u}_i$$
+
+<div class = "exercise">
+**Ejercicio 13.** Demostrar formalmente este Teorema.
+</div>
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Proposición.</l> Sea $E$ un $\mathbb{K}$-e.v. finitamente generado y sea $S=\{u_1,\dots,u_n\}$ un conjunto de generadores. Entonces $E$ tiene una base finita $B$ de forma que $B\subseteq S$
+
+<div class = "exercise">
+**Ejercicio 14.** Demostrar formalmente esta Proposición.
+</div>
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Teorema de Steinitz.</l>  Sea $E$ un $\mathbb{K}$-e.v., sea $B = \{u_1,\dots,u_n\}$ una base de $E$ y sean $v_1,\dots,v_m$ vectores linealmente independientes. Entonces, se pueden sustituir $m$ vectores cualesquiera de la base $B$ por los $v_1,\dots,v_m$ obteniendo así una nueva base. En particular, se tiene que necesariamente $m\le n$.
+
+<div class = "exercise">
+**Ejercicio 15.** Demostrar formalmente este Teorema.
+</div>
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Teorema.</l> Sea $E$ un $\mathbb{K}$-e.v. Si $E$ tiene una base finita, digamos $B = \{u_1,\dots,u_n\}$, entonces todas las bases de $E$ son finitas y tienen exactamente $n$ elementos.
+
+<div class = "exercise">
+**Ejercicio 16.** Demostrar formalmente este Teorema.
+</div>
+
+
+## Bases de un espacio vectorial
+
+Como hemos visto hasta ahora, un espacio vectorial tiene infinitas bases. En cada espacio vectorial, hay una que tiene características especiales. Esta no es otra que la <l class = "definition">base canónica</l>.
+
+<div class = "example">
+
+**Ejemplo 8. Base canónica**
+
+- En $\mathbb{R}^2$, la base canónica es $\{\vec{e}_1,\vec{e}_2\}$ donde $$\vec{e}_1 = (1,0)\qquad \vec{e}_2 = (0,1)$$
+- En $\mathbb{R}^3$, la base canónica es $\{\vec{e}_1,\vec{e}_2,\vec{e}_3\}$ donde $$\vec{e}_1 = (1,0,0)\qquad \vec{e}_2 = (0,1,0)\qquad \vec{e}_3= (0,0,1)$$
+- En $\mathbb{R}^n$, la base canónica es $\{\vec{e}_1,\vec{e}_2,\dots,\vec{e}_n\}$ donde $\vec{e}_i = (0,\dots,0,1,0,\dots,0)\quad \forall i = 1,2,\dots,n$. Es decir, todas las componentes del vector son 0 a excepción de la $i-$ésima que vale 1.
+
+</div>
+
+## Bases de un espacio vectorial
+
+Como también hemos visto que el número de elementos de una base de un espacio vectorial $E$ dado es único, tiene sentido definir la dimensión de $E$.
+
+<l class = "definition">$E$ de dimensión finita.</l> Sea $E\ne\{0\}$ un $\mathbb{K}$-e.v.. Diremos que $E$ es de dimensión finita si existe $n\in\mathbb{Z}^+$ y una base de $E$ (y, por tanto, todas) formada por $n$ vectores. 
+
+<l class = "definition">Dimensión de $E$.</l> Es el número $n$ de vectores que conforman cualquiera de sus bases. Lo denotamos $\dim(E)$
+
+<l class = "observ">Observación. </l>Si $E = \{0\}$, no tendrá base, pero diremos que es de dimensión finita y con $\dim(E) = 0$
+
+## Bases de un espacio vectorial
+
+<l class = "definition">$E$ de dimensión infinita.</l> Si $E$ no tiene ninguna base finita. En este caso, lo denotaremos como $\dim(E) = +\infty$
+
+## Bases de un espacio vectorial{.example}
+
+**Ejemplo 9**
+
+- $\dim(\mathbb{K}^n) = n$
+- $\dim(\mathbb{K}_n[x]) = n+1$
+- $\dim(\mathbb{K}[x]) = +\infty$
+- $\dim(\mathcal{M}_{m\times n}(\mathbb{K})) = m\times n$
+
+## Bases de un espacio vectorial
+
+<l class = "important">¡Ojo!</l> Puede que a veces nos haga falta escribir la dimensión indicando sobre que cuerpo estamos trabajando.
+
+Entonces, lo que haremos será escribir $\dim_{\mathbb{K}}(E)$
+
+<div class = "example">
+**Ejemplo 10**
+
+- $\dim_{\mathbb{Q}}(\mathbb{R}) = +\infty$
+- $\dim_{\mathbb{R}}(\mathbb{R}) = 1$
+- $\dim_{\mathbb{R}}(\mathbb{C}) = 2$, ya que $\{1,i\}$ es una base de $\mathbb{C}$ como $\mathbb{R}-$e.v.
+</div>
+
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Proposición.</l> Sea $E$ un $\mathbb{K}$-e.v. de dimensión finita y sea $B = \{u_1,\dots,u_n\}$ una base de $E$
+
+1. Si $v_1,\dots,v_n$ son L.I., entonces son base de $E$
+2. Si $v_1,\dots,v_n$ generan todo $E$, entonces son base de $E$
+3. La dimensión de $E$, coincide con el máximo número de vectores LI y con el mínimo número de generadores
+4. Todo conjunto de vectores LI de $E$ se puede completar hasta una base de $E$
+5. Si $F$ es un sub-e.v. de $E$, entonces $F$ también es de dimensión finita y $\dim(F)\le\dim(E)$. Además, $\dim(F) = \dim(E)$ si, y solo si $F = E$
+
+<div class = "exercise">
+**Ejercicio 17.** Demostrar formalmente esta Proposición.
+</div>
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Corolario.</l> Sea $E$ un $\mathbb{K}$-e.v. Entonces $E$ es de dimensión infinita si, y solo si, podemos encontrar conjuntos de vectores LI de cardinal finito tan grandes como queramos
+
+<div class = "exercise">
+**Ejercicio 18.** Demostrar formalmente este Corolario.
+</div>
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Corolario.</l> Si $E$ es un $\mathbb{K}$-e.v. y $E = \langle u_1,\dots,u_n\rangle$ entonces $E$ es de dimensión finitay $\dim(E)\le n$. Es decir, todo $\mathbb{K}$-espacio vectorial finitamente generado es de dimensión finita menor o igual al número de generadores
+
+## Ejemplo 11{.example}
+
+**Ejemplo 11**
+
+Sea $F$ el subespacio vectorial de $\mathbb{R}^3$ dado por $$F = \{(x,y,z)\in\mathbb{R}^3\ |\ x-y+z = 0\}$$
+
+Todos los vectores de $F$ se pueden escribir como $(x,x+z,z)$ variando $x,z$ en $\mathbb{R}$ y, por tanto,
+
+$$(x,x+z,z) = x\cdot(1,1,0)+z\cdot(0,1,1)$$
+
+Es evidente que $u_1 = (1,1,0)$ y $u_2 = (0,1,1)$ generan $F$. También son LI. Por lo tanto, forman una base de $F$.
+
+Veamos ahora como completarla hasta una base de $\mathbb{R}^3$:
+
+Siguiendo el Teorema de Steinitz, lo que haremos será ir introduciendo sucesivamente $u_1,u_2$ a una base conocida, como por ejemplo la base canónica $e_1 = (1,0,0),\ e_2 = (0,1,0),\ e_3 = (0,0,1)$.
+
+- Como que $u_1 = (1,1,0) = 1\cdot e_1+1\cdot e_2$, podemos sustituir por ejemplo $e_2$ por $u_1$ obteniendo así una nueva base $e_1,u_1,e_3$
+
+## Ejemplo 11{.example}
+
+Para introducir $u_2$, primero lo escribimos como combinación lineal de la nueva base $$u_2 = (0,1,1) = -(1,0,0)+(1,1,0)+(0,0,1) = (-1)\cdot e_1+1\cdot u_1+1\cdot e_3$$
+
+Por tanto, podemos sustituir cualquiera de los restantes ya que todos los escalares son distintos a 0. Así, según el Teorema de Steinitz, $u_1,u_2,e_3$ es una base de $\mathbb{R}^3$ que evidentemente completa a la de $F$
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Teorema. Fórmula de Grassmann. </l>Sea $E$ un $\mathbb{K}$-e.v. de dimensión finita y sean $F$ y $G$ subespacios vectoriales de $E$. Entonces se verfica $$\dim(F+G)+\dim(F\cap G) = \dim(F)+\dim(G)$$
+
+<div class = "exercise">
+**Ejercicio 19.** Demostrar formalmente este Teorema.
+</div>
+
+## Bases de un espacio vectorial
+
+<l class = "observ">Observación.</l> Notemos que si tenemos una suma directa, $F\oplus G$, tenemos que $F\cap G = \{0\}$, lo que equivale a decir $\dim(F\cap G) = 0$. Por tanto, por el `Teorema` anterior, tenemos $$\dim(F\oplus G) = \dim(F) + \dim(G)$$ 
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Corolario.</l> Sean $E$ un $\mathbb{K}$-e.v. de dimensión finita y $F,G$ sub-e.v. de $E$. Entonces las siguientes afirmaciones son equivalentes:
+
+- $F$ y $G$ son complementarios ($E = F\oplus G$)
+- $F\cap G = \{0\}$ y $\dim(E)= \dim(F)+\dim(G)$
+
+## Bases de un espacio vectorial
+
+<l class = "prop">Corolario.</l> Sea $E$ un $\mathbb{K}$-espacio vectorial de dimensión finita, entonces todo subespacio vectorial $F$ admite al menos un complementario.
+
+<div class = "exercise">
+**Ejercicio 20.** Demostrar formalmente este Corolario.
+</div>
+
+
+
+# Construcción de espacios vectoriales
+
+## Construcción de espacios vectoriales
+
+¿Cómo construimos nuevos espacios vectoriales a partir de otros conocidos?
+
+Esto es lo que veremos a lo largo de este apartado
+
+## Espacio vectorial producto
+
+<l class = "definition">Espacio vectorial producto.</l> Sean $E,F$ dos $\mathbb{K}$-espacios vectoriales. Definimos sobre el conjunto producto cartesiano $E\times F$ las siguientes operaciones:
+
+$$(u,v)+(u',v') = (u+u',v+v')$$
+$$\alpha\cdot(u,v) = (\alpha\cdot u,\alpha\cdot v)$$
+
+donde $u,u'\in E$, $v,v'\in F$ y $\alpha\in\mathbb{K}$. Es inmediato ver que con estas operaciones, el conjunto $(E\times F,+,\cdot)$ es un $\mathbb{K}$-e.v. llamado <l class = "definition">espacio vectorial producto</l> o <l class = "definition">espacio vectorial suma directa de $E$ y $F$</l>. 
+
+Lo denotaremos habitualmente por $E\oplus F$
+
+## Espacio vectorial producto
+
+<l class = "observ">Observación.</l> El elemento neutro del $\mathbb{K}$-e.v. será $(0,0)$, donde el primer $0$ es el elemento neutro de $E$, mientras que el segundo, es el elemento neutro de $F$
+
+De forma análoga, el opuesto de cualquier elemento $(u,v)\in E\oplus F$ será $(-u,-v)\in E\oplus F$
+
+## Espacio vectorial producto
+
+<l class = "important">¡Atención!</l> Anteriormente hemos hablado de suma directa de subespacios vectoriales y ahora de suma directa de espacios vectoriales. Ambos se denotan del mismo modo, $\oplus$.
+
+Así pues, dados dos subespacios vectoriales $F,G$ de un $\mathbb{K}$-e.v. $E$, tenemos que $F,G$ pueden ser considerados también como $\mathbb{K}$-e.v. y, por tanto $F\oplus G$ denota a la vez dos objetos inicialmente diferentes:
+
+- Suma directa de subespacios vectoriales de $E$ $$F\oplus G = \{z\in E\ |\ z = x+y\ \text{ para ciertos }x\in F,\ y\in G\}$$
+- Suma directa como $\mathbb{K}$-espacios vectoriales $$F\oplus G = \{(x,y)\ |\ x\in F,\ y\in G\}$$
+
+## Espacio vectorial producto
+
+Lo indicado en la diapositiva anterior no lleva a ninguna confusión porque, como veremos más adelante, los dos conjuntos corresponden a $\mathbb{K}$-espacios vectoriales isomorfos, es decir, identificables desde el punto de vista de la estructura de espacio vectorial que manejamos.
+
+## Espacio vectorial producto
+
+La definición de espacio producto o espacio suma directa se puede generalizar a $n$ sumandos:
+
+<l class = "definition">Espacio vectorial producto.</l> Sean $E_1,\dots,E_n$ $\mathbb{K}$-e.v. cualesquiera. Definimos el $\mathbb{K}$-espacio vectorial producto o suma directa de $E_1,\dots,E_n$ como $$E_1\oplus\cdots\oplus E_n = \{(\vec{u}_1,\dots,\vec{u}_n)\ |\ \vec{u}_i\in E_i,\ \text{ para }i= 1,\dots,n\}$$
+
+Con las operaciones suma y producto por escalares definidas componente a componente
+
+$$(\vec{u}_1,\dots,\vec{u}_n)+(\vec{v}_1,\dots,\vec{v}_n) = (\vec{u}_1+\vec{v}_1,\dots,\vec{u}_n+\vec{v}_n)$$$$\alpha\cdot(\vec{u}_1,\dots,\vec{u}_n) = (\alpha\cdot \vec{u}_1,\dots,\alpha\cdot\vec{u}_n)$$
+
+donde $\vec{u}_i,\vec{v}_i\in E_i,\ \forall i = 1,\dots, n$ y $\alpha\in\mathbb{K}$
+
+
+## Espacio vectorial producto{.example}
+
+**Ejemplo 12**
+
+De la definición anterior, deducimos que el $\mathbb{K}$-espacio vectorial $\mathbb{K}^n$ lo podemos ver como la siguiente suma directa $$\mathbb{K}^n = \mathbb{K}\oplus\cdots\oplus\mathbb{K}$$
+
+## Espacio vectorial producto
+
+<l class = "prop">Proposición.</l> Sean $E,F,E_1,\dots,E_n$ $\mathbb{K}$-e.v.
+
+- Si $E,F$ son de dimensión finita, entonces $E\oplus F$ también lo es y $$\dim(E\oplus F) = \dim(E)+\dim(F)$$
+- Si todos los $E_i$ son de dimensión finita y $\dim(E_i) = n_i\ \forall i=1,\dots,n$, entonces $E_1\oplus\cdots\oplus E_n$ también es de dimensión finita y $$\dim(E_1\oplus\cdots\oplus E_n)=\dim(E_1)+\cdots+\dim(E_n) = \sum_{i = 1}^n n_i$$
+
+<div class = "exercise">
+**Ejercicio 21.** Demostrar formalmente esta Proposición.
+</div>
+
+## Espacio vectorial cociente
+
+<l class = "definition">Relación módulo $F$.</l> Sean $E$ un $\mathbb{K}$-espacio vectorial y $F$ un subespacio vectorial de $E$ cualquiera. Definimos sobre $E$ la siguiente relación llamada relación módulo $F$
+
+$$x\sim_{F}y \Leftrightarrow x-y\in F$$
+
+## Espacio vectorial cociente
+
+La relación definida anteriormente sobre $E$ es siempre una relación de equivalencia cualquiera que sea el subespacio vectorial $F$ ya que
+
+- Reflexiva: $\forall x\in E$, tenemos que $x\sim_F x$ ya que $x-x = 0\in F$ por ser $F$ subespacio vectorial
+- Simétrica: $\forall x,y\in E$, si $x\sim_F y$, tenemos que $x-y\in F$ y, por tanto, su opuesto también pertenece a $F$, $y-x\in F$. Es decir, tenemos $y\sim_F x$
+- Trasitiva: Si tenemos $x,y,z\in E$ tales que $x\sim_F y$ y $y\sim_F z$, entonces $x-y,y-z\in F$. Por tanto, su suma también es de $F$, es decir, $$(x-y)+(y-z) = x-z\in F\Leftrightarrow x\sim_F z$$
+
+## Espacio vectorial cociente
+
+De esta manera podemos considerar el <l class = "definition">conjunto cociente</l>, denotado como $E/F$ formado por todas las clases de equivalencia módulo $F$.
+
+<l class = "definition">Clase de equivalencia módulo $F$</l>. Dado $x\in E$, su clase de equivalencia módulo $F$ la denotamos por $[x]_F$ y viene dada por $$[x]_F = \{y\in E\ |\ y\sim_F x\} = \{y\in E\ |\ y-x = z\in F\}$$ $$=\{y\in E\ |\ y = x+z,\ z\in F \} = \{x+z\ |\ z\in F\} = x+F$$
+
+## Espacio vectorial cociente
+
+<l class = "observ">Observación.</l> La clase del $0$ coincide con el propio subespacio $F$ $$[0]_F = \{0+z\ |\ z\in F\} = F$$
+
+De hecho, más generalmente tenemos
+
+$$[x]_F = [0]_F\Leftrightarrow x\sim_F0\Leftrightarrow x\in F\ \text{y en estos casos }[x]_F = F$$
+
+## Espacio vectorial cociente
+
+Estas clases de equivalencia se denominan <l class = "definition">variedades lineales</l> 
+
+<l class = "definition">Variedad lineal.</l> Es la suma de un vector y un subespacio vectorial
+
+Como hemos visto, las variedades lineales solamente son subespacios vectoriales cuando $x\in F$, o equivalentemente, cuando la variedad contiene el $0\in E$, coincidiendo en estos casos con el propio subespacio $F$.
+
+## Espacio vectorial cociente
+
+Dentro del conjunto cociente $E/F = \{[x]_F\ |\ x\in E\}$ podemos definir las siguientes operaciones de clases de equivalencia, a través de sus representantes:
+
+$$[u]_F +[v]_F = [u+v]_F$$
+$$\alpha\cdot[u]_F = [\alpha\cdot u]_F$$
+
+
+## Espacio vectorial cociente
+
+Veamos que las operaciones anteriores están bien definidas. En otras palabras, comprobemos que no dependen del representante elegido:
+
+- SUMA: Supongamos que $[x]_F = [x']_F$ y que $[y]_F = [y']_F$. Queremos ver que si sumamos a través de los representantes $x,y$ o $x',y'$, el resultado es el mismo. Como era de esperar $$[x]_F = [x']_F\Leftrightarrow x\sim_F x'\Leftrightarrow x-x'\in F$$$$[y]_F = [y']_F\Leftrightarrow y\sim_F y'\Leftrightarrow y-y'\in F$$ y consecuentemente sumando obtenemos que $$x+y-(x'+y')\in F\Leftrightarrow (x+y)\sim_F(x'+y')\Leftrightarrow [x+y]_F = [x'+y']_F$$
+
+## Espacio vectorial cociente
+
+- PRODUCTO por escalares: De forma similar, si $\alpha\in\mathbb{K}$ y $[x]_F = [x']_F$, tenemos que $x-x'\in F$ y, entonces, $$\alpha\cdot(x-x')\in F\Leftrightarrow \alpha\cdot x-\alpha\cdot x'\in F\Leftrightarrow [\alpha\cdot x]_F = [\alpha\cdot x']_F$$
+
+## Espacio vectorial cociente
+
+Con todo lo visto hasta el momento, es fácil ver que el conjunto cociente $E/F$ junto con estas operaciones es un $\mathbb{K}$-espacio vectorial:
+
+<l class = "definition">Espacio vectorial cociente.</l> Sea $E$ un $\mathbb{K}$-e.v. y $F$ un sub-e.v. de $E$ cualquiera. Definimos el espacio vectorial cociente de $E$ por $F$ al $\mathbb{K}$-espacio vectorial dado por $(E/F,+,\cdot)$ con las operaciones
+
+$$[u]_F +[v]_F = [u+v]_F$$
+$$\alpha\cdot[u]_F = [\alpha\cdot u]_F$$
+
+donde $\alpha\in\mathbb{K}$, $u,v\in E$
+
+## Espacio vectorial cociente
+
+<l class = "prop">Proposición.</l> Sea $E$ un $\mathbb{K}$-e.v. de dimensión finita, $\dim(E) = n$ y sea $F$ un subespacio vectorial. Entonces, $E/F$ es también de dimensión finita y $$\dim(E/F) = \dim(E)-\dim(F)$$
+
+<div class = "exercise">
+**Ejercicio 22.** Demostrar formalmente esta Proposición.
+</div>
+
+
+## Espacio vectorial cociente
+
+En dimensiones infinitas, la fórmula anterior ya no sería válida. Un ejemplo de ello es el $\mathbb K$-espacio vectorial de los polinomios $\mathbb K[x]$. 
+
+Si $p(x)\in\mathbb K[x]$ es un polinomio no constante cualquiera, y consideramos el subconjunto de los múltiplos de $p(x)$, que denotamos por
+
+$$F=(p(x)) = \{p(x)q(x)| q(x)\in\mathbb K[x]\}$$
+
+se puede demostrar fácilmente que $F=(p(x))$ es un subespacio vectorial de $\mathbb K[x]$, ya que la suma de múltiplos de $p(x)$ es múltiplo de $p(x)$ y el producto de un escalar por un múltiplo de $p(x)$ también es múltiplo de $p(x)$. Además es de dimensión infinita ya que podemos demostrar que no puede tener un número finito de generadores como ocurría con el caso de $\mathbb K[x]$.
+
+
+## Espacio vectorial cociente
+
+En este caso podemos definir el $\mathbb K$-espacio vectorial cociente $\mathbb K[x]/F$ con $F=(p(x))$ donde la relación módulo $F$ sería:
+
+$$a(x)\sim_F b (x)\Longleftrightarrow a(x) - b(x) \in F = (p(x))$$
+
+<l class = "prop">Proposición.</l>  Sea $p(x)\in\mathbb{K}[x]$ un polinomio no constante y de grado $\deg(p(x)) = n\ge 1$. Entonces, dentro de cada clase no nula de un polinomio $a(x)\in \mathbb K[x]$, $[a(x)]_F$ hay un representante de grado menor a $n$
+
+<div class = "exercise">
+**Ejercicio 23.** Demostrar formalmente esta Proposición.
+</div>
+
+## Espacio vectorial cociente
+
+<l class = "prop">Proposición.</l> Sea $p(x)\in\mathbb{K}[x]$ un polinomio no constante de grado $\deg(p(x))= n\ge 1$. Entonces, las clases $[1],[x],[x^2],\dots,[x^{n-1}]$ forman una base de $\mathbb{K}[x]/(p(x))$, y, por lo tanto, $$\dim(\mathbb{K}[x]/(p(x))) = n = \deg(p(x))$$
+
+<div class = "exercise">
+**Ejercicio 24.** Demostrar formalmente esta Proposición.
+</div>
+
+## Espacio vectorial cociente
+
+<l class = "observ">Observación.</l> En el caso en que hiciésemos $\mathbb{K}[x]/(p(x))$ donde $p(x)$ fuese un polinomio constante, entonces tendríamos que $(p(x)) = \mathbb{K}[x]$ ya que las constantes son invertibles y todo polinomio se puede poner como múltiplo de una constante cualquiera (ya que $p(x) = k(1/k\cdot p(x))\ \forall k\in \mathbb K^*$)
+
+De este modo, $\mathbb{K}[x]/(p(x))$ sería el $\mathbb{K}$-espacio vectorial trivial, el ${0}$.
+
+
+# Rango de un conjunto de vectores. Coordenadas en una base.
+
+## Rango de un conjunto de vectores
+
+<l class = "definition">Rango de un conjunto de vectores.</l> Sea $E$ un $\mathbb{K}$-espacio vectorial cualquiera. Se llama rango de vectores $\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n\in E$ a la dimensión del subespacio vectorial que generan
+
+$$\text{rg}\{\vec{u}_1,\dots,\vec{u}_n\} = \dim(\langle\vec{u}_1,\dots,\vec{u}_n\rangle)$$
+
+que coincide con el número máximo de vectores LI que se pueden extraer del conjunto $\{\vec{u}_1,\dots,\vec{u}_n\}$
+
+## Rango de un conjunto de vectores
+
+Otra definición de rango:
+
+<l class = "definition">Rango de un conjunto de vectores.</l> Dados $\vec{u}_1,\dots,\vec{u}_n\in E$, se dice que tiene rango $r\le n$ si existe como mínimo un subconjunto de $r$ vectores LI entre ellos y no existe ninguno de $r+1$ que sea LI.
+
+En otras palabras, como bien se dijo anteriormente, es el número máximo de vectores LI que pueden extraerse del conjunto.
+
+## Coordenadas en una base
+
+El rango de $n$ vectores está relacionado con el rango de una matriz tal y como veremos a continuación.
+
+En primer lugar, recordemos que dado un $\mathbb{K}$-espacio vectorial de dimensión $n$ y $B=\{e_1,\dots,e_n\}$ una base cualquiera de $E$, todo vector $x\in E$ se escribe de manera única como combinación lineal de la base $B$ de la forma $$x = \sum_{i = 1}^n\alpha_i\cdot e_i = \alpha_1\cdot e_1+\cdots+\alpha_n\cdot e_n$$
+
+Por tanto, podemos dar la siguiente definición:
+
+<l class = "definition">Coordenadas de un vector en base $B$.</l> Son los escalares $\alpha_1,\dots,\alpha_n$ de la combinación lineal anterior
+
+## Coordenadas en una base
+
+Más formalmente,
+
+<l class = "definition">Coordenadas en una base.</l> Dado un $\mathbb{K}$-espacio vectorial $E$ con una base $B = \{e_1,\dots,e_n\}$ y un vector $u\in E$, se sabe que existen unos únicos escalares $\alpha_1,\dots,\alpha_n\in\mathbb{K}$ tales que:
+
+$$u = \sum_{i = 1}^n\alpha_i\cdot e_i$$
+
+Estos escalares se denominan coordenadas del vector $u$ en la base $B$.
+
+$$u = (\alpha_1,\dots,\alpha_n)_B$$
+
+
+## Coordenadas en una base
+
+<l class = "prop">Proposición.</l> Sea $E$ un $\mathbb{K}$-espacio vectorial de dimensión finita $n$ y $B=\{e_1,\dots,e_n\}$ una base de $E$. Sean $u_1,\dots,u_m\in E$ vectores de forma que cada $u_j$ tiene coordenadas en la base $B$ dadas por $$u_j = \sum_{i = 1}^n a_{ij}\cdot e_i = a_{1j}\cdot e_1+\cdots+a_{nj}\cdot e_n$$
+
+Entonces,
+
+- $u_1,\dots,u_m$ son LI si, y solo si, $\text{rg}(A) = m\le n$
+- $\text{rg}(u_1,\dots,u_m) = \text{rg}(A)$
+
+<div class = "exercise">
+**Ejercicio 25.** Demostrar formalmente esta Proposición.
+</div>
+
+
+## Coordenadas en una base
+
+Por la proposición anterior, un método para calcular el rango de un conjunto de vectores consiste en construir una matriz utilizando los vectores como columnas (o filas) y definir el rango de la matriz como el rango de sus vectores columna (o fila). 
+
+## Coordenadas en una base
+
+<l class = "observ">Observación.</l> Si se nos facilitan las coordenadas de un vector sin especificar la base, se sobreentiende que se trata de la base canónica. 
+
+También reciben el nombre de <l class = "definition">coordenadas cartesianas</l> y son las que en temas anteriores hemos definido como las componentes de un vector.
+
+
+
+
+
+
+
+
+
+# Cambio de base
+
+## Cambio de base
+
+Sabemos que las coordenadas de un vector son únicas en cada base, pero distintas cuando cambian de base.
+
+Partiendo de este punto, el problema que se nos plantea es el de calcular las coordenadas de un vector en cierta base $B'$ dadas las coordenadas del mismo en otra base $B$.
+
+Se necesitará pues conocer la relación entre ambas bases.
+
+## Cambio de base
+
+Dadas las bases $B_u = \{\vec{u}_1,\dots,\vec{u}_n\}$ y $B_v = \{\vec{v}_1,\dots,\vec{v}_n\}$ de un espacio vectorial $E$, si queremos calcular las coordenadas de los vectores de $B_u$ en la base $B_v$, se han de expresar los vectores $\vec{u}_i$ como combinación lineal de los vectores de $\vec{v}_i$
+
+## Ejemplo 13{.example}
+
+**Ejemplo 13**
+
+Dado el vector $\vec{u}\in\mathbb{R}^3$ de coordenadas $(-2,3,5)_B$ en la base
+$$B = \{(2,4,0),(1,0,1),(-1,2,0)\}$$
+Calculemos sus coordenadas en la base canónica $C$.
+
+En primer lugar, tenemos que expresar los vectores de la base $B = \{\vec{u}_1,\vec{u}_2,\vec{u}_3\}$ en la base canónica $C = \{\vec{e}_1,\vec{e}_2,\vec{e}_3\}$:
+
+$$(2,4,0) = 2(1,0,0)+4(0,1,0)+0(0,0,1)$$
+$$(1,0,1) = 1(1,0,0)+0(0,1,0)+1(0,0,1)$$
+$$(-1,2,0) = -1(1,0,0)+2(0,1,0)+0(0,0,1)$$
+
+A continuación, lo que buscamos son 3 escalares $\alpha,\beta,\gamma\in\mathbb{R}$ tales que
+
+$$\vec{u} = (\alpha,\beta,\gamma)_C = \alpha\vec{e}_1+\beta\vec{e}_2+\gamma\vec{e}_3$$
+
+## Ejemplo 13{.example}
+
+Pero lo que nosotros sabemos es que,  
+
+$$\vec{u} = (-2,3,5)_B = -2\vec{u}_1+3\vec{u}_2+5\vec{u}_3$$
+$$ = -2(2\vec{e}_1+4\vec{e}_2)+3(\vec{e}_1+\vec{e}_3)+5(-\vec{e}_1+2\vec{e}_2) = (-4+3-5)\vec{e}_1 + (-8+10)\vec{e}_2+3\vec{e}_3 = -6\vec{e}_1+2\vec{e}_2+3\vec{e}_3$$
+
+Así pues, $\vec{u} = (-6,2,3)_C$
+
+## Cambio de base
+
+<div class = "exercise">
+**Ejercicio 26**
+
+Dadas las bases $B_u = \{\vec{u}_1,\vec{u}_2,\vec{u}_3\}$ y $B_v=\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}$ de un espacio vectorial de dimensión 3 y sabiéndose que 
+
+$$\left\{\begin{matrix}
+\vec{v}_1 &=& 2\vec{u}_1&-&\vec{u}_2&+&\vec{u}_3\\
+\vec{v}_2 &=& &-&\vec{u}_2&+&2\vec{u}_3\\
+\vec{v}_3 &=& -\vec{u}_1&+&\vec{u}_2&-&3\vec{u}_3
+\end{matrix}\right.$$
+
+Considerad el vector $\vec{u} = (2,0,-1)_{B_u}$ y calculad sus coordenadas en la base $B_v$
+</div>
+
+## Cambio de base
+
+Veamos de dónde sale la relación anterior:
+
+Sea $E$ un $\mathbb{K}$-espacio vectorial de dimensión finita $n$ y sean $B_u = \{u_1,\dots,u_n\}$ y $B_v = \{v_1,\dots,v_n\}$ dos bases de $E$.
+
+Considremos un vector $x\in E$ y sean $(\alpha_1,\dots,\alpha_n)_{B_u}$ y $(\beta_1,\dots,\beta_n)_{B_v}$ las coordenadas del vector $x$ en las bases $B_u$ y $B_v$ respectivamente.
+
+Entonces,
+
+$$x = \sum_{i = 1}^n\alpha_i\cdot u_i\qquad x=\sum_{j = 1}^n\beta_j\cdot v_j$$
+
+## Cambio de base
+
+Ahora bien, los elementos de la base $B_v$ tienen también unas coordenadas en la base inicial $B_u$.
+
+Digamos que $v_j = \sum_{i = 1}^n a_{ij}\cdot u_i\quad j=1,\dots,n$
+
+y si sustituimos los $v_j$ por sus expresiones, obtenemos
+
+$$x=\sum_{j = 1}^n\beta_j\cdot v_j = x=\sum_{j = 1}^n\beta_j\cdot \left(\sum_{i = 1}^n a_{ij}\cdot u_i\right)$$ $$= \sum_{j = 1}^n\sum_{i = 1}^n (\beta_j a_{ij})\cdot u_i = \sum_{i = 1}^n\left(\sum_{j = 1}^n \beta_ja_{ij}\right)\cdot u_i$$
+
+## Cambio de base
+
+Ahora como que las coordenadas de $x$ en la base $B$ son únicas, se debe verificar que
+
+$$\alpha_i = \sum_{j = 1}^n\beta_ja_{ij}\quad \text{para todo }i=1,\dots,n$$
+
+## Cambio de base
+
+Esta expresión la podemos escribir de forma matricial como $PX_v = X_u$ donde $X_u$ es la matriz columna formada por las coordenadas de $x$ en la base $B_u$ (los $\alpha_i$), $X_v$ es la matriz columna de las coordenadas de $x$ en la base $B_v$ y $P$ es la matriz de las $a_{ij}$
+
+## Cambio de base
+
+<l class = "observ">Observación.</l> La columna $j$-ésima de $P$ está formada por las coordenadas, en la base $B_u$, del correspondiente vector $v_j$ de la base $B_j$
+
+De esta manera tenemos la ecuación en forma matricial $$PB_v = B_u\Leftrightarrow \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{pmatrix}\begin{pmatrix}
+\beta_1\\
+\beta_2\\
+\vdots\\
+\beta_n
+\end{pmatrix} = \begin{pmatrix}
+\alpha_1\\
+\alpha_2\\
+\vdots\\
+\alpha_n
+\end{pmatrix} $$
+
+que nos da las coordenadas de $x$ en la base $B_u$ en función de las coordenadas del propio $x$ en la base $B_v$
+
+
+## Cambio de base
+
+<l class = "definition">Matriz de cambio de base.</l> La matriz $P$ anterior es la matriz del cambio de la base $B_u$ a la base $B_v$ y se obtiene escribiendo los vectores de la base $B_v$ en columna como combinación lineal de la base $B_u$.
+
+Además, las coordenadas de un vector $x$ en la base $B_u$ se obtienen multiplicando las coordenadas de $x$ en la base $B_v$ por la matriz $P$ del cambio de base
+
+
+## Ejemplo 14{.example}
+
+**Ejemplo 14**
+
+Dadas las bases $B_u = \{\vec{u}_1,\vec{u}_2,\vec{u}_3\}$ y $B_v=\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}$ de un espacio vectorial de dimensión 3 y sabiéndose que 
+
+$$\left\{\begin{matrix}
+\vec{v}_1 &=& 2\vec{u}_1&-&\vec{u}_2&+&\vec{u}_3\\
+\vec{v}_2 &=& &-&\vec{u}_2&+&2\vec{u}_3\\
+\vec{v}_3 &=& -\vec{u}_1&+&\vec{u}_2&-&3\vec{u}_3
+\end{matrix}\right.$$
+
+Considerad el vector $\vec{u} = (2,0,-1)_{B_u}$ y calculad sus coordenadas en la base $B_v$ haciendo uso de matrices
+
+Expresando el anterior sistema en su forma matricial,
+
+$$\begin{pmatrix}2 & -1 & 1\\
+0 & -1 & 2\\
+-1 & 1 & -3\end{pmatrix}\begin{pmatrix}\vec{u}_1\\
+\vec{u}_2\\
+\vec{u}_3\end{pmatrix}= \begin{pmatrix}\vec{v}_1\\
+\vec{v}_2\\
+\vec{v}_3\end{pmatrix}$$
+
+o bien
+
+$$\begin{pmatrix}\vec{u}_1 & \vec{u}_2 & \vec{u}_3\end{pmatrix}\begin{pmatrix}2 & 0 & -1\\
+-1 & -1 & 1\\
+1 & 2 & -3\end{pmatrix}= \begin{pmatrix}\vec{v}_1 & 
+\vec{v}_2 & 
+\vec{v}_3\end{pmatrix}$$
+
+## Ejemplo 14{.example}
+
+En la primera forma, las filas de la matriz son las coordenadas de los vectores $\vec{v}_1,\vec{v}_2,\vec{v}_3$ mientras que en el segundo caso, las columnas son las coordenadas de dichos vectores en la base $B_u$
+
+Por otro lado, se puede expresar el vector $\vec{u}$ en ambas bases de la siguiente manera:
+
+$$\vec{u} = 2\vec{u}_1-\vec{u}_3 = \begin{pmatrix}\vec{u}_1 & \vec{u}_2 & \vec{u}_3\end{pmatrix}\begin{pmatrix}2\\
+0\\
+-1\end{pmatrix} = \begin{pmatrix}2 & 0 & -1\end{pmatrix}\begin{pmatrix}\vec{u}_1\\
+\vec{u}_2\\
+\vec{u}_3\end{pmatrix}$$
+
+$$\vec{u} = \alpha\vec{v}_1+\beta\vec{v}_2+\gamma\vec{v}_3 = \begin{pmatrix}\vec{v}_1 & \vec{v}_2 & \vec{v}_3\end{pmatrix}\begin{pmatrix}\alpha\\
+\beta\\
+\gamma\end{pmatrix} = \begin{pmatrix}\alpha &\beta & \gamma\end{pmatrix}\begin{pmatrix}\vec{v}_1\\
+\vec{v}_2\\
+\vec{v}_3\end{pmatrix}$$
+
+Con lo cual, tenemos la siguiente igualdad
+
+$$\begin{pmatrix}2 & 0 & -1\end{pmatrix}_{B_u}\begin{pmatrix}\vec{u}_1\\
+\vec{u}_2\\
+\vec{u}_3\end{pmatrix} = \begin{pmatrix}\alpha &\beta & \gamma\end{pmatrix}_{B_v}\begin{pmatrix}\vec{v}_1\\
+\vec{v}_2\\
+\vec{v}_3\end{pmatrix}$$
+
+## Ejemplo 14{.example}
+
+Si ahora sustituimos en la igualdad anterior  $$\begin{pmatrix}\vec{v}_1\\
+\vec{v}_2\\
+\vec{v}_3\end{pmatrix} = \begin{pmatrix}2 & -1 & 1\\
+0 & -1 & 2\\
+-1 & 1 & -3\end{pmatrix}\begin{pmatrix}\vec{u}_1\\
+\vec{u}_2\\
+\vec{u}_3\end{pmatrix}$$
+
+Lo que tenemos es
+
+$$\begin{pmatrix}2 & 0 & -1\end{pmatrix}_{B_u}\begin{pmatrix}\vec{u}_1\\
+\vec{u}_2\\
+\vec{u}_3\end{pmatrix} = \begin{pmatrix}\alpha &\beta & \gamma\end{pmatrix}_{B_v}\begin{pmatrix}2 & -1 & 1\\
+0 & -1 & 2\\
+-1 & 1 & -3\end{pmatrix}\begin{pmatrix}\vec{u}_1\\
+\vec{u}_2\\
+\vec{u}_3\end{pmatrix}$$ $$= \begin{pmatrix}2\alpha-\gamma &-\alpha-\beta +\gamma& \alpha+2\beta-3\gamma\end{pmatrix}\begin{pmatrix}\vec{u}_1\\
+\vec{u}_2\\
+\vec{u}_3\end{pmatrix}$$
+
+Ahora ya solo falta resolver el sistema
+
+$$\left\{\begin{matrix}2\alpha &&&-&\gamma &=& 2\\
+-\alpha & -&\beta&+&\gamma &=&0\\
+\alpha&+&2\beta&-&3\gamma &=&-1\end{matrix}\right.$$
+
+## Ejemplo 14{.example}
+
+Cuya única solución es $(1,-1,0)$
+
+Así pues, 
+
+$$\begin{pmatrix}2 & 0 & -1\\
+-1 & -1 & 1\\
+1 & 2 & -3\end{pmatrix}\begin{pmatrix}
+1\\
+-1\\
+0\end{pmatrix}_{B_v} = \begin{pmatrix}
+2\\
+0\\
+-1
+\end{pmatrix}_{B_u}$$
+
+## Cambio de base
+
+<l class = "prop">Proposición.</l> Las matrices de cambio de base son siempre invertibles y, si $P$ es la matriz del cambio de base de $B_u$ a $B_v$, entonces $P^{-1}$ es la matriz del cambio de base de $B_v$ a $B_u$.
+
+<div class = "exercise">
+**Ejercicio 27.** Demostrar formalmente esta Proposición.
+</div>
+
+
+## Cambio de base
+<l class = "prop">Proposición.</l> Sea $E$ un $\mathbb{K}$-espacio vectorial de dimensión $n$ y sean $B,B',B''$ bases de $E$. Si $P$ es la matriz de cambio de base de $B$ a $B'$ y $Q$ es la matriz de cambio de base de $B'$ a $B''$, entonces la matriz de cambio de base de $B$ a $B''$ es $QP$ 
+
+
+
+
+# Bases ortogonales y ortonormales
+
+## Bases ortogonales y ortonormales
+
+<l class = "definition">Base ortogonal.</l> Dada una base $B = \{\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n\}$ de un espacio vectorial $E$, se dice que se trata de una base ortogonal si sus elementos son ortogonales dos a dos:
+
+$$\langle\vec{u}_i,\vec{u}_j\rangle = 0\quad\forall i\ne j$$
+
+## Bases ortogonales y ortonormales
+
+<l class = "definition">Base ortonormal.</l> Dada una base $B = \{\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n\}$ de un espacio vectorial $E$, se dice que se trata de una base ortonormal si es ortogonal y todos sus elementos son unitarios:
+
+$$\langle\vec{u}_i,\vec{u}_j\rangle = 0\quad\forall i\ne j$$
+$$||\vec{u}_i|| = 1\quad\forall i$$
+
+## Método de ortogonalización de Gram-Schmidt
+
+<l class = "definition">Método de ortogonalización de Gram-Schmidt.</l> Permite construir una base ortogonal a partir de una base cualquiera del espacio vectorial.
+
+## Método de ortogonalización de Gram-Schmidt
+
+<div class = "dem">
+**Método de ortogonalización de Gram-Schmidt**
+
+Sea $B= \{\vec{v}_1,\vec{v}_2,\dots,\vec{v}_n\}$ una base cualquiera de un espacio vectorial $E$ de $\dim(E) = n$.
+
+A partir de los vectores de la base $B$, se construirá una nueva base $B_o = \{\vec{u}_1,\vec{u}_2,\dots,\vec{u}_n\}$ que será ortogonal y del mismo espacio.
+
+1. Se toma $\vec{u}_1 =\vec{v}_1$ como primer vetor de la base nueva.
+2. El segundo vector será una combinación lineal de $\vec{v}_1$ y $\vec{v}_2$ de la forma $\vec{u}_2 = \vec{v}_2-\alpha\vec{u}_1$, al cual se le impondrá la condición de que debe ser perpendicular a $\vec{u}_1$. Es decir, $\vec{u}_1\perp\vec{u}_2$. De este modo obtendremos $$\alpha = \frac{\langle\vec{u}_1,\vec{v}_2\rangle}{\langle\vec{u}_1,\vec{u}_1\rangle}\Rightarrow \vec{u}_2 = \vec{v}_2-\frac{\langle\vec{u}_1,\vec{v}_2\rangle}{\langle\vec{u}_1,\vec{u}_1\rangle}\vec{v_1}$$
+3. Para calcular el tercer vector, se procede del mismo modo: el tercer vector será una combinación lineal de $\vec{v}_1,\vec{v}_2,\vec{v}_3$ de la forma $\vec{u}_3= \vec{v}_3-\alpha_1\vec{u_1}-\alpha_2\vec{u}_2$ a la cual se impondrán las condiciones $\vec{u}_1\perp\vec{u}_3$ y $\vec{u}_2\perp\vec{u}_3$. Operando se obtniene:$$\alpha_1 = \frac{\langle\vec{u}_1,\vec{v}_3\rangle}{\langle\vec{u}_1,\vec{u}_1\rangle};\quad\alpha_2 = \frac{\langle\vec{u}_2,\vec{v}_3\rangle}{\langle\vec{u}_2,\vec{u}_2\rangle}$$ $$\vec{u}_3 = \vec{v}_3-\frac{\langle\vec{u}_1,\vec{v}_3\rangle}{\langle\vec{u}_1,\vec{u}_1\rangle}\vec{u}_1-\frac{\langle\vec{u}_2,\vec{v}_3\rangle}{\langle\vec{u}_2,\vec{u}_2\rangle}\vec{u}_2$$
+</div>
+
+## Método de ortogonalización de Gram-Schmidt
+
+<div class = "dem">
+<ol start = 4>
+<li> Y operamos de forma análoga hasta llegar a $$\vec{u}_n = \vec{v}_n-\sum_{i=1}^{n-1}\frac{\langle\vec{u}_i,\vec{v}_n\rangle}{\langle\vec{u}_i,\vec{u}_i\rangle}\vec{u}_i$$
+<li> Finalmente, si lo que se quiere es una base ortonormal, bastará con dividir cada vector por su norma para así normalizar todos los elementos de la base
+</ol>
+</div>
+
+## Proyección ortogonal de un vector sobre un subespacio
+
+<l class = "definition">Vector ortogonal a un subespacio.</l> Un vector $\vec{u}\in E$ es ortogonal a un subespacio vectorial $S\subseteq E$ si, y solo si, $$\langle\vec{u},\vec{x}\rangle = 0\quad\forall\vec{x}\in S$$
+
+## Proyección ortogonal de un vector sobre un subespacio
+
+<l class = "prop">Teorema.</l> Un vector $\vec{u}\in E$ es ortogonal a un subespacio vectorial $S\subseteq E$ si, y solo si, es ortogonal a todos los vectores de una base de $S$.
+
+
+## Proyección ortogonal de un vector sobre un subespacio
+
+<l class = "prop">Teorema.</l> Dos subespacio $V$ y $W$ de $E$ son ortogonales si:
+
+$$\forall\vec{x}\in V,\ \forall\vec{y}\in W\Rightarrow \langle\vec{x},\vec{y}\rangle = 0$$
+
+## Proyección ortogonal de un vector sobre un subespacio
+
+<l class = "prop">Teorema.</l> Para que dos subespacios $V$ y $W$ sean ortogonales, es suficiente con que los vectores de una base de $V$ sean ortogonales a los vectores de una base de $W$
+
+## Proyección ortogonal de un vector sobre un subespacio
+
+Recordemos...
+
+<l class = "definition">Proyección ortogonal.</l> La proyección ortogonal de un vector $\vec{u}$ sobre otro $\vec{v}$, se expresa como
+
+$$P_{\vec{u}}(\vec{v}) = \frac{\langle\vec{u},\vec{v}\rangle}{\langle\vec{v},\vec{v}\rangle}\vec{v} = \frac{\langle\vec{u},\vec{v}\rangle}{||\vec{v}||^2}\vec{v} $$
+
+## Proyección ortogonal de un vector sobre un subespacio
+
+<l class = "definition">Proyección ortogonal de un vector sobre un subespacio.</l> Dado $S$ un subespacio vectorial de un espacio vectorial $E$, todo vector $\vec{u}\in E$ se descompone de manera única en:
+
+$$\vec{u} = \vec{u}_S+\vec{u}_0$$
+
+Con $\vec{u}_S\in S$ y $\vec{u}_0\in S^{\perp}$. En particular, el vector $\vec{u}_S\in S$ se denomina <l class = "definition">vector proyección ortogonal</l> de $\vec{u}$ sobre $S$.
+
+## Proyección ortogonal de un vector sobre un subespacio
+
+<l class = "definition">Proyección ortogonal de un vector sobre un subespacio.</l> Si se toma en $S$ una base ortogonal $\{\vec{s}_1,\vec{s}_2,\dots,\vec{s}_r\}$, la proyección de $\vec{u}$ sobre $S$ viene dada por $$P_{S}(\vec{u}) = \vec{u}_S = \sum_{i = 1}^r\frac{\langle\vec{u},\vec{s}_i\rangle}{||\vec{s}_i||^2}\vec{s}_i$$
+

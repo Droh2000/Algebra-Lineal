@@ -1,0 +1,497 @@
+---
+title: "Preliminares"
+author: "yo"
+date: "21/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Cuerpo
+
+Si tenemos 'K' un conjunto cualquiera con la suma y multiplicacion.
+'K' es un cuerpo si para cualquier dos elementos de ese conjunto se cumplen todas las siguentes condiciones:
+
+- Dados dos elementos del cuerpo su '+' y 'x' pertenece dentro al cuerpo
+- Esas son operaciones conmutativas *(a+b = b+a)* y asociativas(Recorrer parentecis)
+- Tenemos elelemnto neutro '0' que debe pertenecer al cuerpo para la suma y producto que es el '1', `los nuetros son unicos`
+- Para cada elemnto debe haber un opuesto: tal que el numerooriginal sumado con este (-a) de el numero 0, `Cada elemento tiene un unico Opuesto`
+- debe existir un inverso (ala -1)
+- Como se relacionan esas dos operaciones que es la *Operacion distributiva*, que es como quitar parentecis: a x (b+c) = a x b + a x c
+
+Estas propedades permiten definir estructuras como los numeros naturales, enteros, negativos que se pueden aplicar estas propiedades y ver como si aplican o no las propiedades, de los que si son un cuerpo son:
+- 'Racionales, Reales y los Complejos'
+
+`Ejemplo de un Cuerpo: `
+- `Z`={0,1} Cuerpo finito de dos elementos
+
+**Tipo especial de Cuerpo**
+
+## Numeros Complejos
+
+`C={(a,b): a,b e R}`, Par Ordenado (a,b) donde a y b son numeros reales unidos
+
+- La suma es cordenada a cordenada: `(a,b)+(d,c)=(a+c,b+d)`
+- El producto se multiplica la primera por la primera y restar las segunda por la segunda y luego hacer los productos crusados sumados: `(a,b)*(d,c)=(ac-bd,ad-bc)`
+
+Estos pares tienen nombre, la primera es la parte `real` y la segunda es la parte `imaginaria`
+
+**Forma de escribir un numero complejo**
+
+`Forma Binomica`: Z=a+bi, tal que tengamos z=(a,b), aqui sale la unnidad imaginaria `i que significa raiz de -1`: seria por partes REAL + IMAGINARIA`i`
+
+Si Z=a+bi:
+
+- Parte Real: a
+- Parte Imaginaria; b
+
+`Conjugado de un Numero Complejo: ` Es otro que tiene la misma parte real pero laparte imaginaria cambiada de Signo: Z=a+bi, Z=a-bi
+
+`Modulo de un Numero Complejo: ` Z=Raiz(z*z(Conjugado)), seria la longitud de ese punto al origen de coordenadas: Raiz(Real^2 + Img^2)
+
+`Argumento: ` Es el angulo que forma el vector que une el punto (0,0) con el numero Complejo con respecto al eje positivo de las x: Si z=a+bi, Arg(z)=Arctan(b/a), se da en Radianes,
+
+`Argumento Principal: ` A ese argumento si esta entre Pi y -Pi (En Radianes) sin incluir el primero y hasta el segundo
+
+En radianes: 360° son 2Pi Radianes
+
+**Plano Complejo: **
+
+Se usa para representar los numeros complejos  donde el eje de las absisas es el `Eje Real` 'X' y el de las ordenadas es `Eje Imaginario` 'Y': (a+bi)
+
+**Forma Polar**
+
+Es otra forma en que se pueden escribir los numeros complejos
+
+`Formula de Euler: ` $e^{ix}=cos(x)+isen(x)$, donde 'x' es una variable, esta formula se puede escribir en forma binomica
+
+`Forma Polar: ` Z=re^(i*phi), donde r es el modulo y phi el argumento (arg(z))
+
+**Trabajando con Zn**
+
+Conjunto Zn es la que tiene n elementos donde n es un numero perteneciente a los numeros naturales, En este caso trabajaremos con: `n = 3,4,5,6`
+
+Los n elemntos son clases del 0,1,2,..,n-1.
+
+Si nos dan n=5, y nos dan el elemento 150, si tomamamos Z5 seria:
+
+Z5={[0],[1],[2],[3],[4]}, Aqui no se ve ningun 150 pero esta ahi ya que todos los numero enteros estan ahi,loque pasa que en Z5 lo que se ve son clases.
+`Para saber en cual clase pertenece 150 ` dividimos (150/n) que n es 5, y lo que nos interesa el `Resto` que en este caso nos da 0 que a esa clase pertenece 150
+
+*Suma y producto de Clases*
+[p]+[q]=[p+q], (Suma de dos clases cualesquiera)
+[p]x[q]= [pxq], Producto de clases
+
+`Ejemplo con N=3`:
+
+Z3={[0],[1],[2]}
+
+Hacemos la suma y el producto para este caso, Nececitamos hacer estas Tablas
+
+*Tabla de la Suma*
+
++|  0 | 1  | 2 |
+-|----|----|---|
+0|  0 | 1  | 2 |
+-|----|----|---|
+1|  1 | 2  | 0 |
+-|----|----|---|
+2|  2 | 0  | 1 |
+-|----|----|---|
+
+- Empezamos:
+- 0+0=0, 0+1=1, 0+2=2
+- 1+0=1, 1+1=2 Y `1+2=3`(Pero aqui son clases), Por tanto: [3] debemos saber a cual clase pertenence, como antes: 3/3 que da de resto 0
+- 2+0=0, 2+1=3(Que ya sacamos la clase del 3), 2+2=4(Otra vez nececitamos saber a cual clase pertenece): 4/3 que de resto da 1
+
+
+*Tabla del Producto*
+
+|X|  0 | 1  | 2 |
+|-|----|----|---|
+|0|  0 |  0 | 0 |
+|-|----|----|---|
+|1|  0 |  1 | 2 |
+|-|----|----|---|
+|2|  0 |  2 | 1 |
+|-|----|----|---|
+
+- Aqui es igual,solo en el caso de 2*2=4 en la que sacariamos la clase del 4 que ya la habiamos sacado ariba
+
+Estas tablas nos permiten obtener los opuestos del conjunto o el inverso si los hay
+
+`Los Opuestos de este conjunto`
+
+El opuesto de la clase del 1 en este caso es [2] pensariamos que es -1,Pero como estamos trabajando con clases ya que estamos con el conjunto que solo tenemos [0],[1],[2] y lo mismo para el opuesto de la clase del 2 es la clase del 1
+y lo del -1 es cierto ya que si dividimos [-1]/[3] de resto nos da el 2 que esa clase es a la que pertenece, `Una forma de ver el opuesto directamente es ver en la tabla de la suma como en la fila del 1 si nos vamos a la columna del 2 es 0` y asi donde estan los 0 y ver la fila y columna para saberlos opuestos
+
+`Los inversos`
+
+el inverso de la clase [1] es la clase [1] y lo mismocon la clase del 2 son su propia inversa, `En este caso donde veamos 1 en la tabal del producto para saber los inversos en lafila y columna` y sino vemos ningun 1 en la fila o columna quiere decir que no hay inverso y por lo tanto no seria un cuerpo
+
+Con eso podemos concluir que este conjunto es un Cuerpo ya que todo elemento tiene Opuesto y a excepcion del 0 tienen inverso y se cumplen las propiedades
+
+Zn es un cuerpo si n es un numero Primo
+
+**Numeros complejos en R**
+
+```{r}
+#                         De forma Binomica
+
+z1=2+4i#Se almacena en una variavle
+z1
+
+#Mediante una funcion
+z2=complex(real = 2,imaginary = 4)# con la parte real y la imaginaria
+z2
+
+#(Es en Forma Polar)
+#Por el Modulo y el Argumento 
+z3=complex(modulus = 2,argument = pi)# Explicacion de porque da -2+0i, ya que pi radianes es 180° de recorrido con respecto al eje pocitivo que termina en el eje negativo 
+z3
+
+#La i siempre tendra que estar acompañada con un numero si no dara error
+4+1i #== a+i
+
+#Para comprobar el tipo de dato estamos trabajando es `typeof()`
+typeof(z1)
+typeof(z2)
+typeof(z3)
+#Todas estas 3 nos devuelven "Complex" que es de tipo complejo
+
+#Para obtener solo una parte del Numero Complejo
+Re(z1)# Para obtener le parte Real del numero
+Im(z1)# Para obtener laparte imaginaria
+# Si usamos estas funciones donde este un 0 saldra una expreccion notacion cientifica expresada como un numero muy pequeño
+
+#Obtener el Conjugado de un Complejo: "Conj()"
+Conj(z1)
+Conj(z2)
+Conj(z3)
+#El conjugado de un numero que solo tiene parte real en la que laimaginaria es cero el resultado es igual porque como no tiene imaginaria no cambia nada
+
+#Para obtener el Modulo: "Mod()"
+Mod(z3)
+
+#Para obtener el argumento: "Arg()"
+Arg(z3)
+
+# Operaciones basicas con Numeros Complejos
+z1+z2#Suma
+3*z1#Producto
+z3*z2
+```
+
+**Numeros complejos en Python**
+
+```{python}
+#Definir numeros Compejos
+z1=4+3j # Aqui se define la "j"
+print(z1)
+
+z2=complex(2,1)
+print(z2)
+
+#Si queremos poner a+i o a-i donde a es un numero cualquiera hay que seguir la sintaxis: a-ji o a+ji
+
+#Para saber el tipo de dato
+type(z1)
+type(z2)
+
+#Para Obtener Por partes
+z1.real # Obtener la parte real
+z1.imag # Obtener la Parte Imaginaria
+
+#El conjugado
+z1.conjugate()# esta es una funcion por eso de los parentecis y las de arriba no
+z2.conjugate()
+
+#Para obtener el modulo o el argumento usamos funciones como abs() y cmath.phase()
+
+import cmath# se usa para sacar el argumento
+
+abs(z1)# suena como valor absoluto que se traduce en el Modulo
+
+#Para el Argumento
+cmath.phase(z2)
+
+# Las operaciones basicas con un complejo
+
+z1+z2 # Suma
+
+3*z2 # Producto de un escalar por un complejo
+
+z1*z2 # Producto de dos complejos
+```
+
+
+## Ejercicios de Numeros Complejos
+
+-- Sacar el Argumento: arg(z)=arctg(Img/Real) que es de [-pi,pi]
+
+z=2+2i, arctg(2/2)=arctg(1)=pi/4 rad = 45 Grados
+
+```{r}
+z=2+2i
+#El resultado con la funcion Arg nos lo dara en Radianes por lo que lo convertimos a grados: (resultado)*180/pi
+(Arg(z)*180)/pi
+
+z2=(sqrt(3)+1i)^6
+(Arg(z2)*180)/pi
+
+z3=(1+3i)/2
+(Arg(z3)*180)/pi
+
+z4=-2/(1+sqrt(3i))
+(Arg(z4)*180)/pi
+
+```
+
+# Tabla para calcular el Seno, Coseno y Tangente de 5 angulos
+
+Los numeros que estan entre () en realidad estan en Raiz cuadrada
+
+| 0 | 30  | 45  | 60  | 90 | En Angulos  |
+|---|-----|-----|-----|----|-------------|
+| 0 |pi/6 |pi/4 |pi/3 |pi/2| En Radianes |
+|---|-----|-----|-----|----|-------------|
+| 0 | 1/2 |(2)/2|(3)/2|  1 |    Seno     |
+|---|-----|-----|-----|----|-------------|
+| 1 |(3)/2|(2)/2| 1/2 |  0 |  Coseno     |
+|---|-----|-----|-----|----|-------------|
+| 0 |1/(3)|  1  | (3) | Inf|  Tangente   |
+|---|-----|-----|-----|----|-------------|
+
+En el primer ejemplo, al darnos pi/4 lo buscamos en esta tabla para ver a que angulo corresponde que es 45°.
+
+Ejercicio 3:
+
+- i(1-Raiz(3)i)(Raiz(3)+i) = 2(1+Raiz(3)i)
+
+Empezamos a pasar a forma polar los elementos del miembro de la Izquierda
+
+Forma Polar: `i=re^i*Phi`
+
+Donde:
+
+(Modulo) r=|i| = `Raiz(REAL^2+Imaginaria^2)`
+
+(Argumento) phi = Arg(i)= `Arctg(Img/Real)`
+
+Empezamos con "i"
+
+r=sqrt(0^2+1^2)=1
+phi=Arg=arctg(1/0)= Inf(Lo que nos indica la Tabla es pi/2)
+
+- Forma Polar de "i": 1e^i*pi/2 = e^ipi/2
+
+Ahora con: "(1-Raiz(3)i)"
+
+r=sqrt((1)^2+raiz(3)^2)=sqrt(1+3)= 2
+phi=arg()=arctg(-raiz(3)/1)= arctg(-raiz(3)), Aqui en la tabla solo tenemos raiz de 3 positivo entonces nececitamos saber el cuadrante en el que va:
+
+Cuadrantes:
+
+- I : SEN(+) y COS(+)
+- II : SEN(+) Y COS(-)
+- III : SEN(-) Y COS(-)
+- IV :  SEN(-) Y COS(+)
+
+Tenemos -Raiz(3) para saber cual es el negativo, seno o coseno nececitamos ir alaformula de euler: `e^iphi=cos(phi)+isen(phi)` y nuestro numero es: 1-raiz(3), por lo que vemos que lo que multiplica ala i es la raiz(3) que esta en seno y esta negativo, por lo que cos(+) y sen(-), estamos en IV cuadrante, el angulo segun la tabla es -pi/3 que son -60° 
+
+- Forma Polar= 2e^i-(pi/3)
+
+Ahora con (Raiz(3)+i)
+
+r=sqrt((raiz(3))^2+(1)^2)= 2
+phi=arctg(1/raiz(3))= pi/6
+
+- Forma Polar= 2e^i(pi/6)
+
+Ahora con todas las formar polares las multiplicamos
+
+$e^{i*pi/2}*2e^{-ipi/3}*2e^{ipi/6}= 4e^{i(pi/2+pi/3+pi/6)} = 4e^{i(2pi/6)}$
+
+O tambien es igual a ${4e^{ipi/3}}$, Ya con ese resultado ahora lo pasamos a forma binomial para eso usamos la formula de euler:
+$4e^{ipi/3} = 4cos(pi/3)+isen(pi/3) = 4(1/2 + i sqrt(3)/2)$, sacando factor comun de 1/2, nos queda: 2(1+Raiz(3)i) que es la igualacion original del ejercicio
+
+## Polinomios
+
+Dado K un cuerpo cualquiera:
+
+- Polinomio en una variable: es en la forma p(x)= a0 + a1X + a2X^2 + ... +anX^n, donde ai es un numero y la x una variable cualquiera. Los grados que seria el exponente mas grande del polinomio
+
+- Polinomio Iguales, si tienen el mismo grado y los mismo coeficientes
+
+`Grado de Polinomio: ` es el valor mas alto del exponentecuyo ceficiente no es nulo
+
+**Ejemplo**
+
+p(x)=$x^2+5x+1$ : Es un polinomio de Segundo Grado
+q(x)=$x^4-5$: esun polinomio de grado 5
+
+Un polinomio Constante(Los que solo tiene numero y no x) es de grado 0, ejemplo: $p(x)=5$
+
+**Conjunto de polinomios en una variable: **, se indica con una K[x], que solo tienen una x y con coeficientes en el cuerpo k, se pueden definir la suma y multiplicacion
+
+la suma de p(x)+q(x), si p(x)=a0 + a1X + ... +anX^n y q(x)= b0 + b1X + ... +bmX^m, entonces p(x)+q(x)=(a0+b0)+(a1X+b1X)+(...+...)+(anX^n+bmX^m), Y p(x)xq(x) = (a0xb0)x(a1Xxb1X)x(...x...)x(anX^nxbmX^m), si no son del mismo grado habra a los que no se le tendra que hacer nada
+
+Se aplican la suma de las X con las X y los terminnos independientes con terminnos independientes
+
+El conjuntp K[x] tiene ciertas propiedades pero no cumple para ser un Cuerpo y falla es que no existe elemnto inverso para todo elemento de K[x], los unicos que tienen son los polinomios constantes
+
+**Divicion de Polinomios: ** Dado un polinomio p(x) entre otro polinomio s(x), `De grado menor o igual al de p(x)`, consiste en buscar dos polinomios q(x)`Cosiente` y r(x)`Resto`, se cumple la formula: p(x)=s(x)q(x)+r(x), donde siempre el grado de r(x)`resto` sea menor que el divisor s(x)
+
+- El grado del polinomio que queremos dividir debe ser siempre mayor (Es el que esta afuera de la casa de la divicion) o igual al grado del divisor
+
+- Encontrar un monomio tal que multiplicado al termino dominante del divisor de como resultado al termino del dividendo,(Ese lo ponemos arriba de la casa)
+
+- Bajamos del dividendo el primer termino con signo contrario y ese monomio el que obtuvimos arriba lo multiplicamos por los otros termino del divisor,el resultado lo cambiamosde signo y lo ponemos enseguida del termino que bajamosdel dividendo y efectuamos la suma
+
+- Con el resultado que nos de volvemos a repetir el proceso del inicio y se termina la divicion cuando el grado de la suma del dividendo sea menor al divisor 
+
+**Polinomio Irreducible: **Un polinomio con coeficiente en un cuerpo, no sea constante,no se puede descomponer en producto de otros polinomios sin que sea trivial.
+
+p(x)= $1+x^2$ es irreducible ya que no se puede escribir de forma r(x)s(x), que sea simplificado como producto de otro polinomio almenos uno sera polinomio=1, eso es la descompocicion trivial
+
+q(x)=$1-x^2$ no es irreducible ya que se puede simplificar: q(x)=(1-x)(1+x) 
+
+Un polinomio se puede asociar a una funcion en la que se toman elemntos del cuerpo les aplicamos una funcion en la que sustituimos la x por cualquier elemento alpha(UN numero) del cuerpo, nos devuelve un numero y eso seria como evualuar un polinomio
+
+**Raiz de Polinomios**
+
+Aquellos numeros alpha del cuerpo que cundo lossustituimos en elpropio polinomio nos dan un cierto numero que es P(alpha)=0
+
+**Ejercicios: **
+
+ - Para saber si una de esas ecuaciones es un polinomio tiene que tener exponentes mayor o igual que cero, si tiene un negativo deja de ser polinomio
+ 
+ - sI nos piden que algo sea divisible por otra cosa, lo que enrealidad nos estan pidiendo es que el resto sea 0, por tanto hay que dividir
+ 
+## Polinomios en R
+
+PARA USARLOS se nececita instalar packetes: "polynom" y "pracman"
+
+```{r}
+#Para definir un polinomio, se iguala el parametro "coef" al vector de cofecientes en orden ascendente(de menor a mayor)
+p = polynomial = ( coef = c(1:10) )
+p # El resultado incia con el numero hasta la x^9
+
+q = polynomial = ( coef = c(1,2,3,4,5) )
+q
+
+#Para comprobar si son iguales
+p==q
+
+#Forma de calcular el grado de un polinommio con la funcion "lenght"
+#Aqui al definir los polinomimios empiezan en 0 por eso se le resta -1
+gradop=length(p)-1
+gradoq=length(q)-1
+
+#sumar
+p+q
+
+#Producto
+p*q
+
+#La divicion se hace con "/" pero el resultado que obtendremos el cociente y para obtener el resto hay que usar el %%
+cociente=p/q
+cociente
+resto=p%%q
+resto
+
+#Para evualuar un polinomio se usa "predict(Polinomio,Numero)", que seria la sustitucion del numero por la x
+predict(p,1)
+predict(q,0)
+
+#Para las Raices se usa la funcion "polyroot()", que se introduce entre los parentecis un vector de coeficientes en orden creciente
+#Este seria: x^2+2x+1
+polyroot(c(1,2,1))# EL resultado de R nos lo da con numeros complejos
+
+#Este seria: x^2-4
+polyroot(c(-4,0,1))# EL resultado de R nos lo da con numeros complejos
+
+
+```
+
+## Polinomios en Python
+
+Se usa la libreria sympy, con las funciones symbols(): para indicar con cual variable bamos a trabajar y Poly(): para introducir el polinomio como parametro
+
+```{python}
+import sympy
+
+x = sympy.symbols('x')# Aqui estamos haciendo que la Variable "x" que es la que esta almacenando todo esto, debe ser tratada como la letra del polinomio
+p = sympy.Poly(x**2)# ya con la "x" ponemos el polinomio en este caso al cuadrado
+p # Al consultar 'ZZ' es que de numeros Enteros
+
+#Definimos otro Polinomio
+q = sympy.Poly(1+x+x**3)
+
+#OTRA FORMA DE DEFINIR LOS POLINOMIOS ES USANDO "Numpy"
+import numpy as np
+#Introducimos como parametro el vector de coeficiente otravez en orden desendente
+r = np.poly1d([1,2,1])# seria: 1X^2+2x+1
+print(r)
+
+s = np.poly1d([1,2,3,4,5])#Seria: 1X^4+2X^3+3X^2+4X+5
+print(s)
+
+#Para comprovar si dos polinomios son iguales
+p==q
+r==s# Si Igualaramos un polinomio de sympy con uno de Numpy,NO daria lo mismo, da un Error
+
+# Para calcular el grado de cualquier polinomio con SYMPY
+p.degree()
+q.degree()
+
+#En el caso de los de Numpy
+r.order
+s.order
+#las operaciones con Sympy
+#Hacer la Suma
+p+q
+#El resultado es como cuando lo imprimimos
+#El producto
+p*q
+#En el caso de Numpy es igualpero el resultado cambia
+r+s
+r*s
+#Nos sale como una lista con puros Numeros
+
+#Divicion con Numpy
+s/r # El resultado nos da dos polinomios, el primero es el cosiente y la otra parte es el resto
+
+#Para verificar que el resultado sea el correcto,usando el resultado que nos arrogo arriba usamos El primero que es poly1d y el segundo alser una constante no hace falta declararlo como el primero
+r*np.poly1d([1,0,2])+3 == s
+
+#Para evualuar polinomios con algun numero
+#Asi:
+r(0)
+s(1)
+
+#Hacer las Raices
+#Aqui se esta usando "Polynomial.r"  
+#Estamos resolviendo la ecuacion =0 con ".r" a cada polinomio de Numpy que tengamos
+r.r#Nos muestrael Numero de Soluciones que pueda tener
+s.r#Estenos da 4 Soluciones Complejas ya que tambien tiene las conjugadas
+```
+
+##Principio de Induccion
+
+Si p(n) es una propiedad valida para un numero "n" natural y se cumple:
+
+- Que es cierta para p(1), El primer Numero (CASO BASE)
+- sI P(n) es verdad entonces p(n+1) Es cierta (Caso Inductivo)
+
+Entonces p(n) es cierta para cualquier numero Natural
+
+Tenemos el principio de induccion Completa,en el que es cierta para un conjunto de numero o donde no iniciamos con el 1, si no con cualquiera
+
+Aqui debe ser cierta no para n si no para todos los numeros ANTERIORES o igualesa n para todo numero
+
+
+
+

@@ -1,0 +1,1109 @@
+---
+title: "Ecuaciones y Sistemas Lineales"
+author: "yo"
+date: "30/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ecuacion Matricial
+
+Es una ecuacuacion en la que en lugar de ser un numero es toda una Matriz
+
+Para poder resolverlo se transforma la ecuacion inicial en otra que sea equivalente utilizando las propiedades y definiciones del tema de las matrices hasta poder despejar la incognita
+
+Normalmente para hayar la incognita se nececitara la Matriz inversa si es que nuestra incognita va acompañada del producto por otra matriz
+
+**Metodo de Resolucion**
+
+Nos dan al siguente Ecuacion Matricial: $XP=Q-R$
+
+Donde `X` es una matriz cuadrada de orden n que es nuestra incognita y las matrices `P`, `Q` y `R` tambien son matrices de orden n (cuadradas) conocidas,*Aqui no hay ningun numero lo mas normal es trabajar con objetos abstractos*
+
+**Empezamos **Multiplicando ala derecha de ambos miembros de la igualdad por la inversa de P: $P^{-1}$, *Ya que la P nos esta estorvando con la X, nececitamos quitarsela ala X*, Entonces quedaria asi
+
+- $XPP^{-1}=(Q-R)P^{-1}$ Se supone que `P` es una matriz invertible
+
+Se cumple que multiplicar la matriz original `P`por su inversa $P^{-1}$ da la matriz identidad `In` de orden n: $PP^{-1}=In$ por lo que en lugar de ponder $PP^{-1}$ ponemos la identidad `In`
+
+- $XIn=(Q-R)P^{-1}$ y resulta que la identidad multiplicada por delante o por detraz de cualquier matriz da la misma matriz por lo que nos queda
+
+- $X=(Q-R)P^{-1}$, Finalmente ya nos queda la X sola
+
+**Otro Ejemplo**
+
+Tenemos la ecuacion Matricial: $P+QX=RS-TX$,**Que condiciones deben tener para poder haya X?** Que todas las matrices sean cuadradas de orden N y que la incognita sea X
+
+Como tenemos las `X` dispersas lo primero que tenemos hacer es juntarlas las que tenga X de un lado y las que no del Otro, Asi:
+
+$QX+TX=RS-P$, Como la X esta en las dos matrices podemos sacar Factor comun, *Esta propiedad si estaban en las propiedades de las matrices po eso las estamos haciendo*
+
+$(Q+T)X=RS-P$, Cada vez que hagamos un paso hay que asegurarse que propiedad de  las matrices usamos para saber si se puede o no
+
+Ya con esto ya podemos despejar la X, Para eso nececitamos sacar la Inversa de `Q+T` esta nececita que sea invertible y multiplicamos la inversa de ambos lados de la igualdad y queda:
+
+$(Q+T)^{-1}(Q+T)X=(Q+T)^{-1}RS-P$,Nos fiajmos que multiplicando $(Q+T)^{-1}(Q+T)$ nos da la identidad y la identidad por cualquier matriz da la misma matriz
+
+- $X=(Q+T)^{-1}(RS-P)$
+
+## Sistema de Ecuaciones Lineales
+
+`Un sistema de M ecuaciones y N incognitas`, Es un sistema que se puede escribir de la siguiente Forma:
+
+$\begin{equation}\begin{pmatrix}a11X1 & +a12X2 & +...+ & a1nXn & = & b1\\a21X1 & +a22X2 & +...+ & a2nXn & = & b2\\am1X1 & +am2X2 & +...+ & amnXn & = & bm\end{pmatrix}\end{equation}$
+
+Las ecuaciones serian cada fila,donde `a` y `b` son numeros, El objetivo es encontrar las incognitas `x1 , x2 , xn` vemos como las X aparecen en columnas, Los terminnos independientes serian `b1 ,b2, bn`
+
+Hay diferentes tipos de sistemas
+
+**Sistema Homogeneo** Cuando todos los `bi` son ceros, todas las ecuaciones del sistema estan igualadas a cero
+
+$\begin{equation}\begin{pmatrix}a11X1 & +a12X2 & +...+ & a1nXn & = & 0\\a21X1 & +a22X2 & +...+ & a2nXn & = & 0\\am1X1 & +am2X2 & +...+ & amnXn & = & 0\end{pmatrix}\end{equation}$
+
+Todo sistema de ecuaciones lineales se puede escribir de  `Forma Matricial`, En particular buscamos escribirla de la forma $AX = B$ donde
+
+Donde `A` es la `matriz de coeficientes`, se lleva a los numeros que antes multiplicaba ala X
+
+$A =\begin{equation}\begin{pmatrix}a11 & +a12 & +...+ & a1n\\a21 & +a22 & +...+ & a2n\\... & + ... & +...+ & ...\\am1 & +am2 & +...+ & amn\end{pmatrix}\end{equation}$
+
+La `matriz de incognita` que es la `X` tiene las variables que estamos buscando
+
+$X =\begin{equation}\begin{pmatrix}X1\\X2\\...\\Xn\end{pmatrix}\end{equation}$
+
+la `matriz de terminos independientes` que son los numeros a los que esta igualado cadanecuacion del sistema
+
+$B =\begin{equation}\begin{pmatrix}b1\\b2\\...\\bm\end{pmatrix}\end{equation}$
+
+Dentro de la Ecuacion Matricial se define
+
+**Matriz Ampleada del Sistema** Es la matriz que junta la matriz de coeficientes ala izquierda ponemos una barras '|' y despues agregamos la matriz de terminnos independiente, de modo que si la matriz `A` es de `M filas y N columnas`, la matriz ampliada `(A|B)` tendra las mismas M filas pero Ahora sera `N + 1 columna que es de esa matriz de terminnos independientes`
+
+$(A|B) =\begin{equation}\begin{pmatrix}a11 & +a12 & +...+ & a1n & | & b1\\a21 & +a22 & +...+ & a2n& | & b2\\... & ... & ... & ...& | & ...\\am1 & +am2 & +...+ & amn& | & bm\end{pmatrix}\end{equation}$
+
+Cada fila sigue representando una ecuacion del sistema,pero en este caso las columnas cada una representaria una variable e incluiriamos al final la matriz de terminos independientes
+
+**Solucion de un sistema de M ecuaciones con N incognita** Conjunto de N valores `Si` de modo que al sustituir cada una de las varaibles Xi por el Si en cada una de las ecuaciones se convierte en un valor de verdad en una IDENTIDAD, Podria serque un sistema de ecuaciones tuviera una o muchas o niguna solucion, *Entonces la solucion es ese conjunto de n numeros (Si) uno para cada X, tal que al sustituir en las ecuacionesno da la identidad*, El **Objetivo** de un sistema de ecuaciones lineales es encontrar un conjunto de los N valores para cada X tales que al sustituirlo en la ecuacion nos de una identidad
+
+**Se puede clasificar los sistemas segun tenga o no solucion y si tiene el numero de soluciones**
+
+`Sistema compatible` Si tiene almenos una solucion
+
+- `Sistema compatible Determinado` Si la solucion es unica
+
+- `Sistema compatible Indeterminado` Si tiene infinitas soluciones
+
+`Sistema Incompatible` Si no tiene solucion
+
+En el sistema Homogeneo $AX = 0$ siempre tiene por lo menos la `solucion trivial` es decir la solucion (0,0,..,0) y siempre sera compatible
+
+**Teorema de Rouche-Frobenius** Nos dice cuando un sistema es compativle cuando es incompativle, cuando es determinado y cuando es indeterminado
+
+Supongamos que tenemos un sistema de M ecuaciones lineales y n incognitas, escrito de la forma $AX = B$, Entonces este sistema es compativle si y solo si el rango de las matrises rg(): `rg(A) = rg(A|B) = r` en este caso `r` nos va a permmitir separar si el sistema es Determinado o indeterminado,**Demodo que si el rango de la matriz y el rango de la matriz ampleada Coinciden,**`El sistema sera compativle`
+
+- Si **r = n** *Ese rango r es igual al numero de incognitas*, el sistema sera compatible de **Determinante**, tendra una unica solucion de n numeros
+
+- Si **r < n** *Si el rango r es menor al numero incognitas*, el sistema sera **Indeterminado**, Tendra infinitas soluciones
+
+Si el `rg(A)` con el `rg(A|B)` NO coinciden el sistema sera **Incompatible**, No hay solucion
+
+**Ejemplo 2**
+
+**Vamos a comprobar si el Siguente Sistema Tiene solucion**
+
+$\begin{equation}\begin{pmatrix}x1 & + x2  & +2x3 & = & 9\\2x1 & +4x2 & -3x3 & = & 1\\3x1 & +6x2 & -5x3 & = &0\end{pmatrix}\end{equation}$
+
+Observemos que se trata de un sistema de 3 ecuaciones por lo tanto `m = 3` y con 3 incognitas `n  = 3`
+
+Para averiguar de que tipo de sistema se trata, escribamos `la Matriz de coeficientes` A:  $A =\begin{equation}\begin{pmatrix}1 & 1  & 2\\2 & 4 & 3\\3 & 6 & 5\end{pmatrix}\end{equation}$ y tambien pongamos `la matriz ampliada` (A|B): $(A|B) =\begin{equation}\begin{pmatrix}1 & 1 & 2 & | & 9\\2 & 4 & -3 & | & 1\\3 & 6 & -5 & | & 0\end{pmatrix}\end{equation}$ y Finalmente **Calculemos el rango de cada Matriz**
+
+tenemos que `rg(A) = 3` y `rg(A|B) = 3`, El rango de la matriz ampliada NUNCA nos dara mayor al numero de filas que tenga, Por lo tanto con el Teorema de Rouche-Frobenius ya que `Los rangos son iguales` concluimos que el sistema es compatible determinante `Tiene solucion Unica`
+
+**Sistemas Equivalentes: ** si tenemos un sistema $AX = B$ Y $A^{'}X = B^{'}$ se dicen que son equivalentes si comparten el mismo conjunto de soluciones,**Ejemplo: **Si tenemos un sistema de ecuaciones y multiplicamos por un mismo escalar ala izquierda y la derecha el sistema sera equivalente por que la solucion sera la misma
+
+De este modo para poder resolver sistemas de la forma AX = B empezaremos commparando los rango de la Matriz A con el rango de la (A|B) y a continuacion en caso de que `ambos rangos sean iguales`, procederemos a econtrar la solucion con el **Metodo de Gauss**
+
+## Metodo de Gauss
+
+Veremos como aplicarlo para encontrar las soluciones de los sistemas de ecuaciones lineales
+
+**Definiciones**
+
+`Sistema Escalonado:` Dado el sistema $AX=B$ SE DICE que es escalonado si la matriz ampliada (A|B) tambien es escalonada,*(Escalonada es la que tiene los pivotes mas ala derecha que el anterior y con ceros por debajo)*
+
+`Variables Dependientes:` Varaibles que corresponden con los pivotes (Vamos a localizar las columnas de los pivotes y esas varables que esten con ese pivote seran la Dependientes)
+
+`Variables independientes:` Son las que no corresponden a ningun pivote
+
+Las dependientes nos van a permitir obtener una solucion que dependera de otras variables que seran las independientes y sera asi que se podra separar sistemas compativles y los incompativles,**En un sistema compatible Determinado todas las variables seran Dependientes todas seran pivotes** y En los sitemas Indeterminados algunas de las varaibles van a tener que ser independientes y van a tomar muchos valores
+
+Resolver un sistema de ecuaciones lineales
+
+**Pasos para obtener la solucion de un sistema que sea compatible**(Determinado o No)
+
+- 1.- Se selecciona la fila que tenga el pivote lo mas ala izquierda posible para colocarla como la primera fila del sistema
+
+- 2.- Con el pivote de la primera fila se reducen a 0 todos los elementos que se encuentran por debajo de el pivote (Toda esa columna)
+
+- 3.- Se repiten los pasos 1 y 2 con la submatriz formada por todas las filas a excepcion de la primera, la nueva matriz que se obtiene tendra 0 por debajo del pivote  de la fila 2 (Con la matriz resultante eliminar la primera fila de modo que cada vez habra menos filas y se repetira el proceso con la nueva submatriz de llevarnos el pivote lo mas arriba posible)
+
+- 4.- Se repite el proceso hasta obtener una matriz escalonada
+
+El objetivo de alcanzar una matriz escalonada por filas equivalente es debido a que una matriz escalonada tiene solucion inmediata (La ultima de las ecuaciones ya nos va a dar la solucion de una de las variables)
+
+## Ejemplo con un Sistema Compatible Determinado
+
+Con el Sistema:
+
+$\begin{equation}\begin{pmatrix}x1 & + x2  & +2x3 & = & 9\\2x1 & +4x2 & -3x3 & = & 1\\3x1 & +6x2 & -5x3 & = &0\end{pmatrix}\end{equation}$
+
+Ya habiamos concluido que era Determinado(Con el Rango) por lo que ahora vamos a calcular su solucion que ya habiamos dicho que era unica
+
+Lo primero que hacemos es construir la matriz ampleada del sistema:
+
+$(A|B) =\begin{equation}\begin{pmatrix}1 & 1 & 2 & | & 9\\2 & 4 & -3 & | & 1\\3 & 6 & -5 & | & 0\end{pmatrix}\end{equation}$
+
+Nuestro objetivo ahora es utilizar el metodo de Gauss para encontrar un sistema Equivalente mucho mas sencillo de resolver. Para ello mediante operaciones elementales aplicadas ala matriz ampleada `(A|B)` obtendremos una Matriz que sera escalonada por filas equivalente ala matriz original Ampleada del sistema
+
+1.- Eliminamos los coeficientes correspondientes a las variables x1 de las dos ultimas filas: **En este caso: ** En la primera fila de x1 tenemos un 1 en la segunda fila es un 2 y en la tercera un 3,**El objetivo es hacer un 0 donde esta ese 2 y donde esta ese 3** Para eso `Ala primera fila la multiplicamos por 2 y se lo restamos ala segunda y ala primera fila la multiplicamos por 3 y eso se lo restamos ala tercera fila`
+
+- Ala segunda fila le sumamos la primera multiplicada por -2
+
+- Ala tercera fila le sumamos la primera multiplicada por -3
+
+Con las operaciones anteriores nos queda este sistema equivalente
+
+$\begin{equation}\begin{pmatrix}1 & 1 & 2 & | & 9\\0 & 2 & -7 & | & -17\\0 & 3 & -11 & | & -27\end{pmatrix}\end{equation}$
+
+Y lo mismo que hemos hecho con esta primera columna lo hacemos con el resto
+
+De este modo Hemos conseguido un pivote `El 1 de la primera fila primera columna` y podemos seguir con la matriz que resultaria de quitar la primera fila y primera columna
+
+2.- Eliminamos lo coeficientes de la variable `x2` en este caso de La Ultima Fila y **En este caso: ** para poder hacer un Cero por debajo del 2 que es donde esta el 3,`Tenemos que multiplicar por 3 y dividir por 2 la segunda Fila, Dividiendo por 2 conseguimos un 1 y si lo multiplicamos por 3 conseguimos un 3 y se metemos un '-' y sumandole ala tercera fila conseguimos eliminar ese 3`, No podemos usar la primera fila porque nos cargariamos el 0 de la primera columna ultima fila
+
+- Ala ultima fila de la matriz, le sumamos la segunda multiplicada por -3/2
+
+$\begin{equation}\begin{pmatrix}1 & 1 & 2 & | & 9\\0 & 2 & -7 & | & -17\\0 & 0 & -1/2 & | & -3/2\end{pmatrix}\end{equation}$
+
+Llegados a este punto esta matriz ampliada que acabamos de obtener es equivalente ala matriz ampliada del sistema de ecuaciones lineales inicial y asi siendo escalonada se puede resolver de forma inmediata
+
+Si lo ponemos de forma de Ecuacion
+
+$\begin{equation}\begin{pmatrix}x1 & +x2 & 2x3 & = & 9\\ & 2x2 & -7x3 & = & -17\\ &  & -1/2x3 & = & -3/2\end{pmatrix}\end{equation}$
+
+Vemos que la ultima ecuacion que esta en la ultima fila podemos sacar `x3` y lo obtenemos el menos se tacha con el menos y el dos se tacha con el dos y obtenemos: **x3 = 3**
+
+Con el valor de X3 lo podmeos sustituir en la ecuacion de la segunda fila, De modo que nos queda la ecuacion: **2x2 - 21 = -17** y despejada queda: **X2 = 2**
+
+Finalmente sustituyendo en la ecuacion de la primera fila nos queda: **x1 + 2 + 6 = 9** y nos quedaria **X1 = 1**
+
+Con lo cual que la unica solucion del sistema es **S = (1,2,3)** es un sistema compativle determinado
+
+## Ejemplo 2 con un Sistema Compatible Indeterminado
+
+Un sistema de ecuaciones con 4 ecuaciones y 4 incognitas, ES MEJOr trabar con variables asi a que si todas fuerna x1,x2,...,xn
+
+$\begin{equation}\begin{pmatrix}x & + 2y  & +z & +t & = & 0\\ & y & +z & +t & = & 1\\2x & +2y &  &  & = & -2\\x &  & -z & +t & = & -1\end{pmatrix}\end{equation}$
+
+La Matriz Ampleada del sistema es:
+
+$(A|B) =\begin{equation}\begin{pmatrix}1 & 2 & 1 & 1 & | & 0\\ 0 & 1 & 1 & 1 & | & 1\\2 & 2 & 0 & 0 & | & -2\\1 & 0 & -1 & 1 & | & -1\end{pmatrix}\end{equation}$
+
+Se comprueba que es un sistema compatible **indeterminado** calculando el rg(A) y el rg(A|B) para luegoaplicar el teorema de Rouche-Frobenius
+
+Tomamos la Matriz ampleada '(A|B)' nos fijamos en el primer pivote que esta en lafila uno y primera columna, Nececitamos que toos sus elementos por debajo tengan cero, en este caso tenemos el `2` de la fila 3 y el `1` de la fila 4, Por lo que **Ala fila 3 le restamos dos veces la fila 1 y A la fila 4 le restamos la fila 1**, YA con esas dos operaciones nos queda la matriz: $(A|B) =\begin{equation}\begin{pmatrix}1 & 2 & 1 & 1 & | & 0\\ 0 & 1 & 1 & 1 & | & 1\\0 & -2 & -2 & -2 & | & -2\\0 & -2 & -2 & 0 & | & -1\end{pmatrix}\end{equation}$, Ya tenemos un pivote, Continuamos con el siguente de la segunda fila segunda columna, nececitamos quitar esos `-2` que esta por debajo, Para esto **Ala fila 3 le sumamos 2 veces la fila 2** y con esta operacion nos queda: $(A|B) =\begin{equation}\begin{pmatrix}1 & 2 & 1 & 1 & | & 0\\ 0 & 1 & 1 & 1 & | & 1\\0 & 0 & 0 & 0 & | & 0\\0 & -2 & -2 & 0 & | & -1\end{pmatrix}\end{equation}$, Vemos como aqui ya nos queda toda esta fila de Ceros y si continuamos con que **Ala fila 4 ñe sumamos 2 veces la fila 2**,Nos queda: $(A|B) =\begin{equation}\begin{pmatrix}1 & 2 & 1 & 1 & | & 0\\ 0 & 1 & 1 & 1 & | & 1\\0 & 0 & 0 & 0 & | & 0\\0 & 0 & 0 & 2 & | & 1\end{pmatrix}\end{equation}$, Esta ultima fila no nos quedo de puros ceros por lo que procedemos a `Mover todas las filas de puros cerosal final de la matriz` eh **intercambiamos las Fila 4 por la Fila 3** y nos queda: $(A|B) =\begin{equation}\begin{pmatrix}1 & 2 & 1 & 1 & | & 0\\ 0 & 1 & 1 & 1 & | & 1\\0 & 0 & 0 & 2 & | & 1\\0 & 0 & 0 & 0 & | & 0\end{pmatrix}\end{equation}$, Con esto nos queda que tenemos un pivote para para 'X' un pivote para 'Y', En el caso de 'Z' NO tendra pivote o lo que es lo mismo **Sera una Variable Independiente**, ya que en su lugar hay un cero y la 't' tambien tendra pivote por que esta el 2, De modo que tenemos 3 Varaibles dependientes y una independiente, `Ya desde aqui tambien vemos que el rango de la ampleada es 3 y tambian si hacemos el rango de A es 3`
+
+Hemos llegado a una matriz escalonada que corresponde a:
+
+$\begin{equation}\begin{pmatrix}x & +2y & +z & +t & = & 0\\   & y & +z & +t & = & 1\\  &   &   & 2t & = & 1\\  &   &   &   &   &  \end{pmatrix}\end{equation}$
+
+Donde solo nos queda la t la despejamos y nos queda **t = 1/2**, con esta podemos sustituirla en la ecuacion de la segunda fila: **y + z + 1/2 = 1** con esta podemos despejar una letra y despues dejerla en la otra ecuacion para dejarla con un termino igual, entonces con esta misma nos queda: **y = 1/2 - z** `AQUI sucede que Y es determinada pero como tiene ala Z que esindeterminada,DEPENDERA de esta, De moso que el valor de Y siempre dependera del valor de Z`, entonces en la otra ecuacion de la primera fila despejamos esta con **y** y de una vez en la **t** y nos queda: **X + 2(1/2-z) + z + 1/2 =0** Si operamos y simplificamos no queda: **x - z + 3/2 = 0** -- **X = z - 3/2**, `Aqui con X tambien esta depende de Z`, Por lo que aqui Z es libre puede valor lo que sea pero la 't' es determinada por que siempre vale un 1/2
+
+Las infinitas soluciones de este Sistema compativle pero Indeterminado son:
+
+- X = z - 3/2
+
+- Y = 1/2 - z
+
+- t = 1/2
+
+Observamos que las variable **Dependientes** corresponden con los tres pivote (X,Y,t) Mientras que la unica variable independiente es la Z
+
+**Calcular el Rango de estas dos Matrices A y (A|B) para luego aplicar el teorema de Rouchel-Frobenius y asi comprobar que se trata de sistema indeterminado**
+
+Vemos si los rangos de estas dos son iguales y si es asi ver si coinciden con el numero incognitas que tenemos en el sistema
+
+Tenemos que el Rango de A es 3 y el rango de la ampleada es 3 tambien pero en el sistema tenemos que son 4 incognitas ya que el numero de estas coinciden con el numero de columnas, **Como el rango coincide pero el numero de incognitas NO** aplicando el teorema tenemos que es un Sistema es compativle Indeterminado
+
+## Sistemas Compatibles Deterinado en R
+
+Dado el sistema de ecuaciones lineales de m ecuciones y n incognicas que lo escribiamos de la forma AX = B, Lo podemos resolver usando la funcion `solve(A,b)` donde `A` esla matriz de coeficientes y `b` el vector de termino independientes, siempre y cuando se trate de **un sistema compatible determinado**
+
+Dado el siguiente sistema de ecuaciones lineales, calculemos su solución:
+
+$$\left\{\begin{matrix}
+x_1 &+& x_2 &+& 2x_3 &=& 9\\
+2x_1 &+& 4x_2 &-& 3x_3 &=& 1\\
+3x_1 &+& 6x_2 &-& 5x_3 &=& 0\end{matrix}\right.$$
+
+Observemos que, en este caso, se trata de un sistema de 3 ecuaciones con 3 incógnitas. *Es determinado por que su rango es 3*
+
+Lo pasamos a su forma matricial:
+
+```{r}
+# Usamos esta funcion para escribir la matriz por Filas en este caso de coeficientes
+A = rbind(c(1,1,2),c(2,4,-3),c(3,6,-5))
+b = c(9,1,0)# Este seria el vector de terminos independientes
+AB = cbind(A,b)# Hacer la Matriz Ampleadas con esta funcion podemos unir matrizes siempre y cuando las dimenciones lo permita
+```
+
+**Comprobamos que el Rango de A es igual al de la amppleada**, Para ver si el sistemaes compatible
+
+
+```{r}
+qr(A)$rank==qr(AB)$rank# Comparamos cada uno de los rangos y vemos que si devuelve TRUE
+```
+
+
+Ahora, comprobamos si es igual al número de incógnitas, para ver si es compatible determinado
+
+
+```{r}
+qr(A)$rank==3
+```
+
+**Ejemplo 1**
+
+Finalmente, una vez visto que se trata de un sistema compatible determinado por el Teorema de Rouché-Frobenius (Que tiene solucion Unica), **Podemos usar la funcion **`solve()`:
+
+```{r}
+solve(A,b)# Podemos ver la solucion de cada una de nuestras incognitas
+```
+
+En definitiva, la solución de nuestro sistema es 
+$$x_1 = 1,\ x_2 = 2,\ x_3 = 3$$
+
+Para comprobar que se trata de la solución correcta, solamente hay que sustituir la solución obtenida en cada una de las ecuaciones y ver que se cumplen todas y cada una de las igualdades.
+
+O bien con el vector de resultados [1,2,3] sse tiene quecumplir la ecuacion $AX = B$, Con la Matriz A y la multiplicamos por este vector [1,2,3] y lo igualamos al vector B nostiene que devolver True
+
+**Ejemplo 1**
+
+```{r}
+solution = c(1,2,3)#vector de resultados
+A%*%solution# Lo que nos da esel vector determinnos independietnes es el Vector B
+```
+
+**Ejemplo 1**
+
+```{r}
+A%*%solution == b# Como nos devuelve TRUE las 3 ecuaciones nos satisfacen 
+```
+
+Con lo cual, efectivamente, el vector $(1,2,3)$ es solución de nuestro sistema. Además es la única, ya que recordemos que se trataba de un sistema compatible determinado.
+
+## Otra Forma de resolverlo
+
+## Sistemas compatibles determinados con `R`
+
+Hay otra forma de resolver sistemas compatibles determinados. La librería `matlib` nos ofrece, aparte de la función `Solve`, muchas otras funciones que pueden sernos de utilidad a la hora de resolver sistemas de ecuaciones lineales. Sobre todo, los de 2 o 3 ecuaciones (Ya estas se pueden representar en un plano).
+
+**Ejemplo 2**
+
+Resolvamos esta vez un sistema de dos ecuaciones con dos incógnitas:
+
+$$\left\{\begin{matrix}
+2x_1 &+& 2x_2 &=& 1\\
+-x_1 &+& x_2 &=& 2\end{matrix}\right.$$
+
+Si lo expresamos en su forma matricial, obtenemos,
+
+```{r}
+A = rbind(c(2,2),c(-1,1))#Creamos la Matriz de Coeficientes
+b = c(1,2)# El vector b
+AB = cbind(A,b)# Unimos la matriz A y el vector B
+```
+
+Una vez lo tenemos en forma matricial, podemos mostrarlo con la función `showEqn()`
+
+```{r}
+library(matlib)
+showEqn(A, b)# Esta funcion es de MatLib, No muestra tal cualla ecuacion
+```
+
+La librería `matlib` también nos permite calcular el rango de una matriz con la función `R()`
+
+```{r}
+R(A)
+R(AB)#Por lo tanto rango de A igual al rango de la ampleada igual al numero de incognitas,por tanto el sistem e compativle determinado (tiene una unica solucion)
+```
+
+
+Además, mediante la función `all.equal()`, podemos comprobar si el sistema es compatible. Es decir, si los rangos de $A$ y la matriz ampliada $AB$ son iguales: 
+
+```{r}
+all.equal(R(A),R(AB))# Nos dice direectamente si los rango son iguales
+```
+
+Como en este caso el rango de la matriz de coeficientes y el de la ampliada coinciden entre sí y con el número de incógnitas, por el Teorema de Rouché-Frobenius podemos concluir que se trata de un sistema compatible determinado.
+
+Finalmente, una vez visto que se trata de un sistema compatible determinado, **Podemos usar la funicion** `Solve()`, con la S mayuscula para diferenciarlo del solve anterior:
+
+```{r}
+# este es del paquete Matlib
+Solve(A, b, fractions = TRUE)# Este tiene un parametro adicional, si es True nos permite mostrar la solucion mostrarla en fracciones en caso de ser decimales y que sea pocible
+```
+
+El parámetro `fractions` nos permite mostrar las soluciones no enteras en forma de fracción, siempre que esta exista. Su valor por defecto es `FALSE`
+ 
+## Usando todo el Potencial de MatLib
+
+Otra cosa interesante que nos proporciona la librería `matlib` es el poder dibujar las ecuaciones de un sistema Lineal mediante las funciones `plotEqn()` *Para un sistema de 2 incognitas* o `plotEqn3d()` *Para sistemas de 3 incognitas*, Vizualisar las rectas y planos respectivamente del espacio
+
+En caso de tener un sistema de dos ecuaciones con dos incógnitas, como por ejemplo el del `Ejemplo 2`, recordemos
+
+```{r, echo = F}
+showEqn(A,b)
+```
+
+Su representación Grafica sería
+
+```{r, fig.height=4, fig.align='center'}
+plotEqn(A,b)# Como primer parametro le pasamos la matriz de coeficientes y de segundo el vector de terminos independientes
+# Nos devuelve la representacion algebraica del sistema, las dos ecuaciones lineales y nos devuelve este grafico donde observamos dos rectas ('Porque los sistmeas de ecuaciones lineales en dos dimenciones siempre son rectas'), y tenemos el punto de interseccion ('Es la solucion donde se cortan ambas graficamente')
+```
+
+La solución que anteriormente habíamos encontrado,*Es el punto donde ambas rectas se cruzan*
+
+$$\left\{\begin{matrix}x_1 = -\frac{3}{4}\\x_2 = \frac{5}{4}\end{matrix}\right.$$
+es el punto donde ambas rectas intersecan.
+
+```{r, fig.height=3.5, fig.align='center'}
+plotEqn(A,b)# Este nos pinta las dos rectas y ese punto de intereccion
+# Ademas podemos modificar la estetica del punto, con esta funcion le añadimos caracteristicas, PONER ESTA FUNCION DESPUES DEL 'plotEqn'
+points(-3/4,5/4, col = "turquoise1", pch = 19)# Le estamos diciendo que en la funcion plot de arriba, NOS pinte en las cordenadas -3/4,5/4 un punto de color turquesa con 'turquoise1' y con el tipo de forma con ese numero 19
+```
+
+En caso de tener un sistema de tres ecuaciones y dos variables, como por ejemplo
+
+**Ejemplo 3**
+
+$$\left\{ \begin{matrix}4x&+&2y&=&3\\ x&-&2y&=&2\\ 3x&+&4y&=&1\end{matrix}\right.$$
+
+
+Pasándolo a su forma matricial tenemos,
+
+```{r}
+A = rbind(c(4,2),c(1,-2),c(3,4))# Hacemos la matriz de coeficientes
+b = c(3,2,1)# vector de soluciones
+showEqn(A,b)# me muestra las tres ecuaciones lineales (Con Matlib)
+```
+
+Y su representación gráfica se consigue, de nuevo, mediante la función `plotEqn()`, ya que volvemos a tener dos incógnitas.**No importa cuantas ecuaciones tenemos**
+
+```{r fig.height=3.5, fig.align='center'}
+plotEqn(A,b)# Se repesenta cada una de un color diferente y como tienen un punto de interseccion el sistema es compatible determinado
+```
+
+Como de nuevo vuelve a haber un punto donde intersecan todas rectas, gráficamente podemos concluir que se trata de un sistema compatible determinado.
+
+**Con un sistema de 3 ecuaciones y 3 incognitas**
+
+Si, en cambio, tenemos un sistema de 3 ecuaciones con 3 incógnitas, como por ejemplo el sistema del `Ejemplo 1`
+
+```{r}
+A = rbind(c(1,1,2),c(2,4,-3),c(3,6,-5))
+b = c(9,1,0)
+showEqn(A,b)
+```
+
+Su representación gráfica se consigue haciendo uso de la función `plotEqn3d`, tal y como se muestra en la siguiente.
+
+```{r, eval = F}
+plotEqn3d(A,b, xlim = c(-3,3), ylim = c(0,6))# Le pasamos la matris de coeficientes,luego el vector de resultados, enseguida con 'xlim' y 'ylim' estos son los limites de representacion grafica,que las coordenadas se solo entre esos limites que pongamos
+```
+
+En el plot anterior, se puede observar que hay un punto negro. Ese punto, representa la única intersección de los 3 planos. En otras palabras, esa es la solución que habíamos obtenido anteriormente. 
+
+Más concretamente, se trata del punto $P = (1,2,3)$, La Solucion en el eje es X=1,Y=2,Z=3 
+
+## Método de Gauss con `R`
+
+La librería `matlib` también nos ofrece la oportunidad de utilizar el Método de Gauss para resolver sistemas de ecuaciones lineales.
+
+La función `echelon()` **Se traduce como Escalon**, nos calucla la matriz escalonada reducida de cualquier matriz.
+
+Si reducimos la matriz ampliada a una matriz escalonada reducida equivalente, podremos deducir fácilmente la solución del sistema (suponiendo que la haya).
+
+**Ejemplo 1**
+
+Recuperemos el sistema de 3 ecuaciones con 3 incógnitas:
+
+$$\left\{\begin{matrix}
+x_1 &+& x_2 &+& 2x_3 &=& 9\\
+2x_1 &+& 4x_2 &-& 3x_3 &=& 1\\
+3x_1 &+& 6x_2 &-& 5x_3 &=& 0\end{matrix}\right.$$
+
+Creamos en forma metricial
+
+```{r}
+A = rbind(c(1,1,2),c(2,4,-3),c(3,6,-5))# Uniendo por filas creamos la matriz de coeficientes
+b = c(9,1,0)# hacemos el vector de terminos independientes
+AB = cbind(A,b)# UNiendo por columnas las dos matrices anteriores creamos la matriz ampleada
+```
+
+Entonces, la función `echelon()` aplicada a la matriz ampliada del sistema nos devuelve, La matriz identidad en la zona de la Izquierda
+
+```{r}
+echelon(AB)# Podemos ver que el vector b es 1,2,3
+```
+
+De donde, claramente, podemos deducir que la solución es
+
+$x_1 = 1,\ x_2 = 2$ y $x_3=3$,Hemos escalonado la matriz y asi se hace la solucion de un sitstema determinado
+
+Esto se debe a que la primera columna de la matriz que obtenemos hace referencia a la primera variable; la segunda columna a la segunda variable; la tercera, a la variable $x_3$; **Si rescribieramos este sistema: ** $x_1 = 1,\ x_2 = 2$ y $x_3=3$ y, la última, al vector de términos independientes (modificado debido a las operaciones realizadas con el Método de Gauss).**Para no obtener la matriz escalonada si no la escalonada reducida y ahi sacar directamente el resultado**
+
+Por tanto, que en la primera fila haya un 1 en la primera columna y 0's en la segunda y tercera columnas, nos indica que la variable $x_1$ toma el valor que haya en la última columna de esa fila. Es decir, $x_1 = 1$.**Lo mismo ocurre para la seguunda y tercera fila**
+
+Por otro lado, en la segunda fila hay un 1 en la segunda columna (y 0's en la primera y la tercera), lo cual nos informa de que en este caso es la variable $x_2$ la que tomará el valor que se encuentra en la última columna de esa misma fila, la cual corresponde al vector de términos independientes. En otras palabras, $x_2 = 2$.
+
+Siguiendo el mismo razonamiento, llegamos a la conclusión de que $x_3 = 3$
+
+La función `echelon()` tiene el parámetro `verbose` que, igualado a `TRUE`, nos muestra las operaciones elementales por filas llevadas a cabo para conseguir la matriz escalonada reducida. 
+
+Además, la función `echelon()` también cuenta con el parámetro `fractions`, muy útil para no estar arrastrando decimales. Queremos las fracciones de resultados
+
+```{r}
+echelon(AB, verbose = TRUE, fractions = TRUE)
+```
+
+## Sistemas compatibles indeterminados con `R`
+
+En caso de tener sistemas compatibles indeterminados, no podemos aplicar directamente la función `solve()`**La que va con Minuscula del paquete base de R**, NO funciona ya que ésta solamente está pensada para sistemas compatibles determinados.
+
+No obstante, con todas las funciones presentadas anteriormente, es fácil averiguar si el sistema con el que estamos trabajando es un sistema compatible indeterminado y, además, podemos resolverlo.
+
+**Ejemplo 4**
+
+Dado el siguiente sistema de ecuaciones lineales:
+
+$$\left\{\begin{matrix}x&+&y&-&z&=& 2\\x&-&y&+&z&=&1\\3x&+&y&-&z&=&5\end{matrix}\right.$$
+
+Vemos que se trata de un sistema de 3 ecuaciones con 3 incógnitas. Pasándolo a su forma matricial, obtenemos:
+
+```{r}
+# Aqui hemos usado la funcion Matrix
+A = matrix(c(1,1,-1,1,-1,1,3,1,-1), byrow = TRUE, nrow = 3, ncol = 3)# Hemosingresado los numeros por filas eh indicamos que hay 3 filas y 3 columnas
+b = c(2,1,5)# vector desolucion
+AB = cbind(A,b)# unirlos
+```
+
+Si comprobamos los rangos de la matriz de coeficientes $A$ y la matriz ampliada del sistema Usando MatLib, obtenemos
+
+```{r}
+c(R(A),R(AB))# Lo hemos convinadoen un vectorpara que se juntara
+all.equal(R(A),R(AB))# Como el rango de las dos es igual es 2 pero la ser menor que el numero de incognita es Indeterminado
+```
+
+Sin embargo, a pesar de que los rangos sean iguales, el número de incógnitas es 3. Por tanto, por el Teorema de Rouché-Frobenius, concluimos que se trata de un sistema compatible indeterminado.
+
+La función `echelon()` puede también indicarnos que se trata de un sistema compatible indeterminado:
+
+```{r}
+# Cuando hacemos la matriz escalonada reducida de la matriz ampleada AB, Nos queda toda una fila de Ceros. (Que la variable X3 es libre porque no tiene pivote, esta fila sobra, puede tomar cualquier valor)
+echelon(AB)
+```
+
+En este caso, nos está indicando que la variable $x_3$ es libre. Es decir, puede tomar cualquier valor en $\mathbb{R}$
+
+En caso de no verlo tan claro, la función `Solve()`,**De matlib la que va con Mayuscula** lo muestra más claramente cual es la variable libre
+
+```{r}
+Solve(A,b, fractions = TRUE)
+```
+
+Vemos que $x_1 = \frac{3}{2}$, $x_3$ es libre y $x_2$ depende del valor que tome $x_3$.
+
+Es decir, nuestra solución es de la forma
+
+$$x_1 = \frac{3}{2},\ x_2 = \frac{1}{2}+x_3,\ x_3\in\mathbb{R}$$
+
+Con lo cual, nuestro conjunto de soluciones para este sistema es infinito. para cada valor que le queramos dar a $X_3$
+
+Existe otra opción, que es dibujar el sistema.
+
+En este caso, al tener 3 variables, necesitamos utilizar `plotEqn3d()`
+
+```{r, eval = F}
+plotEqn3d(A,b, xlim = c(-10,10), ylim = c(-10,10), zlim = c(-10,10))# limitando los ejes a esos rangos
+```
+
+Gráficamente, podemos concluir que el conjunto de soluciones es infinito pues se trata de una recta: la interesección de los 3 planos.**Se cortan en infinitos puntos (NO en un punto) que es todo un haz de planos**
+
+De hecho, podemos representar **La recta** nuestro conjunto de soluciones por
+
+$$\left\{x\in \mathbb{R}^3 \ :\  x_1 = \frac{3}{2},\ x_2 = \frac{1}{2}+x_3,\ x_3\in\mathbb{R}\right\}$$
+Concluimos que el conjunto de soluciones es infinito pues es toda una recta la interseccion de 3 planos en este caso
+
+$$(x_1,x_2,x_3) = \left(\frac{3}{2}, \frac{1}{2}, 0\right) + \lambda (0,1,1)$$
+
+# Sistemas incompatibles con `R`
+
+Con todas las funciones presentadas anteriormente, es fácil averiguar si el sistema con el que estamos trabajando es un sistema incompatible. 
+
+**Ejemplo 5**
+
+Supongamos que nos dan el siguiente sistema de ecuaciones lineales:
+
+$$\left\{\begin{matrix}x&+&y &=& 2\\x&-&y&=&1\\2x&+&y&=&3\end{matrix}\right.$$
+
+Tenemos un sistema de 3 ecuaciones con dos incógnitas, donde
+
+```{r}
+# Ahora lo hemos declarado por columnas la Matriz A
+A = cbind(c(1,1,2),c(1,-1,1))
+b = c(2,1,3)
+AB = cbind(A,b)
+```
+
+Si comprobamos los rangos de la matriz de coeficientes $A$ y la matriz ampliada del sistema, obtenemos
+
+```{r}
+c(R(A),R(AB))# el rango de la matriz A es 2 y el de la ampleada es 3
+all.equal(R(A),R(AB))# Nos dice que existe una diferencia porque los rangos son diferentes
+```
+
+
+Entonces, como los rangos son diferentes, por el Teorema de Rouché-Frobenius, concluimos que se trata de un sistema incompatible
+
+Mediante la función `echelon()`, también podemos ver fácilmente que se trata de un sistema incompatible
+
+```{r}
+echelon(AB)# con este nos da un sistema escalonado, hay que fijarnos en la columna b que seria X1=0,x2=0 y el de abajo que not tiene variable pero si termimo indepemdiente seria 0=1 que seria WTF? esto nopuede ser
+```
+
+En el caso dr usar, `Solve()` lo muestra aún más explicitamente:
+
+```{r}
+Solve(A,b, fractions = TRUE)# Al final vemos como nos queda 0=1/3 que tambein esta mal
+```
+
+
+Tanto con `echelon()` como con `Solve()`, lo que obtenemos son igualdades como $$0 = 1\\ 0 = \frac{1}{3}$$
+
+las cuales claramente son falsas. Esto es lo que nos lleva a concluir que se trata de un sistema incompatible
+
+Finalmente, si lo que queréis es una comprobación gráfica, la función `plotEqn()` es la que nos servirá en este caso:
+
+#```{r, fig.height=3.2, fig.align='center'}
+#A = cbind(c(1,1,2),c(1,-1,1))
+#b = c(2,1,3)
+#plotEqn(A,b, xlim = c(0,2), ylim = c(0,1.5))# Vemos que no existe un punto de #interseccion comun de estas tres rectas,No existe un punto que resuleva las #ecuaciones tres ala vez
+#```
+
+
+En el plot anterior, podemos ver que cada par de rectas tiene solución. Es decir, las rectas intersecan 2 a 2. 
+
+No obstante, vemos que no existe punto en que las 3 rectas intersequen. 
+
+Este es el motivo por el cual gráficamente podemos concluir que se trata de un sistema incompatible.
+
+# Ecuaciones matriciales con `R`
+
+podemos estas ecuaciones en R 
+
+Dada una ecuación matricial, si la tenemos de la siguiente forma **En un momento dado la podemos llegar a tener de esta forma, Despejada** $AX = B$, donde $A,B$ son matrices, entonces la podemos resolver haciendo uso de la función `solve(A,B)`, La del paquete base de R, la podemos usar para comprovar si tiene o no solucion
+
+**Ejemplo 6**
+
+Sea la ecuación matricial $$AX + 3B = (C+D)X+3D+10I_2$$ donde $$A =\begin{pmatrix}0 & 4\\2 & 1\end{pmatrix},\quad B =\begin{pmatrix}1 & -1\\ 2 & 3\end{pmatrix},\quad C =\begin{pmatrix}1 & 2\\ 3 & -2\end{pmatrix},\quad D =\begin{pmatrix}-2 & 1\\ -1 & 1\end{pmatrix},\quad I_2 =\begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}$$
+
+Pasando los términos multiplicados por $X$ a la izquierda y los que no a la derecha, obtenemos,**La matrices con X ala izquierda y lasque no ala derecha**
+
+$$AX-(C+D)X = 3D-3B+10I_2$$
+
+Sacando factor común $X$ por la derecha en el primer término y factor común 3 en el segundo término, tenemos
+
+$$(A-(C+D))X = 3(D-B)+10I_2$$
+
+
+Nuestras matrices son:
+
+```{r}
+A = rbind(c(0,4),c(2,1))
+B = rbind(c(1,-1),c(2,3))
+C = rbind(c(1,2),c(3,-2))
+D = rbind(c(-2,1),c(-1,1))
+I = diag(1, nrow = 2, ncol = 2)
+```
+
+La matriz que multiplica a $X$, a la que llamaremos $M$, es
+
+```{r}
+M = A-(C+D)
+```
+
+mientras que la matriz del segundo miembro de la igualdad, $N$, es
+
+```{r}
+N = 3*(D-B)+10*I
+```
+
+
+Una vez calculadas $M$ y $N$, **Procedemos a hacer un solve de M y N** tenemos la ecuación matricial de la forma $MX = N$. Entonces, la podemos resolver realizando lo siguiente:
+
+```{r}
+X = solve(M,N)
+X# VEMOS la matris resultante
+```
+
+Comprobamos nuestro resultado:
+
+```{r}
+A%*%X + 3*B == (C+D)%*%X+3*D+10*I# Todas son TRUEs
+```
+
+## Trabajando con `Python`
+
+## Sistemas compatibles determinados con `Python`
+
+Dado el sistema de ecuaciones lineales
+
+$$\left\{\begin{matrix}a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n & = & b_1\\
+a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n & = & b_2\\
+\vdots & \  & \vdots\\
+a_{m1}x_1+a_{m2}x_2+\cdots+a_{mn}x_n & = & b_m\\\end{matrix}\right.$$
+
+Si lo pasamos a su forma matricial, $AX = b$, podremos resolverlo de forma sencilla con la función `numpy.linalg.solve(A,b)` **Donde A es la matriz de coeficientes y b el vector de terminos independientes**,Solo se podra hacer siempre que se trate de un sistema compatible determinado.
+
+**Ejemplo 1**
+
+Dado el siguiente sistema de ecuaciones lineales, calculemos su solución:
+
+$$\left\{\begin{matrix}
+x_1 &+& x_2 &+& 2x_3 &=& 9\\
+2x_1 &+& 4x_2 &-& 3x_3 &=& 1\\
+3x_1 &+& 6x_2 &-& 5x_3 &=& 0\end{matrix}\right.$$
+
+Se trata de un sistema de 3 ecuaciones con 3 incógnitas. Pasándolo a su forma matricial,**Usando la funcion Array de Numpy**
+
+```{python}
+import numpy as np
+A = np.array([[1,1,2],[2,4,-3],[3,6,-5]])
+b = np.array([9,1,0])
+AB = np.array([[1,1,2,9],[2,4,-3,1],[3,6,-5,0]])
+```
+
+En primer lugar comprobamos que el rango de $A$ es igual al de la ampliada, para ver si el sistema es compatible
+
+```{python}
+np.linalg.matrix_rank(A) == np.linalg.matrix_rank(AB)#Nos devuelve TRUE
+```
+
+Ahora, comprobamos si es igual al número de incógnitas, para ver si es compatible determinado
+
+```{python}
+np.linalg.matrix_rank(A) == 3
+```
+
+Finalmente aplicando el teorema decimos que el sistema tiene solucion unica, resolvemos aplicando la funcion `solve` de linalg de numpy
+
+```{python}
+x = np.linalg.solve(A, b)
+x
+```
+
+Es decir, nuestra única solución es $x = (1,2,3)$
+
+Recordad que la comprobación la podemos hacer de 2 formas:
+
+- Sustituyendo la solución en cada una de las ecuaciones y ver que se cumplen todas las igualdades
+- Viendo que la multiplicación de la matriz de coeficientes por la solución da el vector de términos independientes 
+
+El segundo caso en `Python` vendría dado por el siguiente bloque de código:
+
+```{python}
+A.dot(x)# dot el producto Matriciar multiplicamos lamatriz A por el vector de solucion X
+```
+
+donde podemos ver que al multiplicar $A$ por nuestra solución, obtenemos el vector de términos independientes $b = (9,1,0)$
+
+**Otra Forma**
+
+También podemos resolver sistemas compatibles determinados con la librería `sympy`
+
+Además, lo podremos resolver de tres formas:
+
+- Introduciendo la lista de ecuaciones
+- Introduciendo la matriz ampliada
+- Introduciendo el sistema
+
+**Ejemplo 2**
+
+Resolvamos esta vez un sistema de dos ecuaciones con dos incógnitas:
+
+$$\left\{\begin{matrix}
+2x_1 &+& 2x_2 &=& 1\\
+-x_1 &+& x_2 &=& 2\end{matrix}\right.$$
+
+```{python}
+# En este caso importamos Sympy
+from sympy import * # Este ess para importar todas las funciones
+from sympy.solvers.solveset import linsolve# esta es para importar la funcion que vamos a usar
+x,y,z = symbols('x,y,z')# Asi es como se declaran simbolos con 'symbols', tenemos 3 variables asignadas directamente, 'symbols' crea las letras que se van a usar en el sistema de ecuaciones, en este caso llamamos als variables igual al simbolo que representan
+x1,x2,x3 = symbols('x1,x2,x3')
+```
+
+Despues de haber declarado los simbolos. Si lo queremos resolver introduciendo la lista de ecuaciones, primero tenemos que transformarlas de modo que todas estén igualadas a 0 **Es decir el termino independiente hay que pasarlo a restar al otro Lado**. En nuestro caso, tendremos el siguiente sistema equivalente:
+
+$$\left\{\begin{matrix}
+2x_1 &+& 2x_2 &-&1&=& 0\\
+-x_1 &+& x_2 &-&2&=&0\end{matrix}\right.$$
+
+Por tanto, introducimos lo siguiente
+
+```{python}
+# Mandamos a llamar esta funcion y le pasamos una lista de ecuaciones por lo que esta entre [], Estos x1 y x2 han sido definidos como simbolos y como variables indicandolas en tupla que esta entre ()
+linsolve([2*x1 + 2*x2 - 1, -x1 + x2 - 2], (x1, x2))# Podemos hacer uso de esta funcion por el import from sympy.solvers.solveset import linsolve que hicimos, que nos ahorramos tener que llamar a sympy.solvers.solveset.linsolve()
+
+#Nos devuelve que x1=-3/4 y x2=5/4
+```
+
+Si lo queremos resolver introduciendo la matriz ampliada, 
+
+```{python}
+# En el primer parametro le pasamos una Matriz con Matrix que primera va dentro de una tupla y dentro se tiene una lista a cada fila done la primera fila es la primera fila de la matriz ampleada y la segunda de la ampleada
+linsolve(Matrix(([2, 2, 1], [-1, 1, 2])), (x1, x2))# en segundo parametro las variables en tupla para saber que viariables tiene que despejar
+```
+
+Si lo queremos hacer introduciendo el sistema,
+
+```{python}
+AB = Matrix(((2, 2, 1), (-1, 1, 2))) #Matriz ampliada, tambien vale usar tupla de tupla en lugar de usar lista dentro de tupla como arriba
+A = AB[:, :-1] #Todas las filas de todas las columnas menos la última con ese -1
+b = AB[:, -1]#Todas las filas de la última columna con ese -1, cuenta desde el final
+system = A,b# se declara el sistema, Aqui estamos juntando la Variables A y la b en una misma variable
+linsolve(system, x1, x2)# con estessitema hacemos con la funcion pasandole las variavles en este caso x1 y x2
+```
+
+## Representación de sistemas con `Python`
+
+Con la librería `matplotlib` podemos representar gráficamente nuestros sistemas de ecuaciones lineales tal cual hacíamos con `R`
+
+```{python}
+import matplotlib.pyplot as plt# Aqui vemos como esta libreria tiene un subpaquete llamado pyplot
+```
+
+Dado el sistema de 2 ecuaciones lineales con 2 incógnitas visto en el `Ejemplo 2`,
+
+$$\left\{\begin{matrix}2x_1 &+&2x_2&=&1\\
+-x_1 &+&4x_2&=&2\end{matrix}\right.$$
+
+Reescribiéndolo del siguiente modo, es decir, despejando la variable $x_2$
+
+$$\left\{\begin{matrix}x_2&=&\frac{1}{2}-x_1\\
+x_2&=&\frac{2+x_1}{4}\end{matrix}\right.$$
+
+su representación gráfica viene dada por 
+
+```{python, eval = F}
+x1 = np.linspace(0, 10, 100)# Generamos entre 0 y 10, 100 numero randoms
+plt.plot(x1, 1/2-x1, x1, (2+x1)/4)# PARA represntar en el eje de las x, ese vector x1, en el eje de las y es 1/2-x1 (Que es la x2 despejada) y a continuacion otra pareja que seria con su x1 y su x2 despejada, EN GENERAL son con la misma coordenada x pero con su y que tomaria el valor de x2 que sacamos
+plt.show()
+```
+
+Donde: 
+
+- Damos 100 valores entre 0 y 10 a la variable $x_1$
+- El eje horizontal representa la variable $x_1$
+- El eje vertical representa la variable $x_2$
+- Claramente se observa que el sistema es compatible determinado, ya que hay un único punto donde las dos rectas intersecan.
+- El punto de intersección es la solución que hemos encontrado previamente: $\left(-\frac{3}{4},\frac{5}{4}\right)$
+
+**Ejemplo 3**
+
+otro sistema
+
+$$\left\{\begin{matrix}4x &+&2y&=&3\\
+x &-&2y&=&2\\
+3x &+&4y&=&1\end{matrix}\right.$$
+
+Si lo reescribimos de la forma explicita:
+
+$$\left\{\begin{matrix}y&=&\frac{3}{2}-2x\\
+y&=&\frac{x}{2}-1\\
+y &=& \frac{1-3x}{4}\end{matrix}\right.$$
+
+El siguiente código genera el siguiente gráfico:
+
+```{python, eval = F}
+x = np.linspace(0, 10, 100)
+# Como queremos pintar 3 rectas, la 'x' con cada una de las rectas y en la 'y' el valor de x2 que sacamos
+plt.plot(x, 3/2-2*x, x, x/2-1, x, (1-3*x)/4)
+```
+
+Donde: 
+
+- El eje horizontal representa la variable $x$
+- El eje vertical representa la variable $y$
+- Claramente se observa que el sistema es compatible determinado, ya que las 3 rectas intersecan en un mismo punto.
+
+Si quisiésemos representar un sistema con 3 incógnitas, como por ejemplo el sistema del `Ejemplo 1`
+
+$$\left\{\begin{matrix}x &+& y &+& 2z  &=&  9\\ 
+2x &+& 4y &-& 3z  &=&  1\\ 
+3x &+& 6y &-& 5z  &=&  0 \end{matrix}\right.$$
+
+ya se complica un poco más la cosa. Además, al no ser interactivo, es muy difícil que nos sea útil.
+
+El código necesario se muestra
+
+```{python, eval = F}
+from mpl_toolkits.mplot3d import Axes3D# para hacer dibujos en 3D
+# Definimos los puntos de cada una de las funciones queen eset caso son 3
+point1  = np.array([0,0,9/2])# Este punto viene de en la ecuacion poner un 0 en x un 0 en y y despejar z que nos da 9/2
+n1 = np.array([1,1,2])# La 1° Ecuacion es: x + y + 2z
+
+point2  = np.array([0,0,-1/3])# Igual poner 0 y despejarla z
+n2 = np.array([2,4,-3])# La 2° Ecuacion es: 2x + 4y - 3z
+
+point3  = np.array([0,0,0])# Igual poner 0 y despejarla z
+n3 = np.array([3,6,-5])# La 3° Ecuacion es: 3x + 6y - 5z
+```
+
+En el chunk anterior, lo único que se ha hecho **(En las variables llamadas point)** ha sido declarar un punto que cumple cada ecuación y el vector normal del plano que forma dicha ecuación.
+
+Es decir,
+
+- `point1`=$\left(0,0,\frac{9}{2}\right)$ cumple la primera ecuación ya que
+
+$$0 + 0 +2\cdot\frac{9}{2} = 9$$
+
+- `point2`=$\left(0,0,-\frac{1}{3}\right)$ cumple la segunda ecuación ya que 
+
+$$2\cdot 0+4\cdot 0-3\cdot\left(-\frac{1}{3}\right) = 1$$
+
+- `point3`=$\left(0,0,0\right)$ cumple la tercera ecuación ya que
+
+$$3\cdot 0+6\cdot 0-5\cdot 0 = 0$$
+
+Los punots son arbitrios No necesariamente tienen por qué ser estos, también nos hubiese servido tomar otra coordenadas 
+
+- `point1` = $(9,0,0)$
+- `point2` = $\left(1/2,0,0\right)$
+- `point3` = $(-2,1,0)$
+
+Pasemos ahora a los vectores normales a un plano **(Las variables n)**, una definición básica de lo que es un vector normal a un plano es la siguiente
+
+**Vector normal:** El vector $\vec{n} = (a,b,c)$ es normal a un plano si es perpendicular a éste.
+
+Sin embargo, más que la definición, lo que nos interesa es que dada la ecuación general de un plano: $Ax+By+Cz+D =0$, el vector normal a este plano esel que tiene por coordenadas al numero que acompaña ala x,y,z, entonces es $\vec{n} = (A, B, C)$
+
+De ahí que las 3 ecuaciones que teniamos originalmente, los 3 vectores normales a cada una de nuestras ecuaciones
+
+$$\left\{\begin{matrix}x &+& y &+& 2z &-& &9& &=&  0\\ 
+2x &+& 4y &-& 3*z  &-& &1& &=&  0\\ 
+3x &+& 6y &-& 5z  &=&  0 \end{matrix}\right.$$
+
+**Los 3 vectores normales **,sean $$n_1 = (1,1,2),\quad n_2 = (2,4,-3)\quad n_3 = (3,6,-5)$$
+
+Nos hace falta declarar el terrmino Independiente, lo hacemos atravez de estas tres variables
+
+```{python, eval = F}
+D1 = -9# Originalmente en esta ecuacion la teniamos igualada a 9 al pasarlo al otro lado es -9 y por eso es asi
+D2 = -1
+D3 = 0
+# De modo que estos son los terminos independientes solo que en lugar de estar ala derecha del igual estan ala izquierda, asi como esta en la ecuacion general la D
+```
+
+Aquí lo que hacemos es declarar los valores de $D$, los términos independientes, para cada una de las ecuaciones, los cuales, recordemos, vienen dados por la ecuación general del plano: $Ax+By+Cz+D = 0$
+
+Ya teneindo todo para hacer la reresentacion grafica, en eset caso generamos una malla de numeros, Asi como antes usabamos la funcion linspace para generar 100 numeros en este caso en 3D se genera una malla
+
+```{python, eval = F}
+X, Y = np.meshgrid(range(30), range(30))# Con este metodo generamos entre 0 y 30 en cada eje el primero para X y el segundo para Y, pero como inicia en 0 se termina en 29
+```
+
+En este chunk, con la función `meshgrid` creamos una matriz de coordenadas para la futura representación gráfica,**De modo que tenemos puntos X y Y distribuidos en una malla y para eso se nececita calcular la coordenada z del plano**
+
+Ahora, nos interesa saber cómo se define $z$ en función de $x$ e $y$. Para ello, lo que hacemos es despejar la variable $z$ de cada una de nuestras ecuaciones. Hecho esto, el sistema nos queda reescrito de la siguiente forma:
+
+$$\left\{\begin{matrix}z &=&  \frac{9-x-y}{2}\\ 
+z &=&  \frac{2x+4y-1}{3}\\ 
+z  &=&  \frac{3x+6y}{5} \end{matrix}\right.$$
+
+Si os fijáis, $z$ al fin y al cabo es $$\frac{-Ax-By-D}{C}$$, donde C es el coeficiente que acompaña ala Z
+
+Por tanto, declaramos las siguientes 3 variables en función de lo que acabamos de obtener, **Lo aplicamos ala ecuacion: **$$\frac{-Ax-By-D}{C}$$, a cada una de estas varaibles z, donde A, B y C son los coeficientes (coordenadas) del vector normal y el D que habiamos declarado
+
+```{python, eval = F}
+# Lo que esta entre  [] son las pociciones
+z1 = (-n1[0]*X - n1[1]*Y - D1)*1./n1[2]# El n1 en las pociciones 0,1 y 2 representa la A,B y C de la ecuacion,  el D es el termino independiente y se multiplica por '1'. para convertir todo en decimal y nos interesa el resultado exacto si no solo nosda el cociente en la divicion
+z2 = (-n2[0]*X - n2[1]*Y - D2)*1./n2[2]
+z3 = (-n3[0]*X - n3[1]*Y - D3)*1./n3[2]
+# Para coordenada de la malla (X,Y) se multiplican por los numeros n en esa pocicion y se calcula asi la Z respectiva que jabiamos despejado
+```
+
+Finalmente, creamos y dibujamos el correspondiente gráfico 3d, que produce el siguiente resultado:
+
+```{python, eval = F}
+plot3d = plt.figure().gca(projection='3d')#creamos esta varaible que se encarga de tener el grafico que representa un grafico 3d, despues a esta le agregamos a continuacion estos graficos
+# Pintamos superficies con las coordenadas de la malla 'X y Y' y el z que hemos claculado con las varaibles anteriores
+plot3d.plot_surface(X,Y,z1, color='red')
+plot3d.plot_surface(X,Y,z2, color='cyan')
+plot3d.plot_surface(X,Y,z3, color='yellow')
+plt.show()# esto es para que nos muestre el resultado
+```
+
+
+## Sistemas compatibles indeterminados con `Python`
+
+Para averiguar que estamos trabajando con sistemas compatibles indeterminados podemos hacer uso de la función `np.linalg.matrix_rank()` para trabajar con los rangos o representar gráficamente el sistema.
+
+**Ejemplo 4**
+
+Dado el siguiente sistema de ecuaciones lineales:
+
+$$\left\{\begin{matrix}x&+&y&-&z&=& 2\\x&-&y&+&z&=&1\\3x&+&y&-&z&=&5\end{matrix}\right.$$
+
+Definimos las matrices del sistema, apartir de la clase array de numpy
+
+```{python}
+A = np.array([[1,1,-1],[1,-1,1],[3,1,-1]])# matriz de coeficiente
+B = np.array([2,1,5])# vector de terminos indepndientes
+AB = np.array([[1,1,-1,2],[1,-1,1,1],[3,1,-1,5]])# matriz ampleada
+```
+
+Calculemos los rangos de la matriz de coeficientes y la matriz ampliada para ver si coincide o no para ver de qué tipo de sistema se trata:
+
+```{python}
+np.linalg.matrix_rank(A)# la matriz a es de rango A
+np.linalg.matrix_rank(A) == np.linalg.matrix_rank(AB)# vemos que estas dos si conciden
+```
+
+Hemos visto que los rangos de $A$ y el de la matriz ampliada coinciden y son iguales a 2, pero hay 3 incógnitas. Por lo tanto, por el Teorema de Rouché-Frobenius se trata de un sistema compatible indeterminado (que tendra infinitas soluciones).
+
+Ahora, si queremos representar gráficamente el sistema, introducimos el siguiente código:**Volvemos a escoger un punto de cada uno de las ecuaciones y el vector normal al plano**
+
+```{python, eval = F}
+point1  = np.array([0,0,-2])
+n1 = np.array([1,1,-1])
+
+point2  = np.array([0,0,1])
+n2 = np.array([1,-1,1])
+
+point3  = np.array([0,0,-5])
+n3 = np.array([3,1,-1])
+```
+
+```{python, eval = F}
+#Creamos los 3 Términos independientes
+D1 = -2
+D2 = -1
+D3 = -5
+
+# Creamos la matriz de coordenadas en este caso tomando las X en el rango de todos los numeros entre -20 a 20 y el eje Y entre 0 a 30
+X, Y = np.meshgrid(range(-20,20), range(30))
+```
+
+```{python, eval = F}
+# Calculamos z en función de x e y, con la ecuacion despejada
+z1 = (-n1[0]*X - n1[1]*Y - D1)*1./n1[2]
+z2 = (-n2[0]*X - n2[1]*Y - D2)*1./n2[2]
+z3 = (-n3[0]*X - n3[1]*Y - D3)*1./n3[2]
+
+#Creamos y dibujamos el plot
+plot3d = plt.figure().gca(projection='3d')# creamos el plot 3d
+# creamos las superficies del plot creado arriba
+plot3d.plot_surface(X,Y,z1, color='red')
+plot3d.plot_surface(X,Y,z2, color='cyan')
+plot3d.plot_surface(X,Y,z3, color='yellow')
+plt.show()# vemos que lo planos se unen por toda una recta por lo tanto hay infinitas soluciones
+```
+
+Se puede deducir que la intersección de los 3 planos es una recta, lo que nos hace llegar a la conclusión de que el sistema es compatible indeterminado.
+
+Si queremos resolver un sistema compatible indeterminado, lo podemos hacer con la ayuda de la librería `sympy`
+
+Además, lo podremos resolver de tres formas:
+
+- Introduciendo la lista de ecuaciones
+- Introduciendo la matriz ampliada
+- Introduciendo el sistema
+
+Recuperando el sistema del `Ejemplo 4`
+
+
+$$\left\{\begin{matrix}x&+&y&-&z&=& 2\\x&-&y&+&z&=&1\\3x&+&y&-&z&=&5\end{matrix}\right.$$
+Recordemos que se trata de un sistema de 3 ecuaciones con 3 incógnitas
+
+Si lo queremos resolver introduciendo la lista de ecuaciones **las listas de ecuaciones se hacen igualando la ecuacion a cero por lo tanto el termino independiente pasa al otro lado con signo contrario**, habrá que modificar éstas para que todas estén igualadas a 0. Es decir, necesitamos considerar el sistema equivalente
+
+$$\left\{\begin{matrix}x&+&y&-&z&-&2&=& 0\\x&-&y&+&z&-&1&=& 0\\3x&+&y&-&z&-&5&=& 0\end{matrix}\right.$$
+
+```{python}
+# con esta funcion tenemos una lista con las 3 ecuaciones, para las variables en tupla x,y,z
+linsolve([x + y - z - 2, x - y + z - 1, 3*x + y - z - 5], (x, y, z))# Nos sale que z es igual a Z por lo tanto es una varaible libre, las avraibles x,y,z las habiamos creado como simbolos, representando una ecuacion,y en mayusculas son variables que representan la malla
+```
+
+Si lo queremos resolver introduciendo la matriz ampliada, 
+
+```{python}
+#con la entrada de la matriz,Ingresamos la MATRIZ AMPLEADA, eso queire decir que los ultimos numeros de cada lista son los terminos independientes en este caso 2,1,5
+linsolve(Matrix(([1, 1, -1, 2], [1, -1, 1, 1], [3, 1, -1, 5])), (x, y, z))# para estas variables x,y,z
+```
+
+Si lo queremos hacer introduciendo el sistema,
+
+```{python}
+AB = Matrix(((1, 1, -1, 2), (1, -1, 1, 1), (3, 1, -1, 5))) #Apartir de la construccion de la Matriz ampliada
+# declaramos
+A = AB[:, :-1] #Todas las filas (:) de todas las columnas menos la última (:-1)
+B = AB[:, -1]#Todas las filas (:) de la última columna (la ultima empezando por la final)
+system = A,B# definimos las sistemas juntando las dos variables
+linsolve(system, x, y, z)# aplicamos la funcion a este objetos sisema con las varaibles x,y,z
+```
+
+Como podréis observar, en los 3 casos se nos muestra una solución en función de la última variable, entendiendo que esa variable libre puede tomar cualquier valor en $\mathbb{R}$. Eso hace que nuestra solución sea infinita.
+
+# Sistemas incompatibles con `Python`
+
+¿Qué pasa si intentamos resolver un sistema incompatible con `Python`?
+
+**Ejemplo 5**
+
+Supongamos que nos dan el siguiente sistema de ecuaciones lineales:
+
+$$\left\{\begin{matrix}x&+&y &=& 2\\x&-&y&=&1\\2x&+&y&=&3\end{matrix}\right.$$
+
+Pasandolo a su forma matricial
+
+```{python}
+A = np.array([[1,1],[1,-1],[2,1]])
+B = np.array([2,1,3])
+AB = np.array([[1,1,2],[1,-1,1],[2,1,3]])
+#Vemos que los dos rango son diferentes
+np.linalg.matrix_rank(A)
+np.linalg.matrix_rank(AB)
+
+#Representrlo en grafico
+x2=np.linspace(0,10,100)
+plt.plot(x2,2-x2,x2,-1+x2,x2,3-2*x2)
+plt.show()
+```
+
+
+Utilizando la misma función que para sistemas compatibles determinados o indeterminados con cualquiera de las 3 formas posibles obtendremos
+
+```{python}
+linsolve(Matrix(([1, 1, 2], [1, -1, 1], [2, 1, 3])), (x, y))# en este caso hemos usado para lamatriz ampleada del sistema, que lo resuelva para las varaibles x,y
+
+# La respuesta que nos sale es EmptySet() que quiere decir conjunto vacio
+```
+
+Es decir, que el conjunto de soluciones es el conjunto vacío, $\emptyset$. Esto se debe a que el sistema es incompatible y no tiene solución.
+
+

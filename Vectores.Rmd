@@ -1,0 +1,1018 @@
+---
+title: "Vectores"
+author: "yo"
+date: "6/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(matlib)
+library(pracma)
+```
+
+## Vectores
+
+Son un Tipo de Matriz:
+
+Los vectores tienen un papel fundamental no solo en matemáticas sino también en la física, la ingeniería e incluso otros campos científicos.
+
+Los vectores en general tienen dos vertientes íntimamente ligadas: la algebraica (como en ecuaciones como en temas anteriores) y la geométrica (Es intuitiva, la podemos visualizar, dibujar en el plano en el espacio o mundos de ciertas dimenciones)
+
+En primer lugar, veremos los vectores desde un punto de vista geométrico.
+
+Sea $\mathbb{K}$ un cuerpo,
+
+**Punto en la recta** $\mathbb{K}$. Dados un origen y una unidad de longitud, cada punto de la recta viene definido por un, y solo un, escalar del cuerpo $\mathbb{K}$ y viceversa. Es decir: si marcamos un punto que le llamamos el origen y lo marcmos con una unidad de medida cada uno de los puntos de  arecta vienen definidos por uno solo numero que es el escalar del cuerpo, Ejemplo el numero 0 seria el origen, el 1 seria la longitud a un lado. Pensamos en el origen y añadirle una cantidad de veses la unidad de longitud por un escalar del cuerpo
+ 
+**Punto en el plano** $\mathbb{K}^2$. Dados un origen, dos ejes (rectas, no necesitan ser perpendiculares pero que no sean paralelas(iguales)) y una unidad de longitud, un punto del plano es un par de coordenadas(Tupla) $(x,y)$ donde $x$ e $y$ son dos elementos del cuerpo $\mathbb{K}$ y el punto queda identificado por cuantas veses la unidad de longitud se tiene que mover sobre la primera recta $x$ y cuantas veses moverse sobre la segunda recta $y$ para estar en ese punto del plano
+
+**Punto en el espacio** $\mathbb{K}^3$. Dados un origen, 3 ejes (rectas no complarianas o sea que no pueden ser dos las misma ni que formen un plano, la tercera tendria que estarfuera del plano que dividen las dos primeras) y una unidad de longitud, un punto del espacio es una terna $(x,y,z)$ donde $x,y$ y $z$ son tres elementos del cuerpo $\mathbb{K}$ y la pocicion fisica del espacio es cuantas veses la unidad de longitud se desplaza en las primeras de la recta, cuantas veses hay que desplazarse en la segunda de la recta y cunatas en la tercera para llegar al punto en cuestion.
+
+Todo esto es cuantas veses nos tenemos que mover encima de la unidad de medida (la recta o las dos rectas o las tres rectas del espacio) hasta llegar ala coordenada que queramos del punto
+
+Entonces un punto del espacio del plano o de la recta sera n coordenadas elemntos en general del cuerpo K
+
+**Punto en **$\mathbb{K}^n$. Se define como una $n$-tupla de números:
+
+$$X = (x_1,\dots,x_n)$$ "X" seria un punto de $K^n$ y seria una n tupla donde $x_1,\dots,x_n\in\mathbb{K}$ y $n$ es la **dimensión** del espacio $\mathbb{K}^n$, el $n$ que tiene la K como exponentne indica cuantos numeros tiene que haber en cada tupla y sel ellama ladimencion dle espacio $K^n$
+
+**Coordenadas de un punto.** Son los valores $x_1,\dots,x_n\in\mathbb{K}$ del punto $X$, como bimos con lo de arriba es un Punto y entre parentecisis sus coordenadas y el punto X es el lugar geometrico para llegar a el hay que desplazarse segun $x_n$ unidades en una direccion
+
+# Vectores fijos
+
+**Vector fijo.** Es un par fijo de puntos $P$ y $Q$ que se denotará por $\vec{PQ}$. Se define por el puneto donde empieza(Origen) y el punto donde Acaba(Extremo), por lo tanto es tomar dos puntos de estos comentados arriba en el espacio $K^n$ estamos tomando dos pares de coordenadas de n numeros y dibujar una flecha
+
+**Origen.** Punto $P$ del vector $\vec{PQ}$
+
+**Extremo.** Punto $Q$ del vector $\vec{PQ}$
+
+Normalmente los vectores en el plano o en el espacio de tres dimensiones se suelen representar mediante segmentos acabados en una punta de flecha en uno de sus dos extremos, (En el origen no se pone esto)
+
+**Componentes cartesianas de un vector** $\vec{PQ}$ **fijo.** Vectores que se obtienen al proyectar (Los vectores se pueden Proyectar solo tomando en cuenta una de las coordenadas de todas las que tanga disponible) el vector $\vec{PQ}$ sobre los ejes de un sistema de coordenadas situado en el origen, $P$, de dicho vector **Los vectores son las flechas en Negro**, cada uno de los componentes en **Rojo** serian las componentes cartecianas, No es lo mismo moverse segun el moviemiento por lo tanto el vector que tiene solo flechas rojas (componentes Positivas) con el que tienen solo verdes (Componentes Negativas) **No** son el mismo vector porque las componentes cartecianas no coinciden
+
+<div class = "center">
+![<l class = "phototext">Componentes de un vector. El color rojo es para componentes positivas y el verde, para componentes negativas</l>](Images/componentes.png)
+</div>
+
+Si denotamos $P = (p_x,p_y)$ y $Q = (q_x,q_y)$, entonces las componentes del vector $\vec{PQ}$ se obtienen restando las coordenadas del punto extremo $Q$ al punto de origen $P$, es decir un vector $\vec{PQ}$ es como restar las coordenadas del punto del final con las coordenadas del punto de inicio
+
+$$\vec{PQ} = (q_x-p_x,q_y-p_y)$$, a los quese les puede hacer las operaciones matematicas son los vectores NO las coordenadas  pero en el vector PQ si porque esta definido haci por las coordenadas
+
+El valor absoluto (no nos afecte el signo) de las componentes del vector coincide con la longitud de los catetos del triángulo rectángulo formado y tal que el vector sea su hipotenusa:
+
+la componente carteciana coincide con el cateto opuesto (en el eje de las X), la segunda componente carteciana (en el eje de las y) seria la altura y el propio vector ees la hipotenusa del triangulo rectangulo
+
+<div class = "center">
+![<l class = "phototext">Triángulo rectángulo formado por las componentes del vector como catetos y el propio vector como hipotenusa</l>](Images/vector.png)
+</div>
+
+**Ejemplo 1**
+
+Consideremos el vector $\vec{AB}$ donde $A = (1,2)$ y $B = (5,4)$
+
+Sus componentes serán (como lo bimos anteriormente)
+
+$$\vec{AB} = (5-1,4-2) = (4,2)$$
+
+En este caso, ambas componentes son positivas
+</div>
+
+<div class = "center">
+![<l class = "phototext">Componentes del vector $\vec{AB}$</l>](Images/vector2.png)
+</div>
+
+Vemos como coincide en longitud del cateto en el eje de las X n este caso $4$ y el vertical mide dos unidades de longitud seria el cocmponente en el eje de las y
+
+**Ejemplo 2**
+
+Consideremos el vector $\vec{AB}$ donde $A = (1,4)$ y $B = (5,2)$
+
+Sus componentes serán 
+
+$$\vec{AB} = (5-1,2-4) = (4,-2)$$
+
+En este caso, su componente del eje horizontal será positiva, mientras que la componente del eje vertical será negativa
+
+<div class = "center">
+![<l class = "phototext">Componentes del vector $\vec{AB}$</l>](Images/vector3.png)
+</div>
+
+estos dos ejemplos inician un punto y acaban en otro, tiene que ser exactamente asi y dados el origen y el extremo se puede calcular el componente, proyecciones de ese triangulo rectangulo que saldra en el plano
+
+Un Vector Fijo se puede Definir de 3 formas Diferentes
+
+**Caracterización de un vector fijo (I).** En el contexto geométrico, las 4 características de un vector fijo son:
+
+- **Origen.** Punto de aplicación donde empieza el vector (marca el punto de arranque)
+- **Módulo.** Longitud del segmento
+- **Dirección.** Dirección de la recta a la cual pertenece el vector(Hacia donde se dirige el vecctor)
+- **Sentido.** Lo determina la punta de la flecha del vector
+
+**Caracterización de un vector fijo (II).** Un vector fijo también queda completamente determinado por
+
+- Sus componentes (Cuanto mide en los ejes (x,y) o si hay mas todas)
+- El punto origen
+
+**Caracterización de un vector fijo (III).** Un vector fijo queda determinado si se conocen
+
+- Las coordenadas del punto origen
+- Las coordenadas del punto extremo(Como definimos en un inicio un vector fijo es que queempieza en el origen y acaba en el extremo)
+
+**Vectores equivalentes.** Diremos que dos vectores $\vec{AB}$ y $\vec{CD}$ son equivalentes si tienen las mismas componentes (apesar que no apliquen en los mismos puntos). Es decir, si $$(b_x-a_x,b_y-a_y) = (d_x-c_x,d_y-c_y)$$
+
+**Ejemplo 3**
+
+Dados los siguentes puntos $A = (5,3),\ B = (1,4),\ C = (4,2),\ D = (0,3)$. Los vectores $\vec{AB}$ y $\vec{CD}$ son equivalentes a pesar de tener diferentes orígenes y extremos ya que
+
+$$\vec{AB} = (1-5,4-3) = (-4,1)$$
+$$\vec{CD} = (0-4,3-2) = (-4,1)$$
+
+vemos que sus componentes de cada vector son iguales, Si los dibujamos son diferentes (por las coordenadas) los vectores pero son equivalentes por que tienen las mismas componentes osea que tienen (Modulo, direccion, sentido Igual)
+
+## Vectores libres
+
+Como acabamos de ver, todos los vectores fijos equivalentes entre sí tienen las mismas componentes.
+
+En este sentido, es posible establecer una relación de equivalencia correspondiente llamada el **vector libre**.
+
+Este es unico representante que nos interesa de todos los vectores fijos, define un conjunto infinito de vectores y los representa a todos ellos (De todos los vectores fijos con sus mismas componentes).
+
+**Vector libre.** Conjunto de todos los vectores fijos que son equivalentes entre sí.
+
+**Diferencia de un vector libre y uno Fijo** Un vector libre no tiene un origen fijo, sino que se puede ubicar en cualquier punto del espacio (Se puede mover en cualquier lugar del espacio).
+
+Cada vector fijo es un representante del vector libre.
+
+<div class = "center">
+![<l class = "phototext">Ejemplos de vectores libres: $\vec{u},\vec{v},\vec{w}$</l>](Images/vector4.png)
+</div>
+
+Vemos en la imagen tenemos 3 vectores diferentes y el vector $\vec{U}$ seria el representate de todos los vetctores que encierra en el circulo Verde porque todos estos son exactamente Iguales,$\vec{U}$ seria el vector Libre que representa y tiene de estos vectores su misma longitud,modulo,direccion, sentido pero no tiene un punto de origen fijo y los mismo seria para los otros $\vec{V}$ y $\vec{W}$
+
+Si este vector libre lo podemos mover donde sea y si lo colocamos en el origen o lo que es lo mismo, el representante del vector libre que tiene su punto de origen en el cero (origen de coordenadas) es el vector libre que mejor representa a toda la coleccion de vectores fijos
+
+**Vector fijo en el origen.** Es el representante del vector libre que tiene su punto origen en el origen de coordenadas
+
+En este caso, las coordenadas del punto extremo coinciden numéricamente con las componentes del vector, ya que el punto de origen es $0 = (0,0)$
+
+<div class = "center">
+![<l class = "phototext">Vector fijo en el origen</l>](Images/vector5.png)
+</div>
+
+En la imagen tenemos 4 vectores que son equivalentes entre si cualquiera podria ser reprentate al vector libre, pero si el vector que esta fijo en el origen si le calculamoslas componentes (cuanto hay que alargar en el eje de las x y cuanto en el de las y) las coordenadas del punto (donde aputa la flecha) coinciden numericamente con la componente del vector esto hace que es mejor este vector fijo en el origen como representante de los vectores libres que los otros vectores que tenemos en esta misma imagen porque este vector tiene la propiedad que las coordenadas del punto extremo coincide con las componentes del vector, como el origen es 0 y ya sabemos como se calculan las componentes como extremo menos origen
+
+Por tanto, todo vector libre tiene un representante situado en el origen de coordenadas donde el punto extremo tiene las mismas coordenadas que las componentes del vector. Entonces, en este sentido podemos decir
+
+**Proposición.** Existe una correspondencia uno a uno entre los vectores libres y los puntos según el cual cada punto (que se nos pase por la cabeza) $P = (p_x,p_y)$ del plano se identifica con un unico vector $\vec{OP} = (p_x,p_y)$, Es OP porque empieza en el Origen y comparte coordenadas con el punto (las componentes del vector OP coincide con las coordenadas del punto)
+
+Por eso Arriba deciamos que no restabamos Coordenadas en el caso del ejemplo de $$\vec{PQ} = (q_x-p_x,q_y-p_y)$$, lo que realmente estamos haciendo es que del punto $Q$ fabricamos su vector $\vec{OQ}$ y del punto $P$ fabricamos su vector $\vec{OP}$ y cuado definimos el vector $\vec{PQ}$ realmente lo que estamos haciendo es restar al $\vec{OQ}$ el vector $\vec{OP}$ lo que hacemos es pasar de puntos a vectores, ya que es a los vectores a los que les hacemos las operaciones, estos son los vectores que Empiezan en el Origen y acaban en el Punto en cuestion con cada punto que se nos pase por la cabeza
+
+**Caracterización de un vector libre (I).** Para caracterizar un vector libre se necesita:
+
+- **Módulo.** Al igual que para los vectores fijos, viene dado por la longitud del segmento
+
+- **Dirección.** Viene dado por el ángulo que forma el vector con la dirección positiva del eje $OX$
+
+- **Sentido.** Viene dado por el ángulo que forma el vector con la dirección positiva del eje $OX$
+
+**Caracterización de un vector libre (II).** También se puede caracterizar un vector libre si se conocen las componentes, conociendo las componentes en los ejes es suficiente
+
+## Ejemplo 4
+
+Dado el vector $(7,-5)$, calculemos su módulo, dirección y sentido:
+
+tenemos 7 unidades en el eje de las x de color verde y 5 unidades ara abajo de color rojo
+
+**Empecemos por el módulo**. Recordemos que el vector, cuyo origen hemos situado en el origen de coordenadas, forma un triángulo rectángulo con angulo recto donde intersectan las dos componentes y la hipotenusa de ese triangul rectangulo coincide con el modulo del vector junto con sus componentes, la direccion y sentido van a quedar determinadas por el angulo que va de la raya verde ala hipotenusa y este es el angulo que podemos calcular:
+
+<div class = "center">
+![<l class = "phototext">Triángulo rectángulo que forman el vector (7,-5) y sus componentes. La componente verde es la positiva y la roja, la negativa</l>](Images/vector6.png)
+</div>
+
+Como conocemos la longitud del segmento verde: 7 unidades; y también la del segmento rojo: 5 unidades, por el Teorema de pitágoras podemos hallar la longitud **O lo que es lo mismo el Modulo** del segmento $OA$
+
+El teorema de Pitagoras afirma que la suma de los cuadrados de los catetos es igual al cuadrado de la hipotenusa
+
+$$|OA|^2 = 7^2+5^2\Rightarrow |OA| = \sqrt{74}$$, entonces el Modulo de $OA$ sera la raiz cuadrada de la suma de esos dos numeros
+
+Con lo cual, el módulo del vector $(7,-5)$ es $\sqrt{74}$
+
+Ahora nos interesa saber el ángulo que forma el vector $(7,-5)$ con el eje (Positivo) $OX$. Éste se consigue calculando lo siguiente:
+
+Nosotros sabemos que, si denominamos $\alpha$ al ángulo que estamos buscando, entonces tenemos que por la trigonometria la tangente de ese angulo coincide con el cateto opuesto(el eje de la Y) partido por cateto continuo (Eje de la X)
+
+$$\tan{(\alpha)} = -\frac{5}{7}$$
+
+Con lo cual podemos despejar $\alpha$ aplicando ArcTangente , $\alpha = \arctan{(-\frac{5}{7})} = -0.6202495$ radianes, lo que equivale, haciendo la respectiva conversión, a 
+
+$$-0.6202495\ rad\cdot\frac{360º}{2\pi\ rad} = -35.53768º$$, con respecto ala direccion positiva de la X
+
+O, equivalentemente, $360º-35.53768º = 324.4623º$ esto es para ver el angulo entre 0 y 360, damos la vuelta completa con respecto ala direccion positiva de las X
+
+Esta seria la forma de calcular el modulo, la direccion y el sentido de este vector
+
+<div class = "center">
+![<l class = "phototext">Ángulo que forma el vector $\vec{OA}$ con el eje $\vec{OX}$</l>](Images/vector7.png)
+
+## Operaciones con vectores
+
+**Suma de vectores.** Dados dos vectores (Para que se pueden sumar tienen que ser del mismo orden, el mismo numero de componentes) $\vec{u} = (u_1,\dots,u_n)$ y $\vec{v} = (v_1,\dots,v_n)$, su suma es
+
+$$\vec{w} = \vec{u}+\vec{v} = (u_1+v_1,u_2+v_2,\dots,u_n+v_n)$$, la suma de vectores es por componente a componente el numero a numero en la misma pocicion
+
+Geométricamente el **vector suma** es el vector formado por la diagonal del paralelogramo que tiene los dos vectores sumandos como lados y origen el mismo que ambos: (Nuestros vectores son $u$ de color azul y $V$ de color verde, si al final de $u$ le unimos con el vector $V$ o al revez, el punto donde resulta esa suma es precisamente el puntodonde finalizara el vector de la suma $V$ y $V$, formado por la diagonal del paralelogramo)
+
+<div class = "center">
+![<l class = "phototext">Suma de vectores</l>](Images/vector8.png)
+
+</div>
+
+O bien, el vector que une el origen del primer sumando con el extremo del último, habiendo colocado cada origen de los vectores sumandos sobre el extremo del vector sumando precedente
+
+<div class = "center">
+![<l class = "phototext">Suma de vectores</l>](Images/vector9.png)
+</div>
+
+Si se tuviesen que sumar más de dos vectores, resulta más útil la segunda forma que hemos mostrado,
+
+Basta con colocar cada origen de los vectores sumandos sobre el extremo del vector sumando precedente, En este caso como vemos la imagen en la pociion en que se colocarian, El vector suma empieza donde empieza el primer vector que acomodamos en este caso en el origen del rojo y termina en el extremo del ultimo que seria el vector azul
+
+<div class = "center">
+![<l class = "phototext">Suma de más de 2 vectores</l>](Images/vector10.png)
+</div>
+
+**Resta de vectores.** Dados $\vec{u} = (u_1,\dots,u_n)$ y $\vec{v} = (v_1,\dots,v_n)$, su resta es entre los componentes de cada vector
+
+$$\vec{w} = \vec{u}-\vec{v} = (u_1-v_1,u_2-v_2,\dots,u_n-v_n)$$
+
+Geométricamente es un poco mas complicado porque se realiza la suma entre el vector minuendo y el opuesto del sustraendo, Es decir en la formula: $\vec{w} = \vec{u}-\vec{v}$ pasamos la $v$ que esta restando a sumar al otro lado y nos queda $\vec{w}+\vec{v} = \vec{u}$, geometricamente es facil representar la suma de vectores, como vemos en la imagen, sabemos lo que es igual ala $u$ entonces graficamos esa suma empezando por $v$ y le sigue la $w$, el vector resta empezaria donde acaba $v$ y terminaria donde termina la $u$
+
+<div class = "center">
+![<l class = "phototext">Resta de vectores</l>](Images/vector11.png)
+</div>
+
+**Observación.** Al realizar la resta $\vec{u}-\vec{v}$ se busca un vector $\vec{w}$ tal que si se le suma al sustraendo ha de dar el minuendo.
+
+En definitiva,
+
+$$\vec{u}-\vec{v} = \vec{w}\Leftrightarrow \vec{v}+\vec{w} = \vec{u}$$, geometricamente lo que hemos hecho es representar el segundo que es mas facil de dibujar que pensar en el primero, Asi simplemnte el **vector resta** geometricamente es el que empieza donde termina el sustraendo ($-v$) y en este caso acaba donde acaba el minuendo ($u$)
+
+Si se tiene un vector $\vec{AB}$ obtenido a partir de los puntos $A$ y $B$ y se dibujan los vectores $\vec{OA}$ y $\vec{OB}$
+
+Entonces se puede ver como $\vec{AB},\ \vec{OA},\ \vec{OB}$ forman un triángulo vectorial que cumple las relaciones siguientes:
+
+como vemos en la formula si le restamos el $OB$ nos dejaria en el punto $0$ lo que seria el origen, si despejamos la $AB$ se puede escribir como la resta de los vectores del origen al punto que como habiamos comentado que realmente cuando calculamos las componentes de un vector fijo $AB$ lo que hacemos es a $B$ restarle $A$ (Al extremo restarle el origen)
+
+$$\vec{OA}+\vec{AB}-\vec{OB} = \vec{0}\Leftrightarrow \vec{AB} = \vec{OB}-\vec{OA}$$
+
+Tenemos ese vector fijo que empeiza en $A$ y acaba en $B$ y pintamos el vector que va del origen a $A$ y del origen a $B$, graficamente se cumple una propiedad como en la suma si vamos de de $OA$ y le sumamos de $AB$ el vector que resulta es el mismo, el de $OB$, segun como recorramos el triangulo
+
+<div class = "center">
+![<l class = "phototext">Obtención de las componentes de un vector</l>](Images/vector12.png)
+</div>
+
+**Producto por escalar.** Dados $\vec{u} = (u_1,\dots,u_n)\in\mathbb{K}^n$ y $\lambda\in\mathbb{K}$, su producto de un escalar por el vector es multiplicar ese escalar (lambda) por cada una de las coordenadas
+
+$$\lambda\vec{u} = (\lambda u_1,\lambda u_2,\dots,\lambda u_n)$$
+
+Visualmente aqui tenemos el vector $v$ con sus componentes 4 y -2, el doble de este vector tendria por componentes multiplicados por dos en cada uno y tiene un modulo de dobe el vector $v$ y este es una consecuencia
+
+<div class = "center">
+![<l class = "phototext">Producto por escalar</l>](Images/vector13.png)
+</div>
+
+El resultado de multiplicar un escalar $\lambda \ne 0$ por un vector $\vec{u}$ es otro vector $\vec{v}$ de la misma dirección que $\vec{u}$, de sentido igual o contrario dependiendo del signo del escalar (positivo o negativo, respectivamente) y de módulo igual a $\lambda$ veces el de $\vec{u}$, si multiplicamos por el numero positivo tendremos un vector $\lambda$ veces de largo del vector original en el mismo sentido y por un numero negativo el modulo sera igual a $\lambda$ veces del vector original pero en este caso en el sentido opuesto
+
+<div class = "center">
+![<l class = "phototext">Producto por escalar $\lambda$</l>](Images/vector14.png)
+</div>
+
+**Vectores paralelos.** Dos vectores $\vec{u} = (u_1,\dots,u_n)$ y $\vec{v}=(v_1,\dots,v_n)$ son paralelos (o proporcionales) si existe un valor $\lambda\ne0$ tal que $\vec{u} = \lambda\vec{v}$, seria que $u$ se pueda obtener a partir de multiplicar otro vector $v$ por Lambda
+
+Normalmente Serán del mismo sentido si por lo que multiplicamos son $\lambda>0$ y de sentidos opuestos si $\lambda<0$
+
+**Combinación lineal de vectores.** Dados todos unos conjuntos de vectores $V = \{\vec{v}_1, \vec{v}_2,\dots,\vec{v}_k\}$ un conjunto de escalare de $\mathbb{K}^n$ y $\alpha_1,\alpha_2,\dots,\alpha_k\in\mathbb{K}$ se define la combinación lineal de los vectores de $V$ como el vector $\vec{w}$ que se obtiene combinanado las dos operaciones (El producto por un escalar y la suma de vectores), tal que la combinacion lineal de vectores es multiplicar cada uno de los vectores por un escalar del cuerpo y sumar el resultado final
+
+$$\vec{w} = \sum_{i=1}^k\alpha_i\vec{v}_i = \alpha_1\vec{v}_1+\cdots+\alpha_k\vec{v}_k$$
+
+La combinación lineal de vectores no es una operación nueva, sino que reune en un mismo lugar la suma de vectores y el porducto por escalares.
+
+Para poder hacer combinaciones lineales de vectores, es necesario que todos ellos tengan el mismo número de componentes por eso arriba se nos dice que todos pertenesca ala misma $\mathbb{K}^n$ y el resultado será otro vector de estas mismas características.
+
+**Ejemplo 5**
+
+¿Es el vector $(2,3)$ combinación lineal de $(3,1)$ y $(-6,-2)$?
+
+En otras palabras alargando el $(3,1)$ y $(-6,-2)$ podemos obtener el vector $(2,3)$, ¿existen escalares $a,b\in\mathbb{R}$ tales que $(2,3) = a(3,1)+b(-6,-2)$?
+
+Si lo pensamos de otra forma, lo anterior equivale a probar si existe solución al sistema de dos ecuaciones y dos incógnitas siguiente, (Fijaros que igualamos y cuntamos por las coordenadas (x,y) de estos vectores para formar la ecuacion completa)
+
+$$\left\{\begin{matrix}3a&-&6b &=& 2\\a&-&2b&=&3\end{matrix}\right.$$
+
+Veamos de qué tipo de sistema se trata haciendo uso del Teorema de Rouché-Frobenius (Para saber si es Determinado, Indeterminando o Incomplativle)
+
+En primer lugar el Determinante de la matriz de coeficinetes del sistema, $\det(A) = \begin{vmatrix}3&-6\\1&-2\end{vmatrix} = 0$, haciendo el determinante nos da 0 por tanto el rango no puede ser 2 tiene que ser 1
+
+Sin embargo, si sustituimos la segunda columna por el vector de términos independientes (Orlamos la primera de las columnas), tenemos
+
+$$\begin{vmatrix}3 & 2\\1 & 3 \end{vmatrix} = 7\ne 0$$, esto nos da el determinante de la matriz 2x2
+
+Con lo cual, acabamos de ver que $rg(A) = 1$ mientras que el rango de la matriz ampleada es $rg(A|B) = 2$. Por tanto, el sistema es incompatible o sea que no tiene solucion, lo que nos lleva a concluir que no, $(2,3)$ no es combinación lineal de $(3,1)$ y $(-6,-2)$ alargando (SUMANDO) estos dos vectores y sumandolos no se puede obtener el $(2,3)$, graficando estos tres vectores se puede ver el porque no
+
+# Propiedades de las operaciones con vectores
+
+Al definir las operaciones de suma y producto por un escalar, conviene tener presentes las diferencias y similitudes entre los resultados de esas operaciones
+
+Se separa en dos leyes diferentes
+
+**Ley de composición interna.** La suma de vectores se denomina ley de composición interna ya que opera entre elementos de un conjunto dado, $\mathbb{K}^n$ y el resultado despues de sumarlos es otro elemento de este conjunto (Sumando vectores salen vectores)
+
+Matematicamente se define como $f$ sobre dos elemntos de $\mathbb{K}^n$ por tanto estos dos vectores $u$ y $v$ pertenecen al elemnto $\mathbb{K}^n$ y el resultado despues de aplicar la ley es un nuevo vector de $\mathbb{K}^n$ dado por la suma de estos dos vectores $u$ + $v$
+
+$$\begin{matrix}f:\mathbb{K}^n\times \mathbb{K}^n&\longrightarrow& \mathbb{K}^n\\ (\vec{u},\vec{v})&\mapsto&\vec{u}+\vec{v}\end{matrix}$$
+
+En pocas palabras se toman dos vectores y el resultado de sumarlo es otro vector
+
+**Ley de composición externa.** El producto de un escalar por un vector tiene como operandos conjuntos diferentes: se llama externa porque ahora se elige un escalares por un lado $\mathbb{K}$ y vectores por el otro $\mathbb{K}^n$. El resultado cae del lado de los vectores que es $\lambda\vec{u}$ (multiplicamos el escalar por el vector) y la operación se denomina ley de composición externa porque el vector es modifico por un elemnto que vive en un espacio diferente aeste vector:
+
+$$\begin{matrix}f:\mathbb{K}\times \mathbb{K}^n&\longrightarrow& \mathbb{K}^n\\ (\lambda,\vec{u})&\mapsto&\lambda\vec{u}\end{matrix}$$
+
+En pocas palabras se tom un vector y un escalar y el resultado sigue siendo un nuevo vector del mismo espacio que corresponde multiplicar lambda por el vector
+
+**Propiedades de la suma de vectores.** Sean estos vectores dentro del mismo espacio $\vec{u},\vec{v},\vec{w}\in\mathbb{K}^n$, la ley de compocicion interna cumple estas propiedades
+
+- Ley asociativa (Mover parentecisi y sumar antes lo que nos interese): $$(\vec{u}+\vec{v})+\vec{w} = \vec{u}+(\vec{v}+\vec{w})$$
+- Ley conmutativa (el orden de los sumandos no altera el resultado): $$\vec{u}+\vec{v} = \vec{v}+\vec{u}$$
+- Elemento neutro (es el cero) de la suma: $$\vec{u}+\vec{0} = \vec{0}+\vec{u} = \vec{u}$$
+- Vector opuesto (dado cualquier vector siempre existe): $$\vec{u}+(-\vec{u}) = (-\vec{u})+\vec{u} = 0$$
+
+**Propiedades del producto por un escalar.** Sean $\vec{u},\vec{v}\in\mathbb{K}^n$ y $\alpha,\beta\in\mathbb{K}$, para la ley de compocicion externa se cumplen estas propiedades
+
+- Ley distributiva (Quiat parentesisi) del producto por un escalar para la suma de vectores: $$\alpha(\vec{u}+\vec{v}) = \alpha\vec{u}+\alpha\vec{v}$$
+- Ley distributiva del producto de un vector por la suma de escalares: $$(\alpha+\beta)\vec{u} = \alpha\vec{u}+\beta\vec{u}$$
+- Ley asociativa (mover en el orden que nos interese) del producto entre escalares y vectores: $$(\alpha\beta)\vec{u} = \alpha(\beta\vec{u}) = \beta(\alpha\vec{u})$$
+- Elemento unidad (el escalar uno que simepre existe en un cuerpo): $$1\vec{u} = \vec{u}$$, multiplicado da el mismo vector
+
+# Estructura euclidiana de $\mathbb{R}^n$
+
+## Producto escalar
+
+**Producto escalar.** Sean $\vec{u} = (u_1,\dots,u_n)$ y $\vec{v} = (v_1,\dots,v_n)$ dos vectores de $\mathbb{R}^n$. Se define el producto escalar $\vec{u}\cdot\vec{v}\text{ o } \langle\vec{u},\vec{v}\rangle$ como el número real se escribe entre esos diamntes parecidos al signo mayor o menor y se define como el producto de componente por componente sumado
+
+$$\langle\vec{u},\vec{v}\rangle = u_1v_1+u_2v_2+\cdots+u_nv_n$$
+
+El producto escalar es la tercera operación básica entre vectores de $\mathbb{R}^n$. como vesmo al final es un producto y suma de numero por lo que el resultado sera un numero real
+
+Del producto escalar es de donde se derivan los conceptos métricos como la ortogonalidad, la norma(Longitud), el ángulo y se abre camino a múltiples aplicaciones geométricas y físicas del álgebra lineal.
+
+El Producto escalar tambien se puede escribir con un punto gordito, en si para los vectores en general no se pueden multiplicar pero si se puede calcular su producto escalar
+
+**Ejemplo 6**
+
+Sean $\vec{u} = (2,3,0)$ y $\vec{v} = (-1,3,2)$ fijaros son dos vectores de $\mathbb{R}^3$ que viven en el mismo espacio.
+
+Su producto escalar será
+
+$$\langle\vec{u},\vec{v}\rangle = 2\cdot(-1)+3\cdot3+0 = 7$$
+
+**Propiedades del producto escalar.**
+
+- Conmutativa: $\langle\vec{u},\vec{v}\rangle = \langle\vec{v},\vec{u}\rangle$
+- Distributiva respecto de la suma (nos sale de cada producto escalar): $$\langle\vec{u},(\vec{v}+\vec{w})\rangle = \langle\vec{u},\vec{v}\rangle+\langle\vec{u},\vec{w}\rangle$$
+- Asociativa y conmutativa entre escalares y vectores (Si algunos de los vectores esta multiplicando por un escalar dentro del producto escalar sepuee sacar fuera): $$\begin{matrix}\langle(\lambda\vec{u}),\vec{v}\rangle = \lambda\langle\vec{u},\vec{v}\rangle\\ \langle\vec{u},(\lambda\vec{v})\rangle = \lambda\langle\vec{u},\vec{v}\rangle\end{matrix}$$
+- Si $\vec{u} = 0$, entonces $\langle\vec{u},\vec{u}\rangle = 0$
+- Si $\vec{u}\ne 0$, entonces $\langle\vec{u},\vec{u}\rangle >0$, es estrictamente positivo
+
+**Ejercicio 1**
+
+- Dados $\vec{u} = (2,5,-1),\vec{v} = (-3,4,1),\vec{w} = (-1,0,5)\in\mathbb{R}^3$ y $\lambda = 2\in\mathbb{R}$, comprobar que se cumplen todas las propiedades vistas en la anterior diapositiva
+
+- Dados ahora $\vec{u},\vec{v},\vec{w}\in\mathbb{R}^n$ y $\lambda\in\mathbb{R}$, demostrar formalmente todas las propiedades de la diapositiva anterior
+
+## Norma
+
+**Norma.** Dado $\vec{u} = (u_1,u_2,\dots,u_n)\in\mathbb{R}^n$ (Los que son de esta estructura que tienen es Euclediana y se pueden definir conceptos con el mundo de la metrica) elprimero de esos conceptos es su norma o longitud viene dada por, se puede calcular por el producto escalar, la norma se escribe entre dos rayas parecidas al del valor absoluto
+
+$$||\vec{u}|| = \sqrt{\langle\vec{u},\vec{u}\rangle} = \sqrt{{u}_1^2+{u}_2^2+\cdots+{u}_n^2}$$
+
+**Propiedades de la norma.**
+
+- $||\vec{u}||>0,\ \forall\vec{u}\ne\vec{0}$, la norma del vector siempre es estrictamente positiva para cualquier vector que no sea el vector 0
+- $||\lambda\vec{u}|| = |\lambda|||\vec{u}||$, si alargamos un vector cierta cantidad es lo mismo que multiplicar ese vector por esa cantidad, la $\lambda$ esta en valor absoluto
+- Desigualdad triangular: $||\vec{u}+\vec{v}||\le ||\vec{u}||+||\vec{v}||$, esto tiene una gran aplicacion, recordando la propiedad de la suma con $\vec{u}+\vec{v}$ es ese vector que empiesa en $u$ y acaba en $v$
+- Teorema de Pitágoras: $||\vec{u}+\vec{v}||^2 = ||\vec{u}||^2+||\vec{v}||^2\Leftrightarrow \vec{u}\perp\vec{v}$, esta se cumple si y solo si $u$ es perpendicular a $v$ a como conocemos el teorema original aqui como se enucia podemos afirmar que si tenemos dos vectores que cumplen que la norma al cuadrado de sus sumas es igual ala suma de los cuadrados de sus normas respectivas sin necesidad de dibujarlos podemos afirmar que son perpendiculares o lo que es lo mismo forman un tirangulo rectangulo
+- Desigualdad de Cauchy-Schwarz: $|\langle\vec{u},\vec{v}\rangle|\le||\vec{u}||\cdot||\vec{v}||$, nos relaciona las nosrmas con respecto al producto de vectores, lo que es $|\langle\vec{u},\vec{v}|$ es el producto escalar, cuando juntamos dos vectores y hacemos su producto escalar siempre obtenemos un numero menor que hacer la norma de uno y multiplicarlo por la norma de otro
+
+**Vector unitario.** Un vector $\vec{e}$ es unitario si tiene norma 1. Es decir, si 
+$$||\vec{e}|| = 1$$
+
+estos son interentesentas cuando hablemos de espacios vecctoriales y se busquen vectores que forman una base unitaria oseea que tengan una nroma 1, si tenemos un vector de cualquuier norma solo hay que dividir por su propia norma y nos queda proporcional y tendremos norma uno
+
+las normas nos sirven para calcular distancias
+
+## Distancia entre dos puntos
+
+**Distancia entre dos puntos.** Dados dos puntos cualesquiera $A$ y $B$, se define la distancia entre ambos como la distancia entre A y B igual ala norma del vector que une a esos dos vectore o lo que es lo mismo con la raiz cuadrada $\text{d}(A,B) = ||\vec{AB}|| = \sqrt{\langle\vec{AB},\vec{AB}\rangle}$, por lo tanto la distancia entre A y B es la raiz cuadrada del prodcuto escalar el vector AB consigo mismo
+
+**Teorema.** Dados dos vectores $\vec{u}$ y $\vec{v}$ y $\alpha$ el ángulo que forman ambos, entonces se cumple que para calcular la distancia entre dos puntos vasta con dibujar el vector que los une y calcular su norma
+
+$$\langle\vec{u},\vec{v}\rangle = ||\vec{u}||\cdot||\vec{v}||\cdot \cos(\alpha)$$
+
+Si tenemos estos dos vectores y definimos como $\alpha$ el angulo que forman entre esos dos vectores entonces se cumple que el producto escalar de $u$ con $v$ es el modulo de uno multiplicado por el modulo de otro y multiplicado por el coseno del angulo que forman
+
+<div class = "center">
+![<l class = "phototext">Idea gráfica de lo que nos dice el Teorema</l>](Images/vector15.png)
+</div>
+
+Esto nos permite calcular **el producto escalar** de estos dos vectores,ahora solo con los modulo y con el angulo
+
+**Teorema del coseno.** En un triángulo $\triangle{ABC}$ cualquiera y siendo $\alpha,\beta,\gamma$ son los ángulos de los vertices $A,B,C$ y $a,b,c$ los lados opuestos a los ángulos anteriores, entonces:
+
+$$a^2 = b^2+c^2-2bc\cos{\alpha}$$
+
+<div class = "center">
+![<l class = "phototext">Triángulo descrito en el Teorema</l>](Images/vector16.png)
+</div>
+
+Vemos como los angulo estan opuestos a un lado con la letra minuscula, a este teorema tambein se le llama el teorema de pitagoras generalizado poruqe en caso de que $\alpha$ sean 90 Grados elcoseno de 90 nos da cero por lo tato toda esa con el coseno se omite
+
+Esta formula es valida para cualquier triangulo que se nos pase por la cabeza, en este caso se escribio para el lado $a$ pero tambien se puede escribir para el lado $b$ o $c$ cambiando el angulo por el que es opuesto
+
+A continuación demostraremos el Teorema que nos da la igualdad
+
+<div class = "box">
+
+$$ \langle\vec{u},\vec{v}\rangle= ||\vec{u}||\cdot||\vec{v}||\cdot \cos(\alpha)$$
+**Demostración**
+
+Consideremos el vector $\vec{u}-\vec{v}$. Éste, junto con los vectores $\vec{u}$ y $\vec{v}$ formarán un triángulo.
+
+Aplicando $||\vec{w}||^2 = \langle\vec{w},\vec{w}\rangle$ al vector $\vec{u}-\vec{v}$, resulta que:
+
+$$||\vec{u}-\vec{v}||^2 = \langle\vec{u}-\vec{v},\vec{u}-\vec{v}\rangle = \langle\vec{u},\vec{u}\rangle+\langle\vec{v},\vec{v}\rangle-2\langle\vec{u},\vec{v}\rangle = ||\vec{u}||^2+||\vec{v}||^2-2\langle\vec{u},\vec{v}\rangle$$
+
+Por otro lado, aplicando el Teorema del coseno al triángulo antes mencionado, tenemos
+
+$$||\vec{u}-\vec{v}||^2 = ||\vec{u}||^2+||\vec{v}||^2-2||\vec{u}||\cdot||\vec{v}||\cdot\cos{(\alpha)}$$
+
+Comparando ambas expresiones, obtenemos que $$\langle\vec{u},\vec{v}\rangle = ||\vec{u}||\cdot||\vec{v}||\cdot\cos{(\alpha)}$$
+
+
+Gracias a este teorema se nos habren otra dimencion que es la de los angulo, ya teniamos las distancias
+
+## Ángulo entre dos vectores
+
+**Ángulo entre dos vectores.** Se define el ángulo que forman dos vectores como el numero real $\alpha$ tal que 
+
+$$\cos(\alpha) = \frac{\langle\vec{u},\vec{v}\rangle}{||\vec{u}||\cdot||\vec{v}||}$$
+Este es el producto escalar: $\langle\vec{u},\vec{v}\rangle$
+
+Estos son los Modulo: $||\vec{u}||\cdot||\vec{v}||}$
+
+Esta formula en si es Despejado el Coseno del Teorema de arriba, al aplicar la formula solo se saca con ArcoCoseno
+
+Vecotres que tienen que ver con los angulos que forman estos vectores
+
+**Vectores ortogonales.** Dos vectores son ortogonales o Perpendiculares si su producto escalar es 0: 
+
+$$\vec{u}\perp\vec{v}\Leftrightarrow \langle\vec{u},\vec{v}\rangle= 0\Leftrightarrow \alpha =\frac{\pi}{2}$$, Viendo la formula de la demostracion cuando va a paser esto de que $u$ se perpendicular a $v$ pues que el producto escalar de estos sea 0 o pues cuando Alpha con el coseno sea 90 grado o lo que es lo mismo Pi/2
+
+**Vectores ortonormales.** Dos vectores son ortonormales si son ortogonales y la norma de ambos es 1
+
+**Ejercicio 2**
+
+Encontrar el valor de $a$ para el cual $(a,0,-1,3)$ sea perpendicular a $(1,7,a-1,2a+3)$
+
+## Una de las propiedades a demostar anteriormente es la Desigualdad de Cauchy-Schwarz
+
+Tal y como vimos anteriormente, una de las propiedades de la norma  es que el producto escalar en valor absoluto de dos vectores es menor o igual al producto de sus normas
+
+Con los conocimentos en este punto del teorema del coseno de un angulo o los del producto de $u$ con $v$ como se ve abajo
+
+Este teorema nos dice que el valor absoluto del producto escalar de $u$ con $v$ es el modulo de $u$ multiplicado por el modulo de $v$
+
+$$|\langle\vec{u},\vec{v}\rangle|\le||\vec{u}||\cdot||\vec{v}||$$
+
+**Demostración**, vamos a demotrarlo usando la definicio de coseno de $\alpha$
+
+A partir de la igualdad $$\cos(\alpha) = \frac{\langle\vec{u},\vec{v}\rangle}{||\vec{u}||\cdot||\vec{v}||}$$
+
+y teniendo en cuenta que el valor absoluto del coseno para cualquier ángulo es siempre menor o igual a 1, obtenemos
+
+$$|\cos(\alpha)| = \left|\frac{\langle\vec{u},\vec{v}\rangle}{||\vec{u}||\cdot||\vec{v}||}\right|\le 1\Leftrightarrow |\langle\vec{u},\vec{v}\rangle|\le||\vec{u}||\cdot||\vec{v}||$$
+
+
+## Proyección Ortogonal
+
+**Proyección ortogonal.** La proyección ortogonal si nos dan dos vectores que son el vector $\vec{v}$ sobre otro vector $\vec{u}$ es un vector paralelo a $\vec{u}$ tal que sumado a otro perpendicular a $\vec{u}$ dará $\vec{v}$, para proyectar de forma perpendicular uno sobre otro 
+
+Como vemos en la imagen con el vector $v$ y si queremos aplastar de forma perpendicular sobre el vector $u$ de modo que tenemos $v_1$ seria la proyeccion ortogonal de un perpendicular del vector $v$ sobre el vector $u$ entonces es paralelo a $u$ tal que sumado a otro que sea perpendicular a $u$ nos va a dar a $v$
+
+O tambein se descompone el vector $v$ en una parte paralela al vector $u$ y otra parte que es completamente perpendicular al vector $u$
+
+<div class = "center">
+![<l class = "phototext">Idea gráfica del significado de proyección ortogonal</l>](Images/vector17.png)
+</div>
+
+Como se calcula?
+
+**Cálculo de la proyección ortogonal**
+
+Se trata de obtener la proyeccion del vector $v$ sobre $u$ si a esta pryeccion la lllamamos $v_1$ $P_{\vec{v}}(\vec{u}) = \vec{v}_1$ queremos hayar el valor de $v_1$ conociendo los vectores $\vec{u}$ o $\vec{v}$, Solo tenemos esos dos vectores y el objetivo del ejercicio es conocer $v_1$
+
+- Se puede descompone el vector como la sumas de sus componentes proyectadas $\vec{v} = \vec{v}_1+\vec{v}_2$ donde $v_1$ es paraleleo a $u$ y $v_2$ es perpendicular a $u$, son las componentes del vector $\vec{v}_1||\vec{u}$ y $\vec{v}_2\perp\vec{u}$ son sus componentes
+- como $v_1$ es paralela a $u$, esta $v$ se podra escribir como $\vec{v}_1 = \lambda\vec{u}$ por paralelismo ya que existe una constante de paralelismo 
+- Del mimso modo como $v$ es la suma de $v_1 + v_2$ se podra escribir como $\vec{v}= \lambda\vec{u}+\vec{v}_2\Rightarrow\vec{v}_2 = \vec{v}-\lambda\vec{u}$ o del mismo como $v_2$ era uno de los desconocidos se puede despejar y asi es como ya conocemos $v_2$ pero claro si no conocemos $\lambda$ seguimos en lo mismo
+- Sabemos que gracias al dibujo $v_2$ es perpendicular a $u$ entonces cuando calculemos el producto escalar de este con $u$ como sigue nos va a dar cero $\langle\vec{v}_2,\vec{u}\rangle = 0\Rightarrow\langle(\vec{v}-\lambda\vec{u}),\vec{u}\rangle = 0$ por ortogonalidad lo que es lo mismo despejando la formula nos da 0 por perpendicular (ortogonalidad), si de esta formula aplicamos la propiedad de la linealidad y despejamos la lambda como se muestra abajo
+- Ahora, $$\lambda = \frac{\langle\vec{v},\vec{u}\rangle}{\langle\vec{u},\vec{u}\rangle} =\frac{\langle\vec{u},\vec{v}\rangle}{||\vec{u}||^2} $$ y como vemos se puede escribir en la segunda igualdad acomodando en orden alfabetico Producto escalar de $u$ por $v$ y abajo con la $u$ seria igual ala norma al cuadrado, con esto ya podemos sacar la $\lambda$
+
+Por lo tanto, ya podemos encontrar la proyeccion de $v$ sobre $u$ que era igual a $v_1$ pero esto era igual a $\lambda\vec{u}$ pero $\lambda$ ya la tenemos despejada que seria toda la formula que nos salio arriba, finalmente la proyeccion se calcula. $$P_{\vec{v}}(\vec{u}) = \vec{v}_1= \lambda\vec{u} = \frac{\langle\vec{u},\vec{v}\rangle}{||\vec{u}||^2}\vec{u} $$
+
+**Ejemplo 7**
+
+Calcular la proyección de $v$ sobre $u$ ortogonal del vector $\vec{v} = (1,2)$ sobre $\vec{u} = (3,1)$
+
+Por el resultado anterior, 
+
+$$P_{\vec{v}}(\vec{u}) =  \frac{\langle\vec{u},\vec{v}\rangle}{||\vec{u}||^2}\vec{u} $$
+
+En primer lugar, calculemos el producto escalar
+
+$$\langle\vec{u},\vec{v}\rangle = \langle(1,2),(3,1)\rangle = 5$$
+
+Por otro lado la norma de $u$ al cuadrado como esta al cuadrado no le aplica la raiz cuadrada,
+
+$$||\vec{u}||^2 = 10$$
+
+Con lo cual juntando todo sale, 
+
+$$P_{\vec{v}}(\vec{u}) = \frac{5}{10}\vec{u} = \frac{1}{2}(3,1)$$, el resultado se interpreta que justo ala mitad del vector (3,1) es donde cae la proyeccion ortogonal del vector $v$
+
+# Producto vectorial y producto mixto
+
+Estos Productos solo tienen sentido en $\mathbb{R}^3$
+
+## Producto vectorial
+
+**Producto vectorial.** Sean $\vec{u} = (u_1,u_2,u_3)$ y $\vec{v} = (v_1,v_2,v_3)$ dos vectores de $\mathbb{R}^3$.El producto vectorial de $\vec{u}$ y $\vec{v}$ se define como el vector
+
+$$\vec{u}\wedge\vec{v} = (u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)$$, en la primera coordenada multiplicamos la segunda por la tercera menos la tercera por la segund en la segunda coordenada multiplicamos la tercera por la primera menos la primera por la tercera y en la tercera coordenada
+
+**Propiedades del producto vectorial.** Si se multiplica escalarmente, si multiplicamos elproducto escalar de $u$ o $v$ por el producto escalar de:
+
+$$\langle\vec{u},(\vec{u}\wedge\vec{v})\rangle = 0$$
+$$\langle\vec{v},(\vec{u}\wedge\vec{v})\rangle = 0$$
+
+Si nos dan 0 es porque el producto vecctorial de $u$ y $v$ son perpendicular ala vez a $u$ y $v$ Donde se deduce que tanto $\vec{u}$ como $\vec{v}$ son ortogonales a su producto vectorial
+
+**Propiedades del producto vectorial.**
+Geométricamente, el producto vectorial, $\vec{u}\wedge\vec{v}$, representa el área del paralelogramo cuyos lados estan determinados por los dos vectores $\vec{u}$ y $\vec{v}$
+
+$$||\vec{u}\wedge\vec{v}|| = ||\vec{u}||\cdot h = ||\vec{u}||\cdot||\vec{v}||\cdot\sin(\alpha)$$
+
+El area de este paralelogramo sin nececidad de hacer nada es el modulo del producto vectorial de $u$ por $v$, este se puede poner como el Modulo de $u$ por la Altura asi que la formula para calcular el area de un paralelo gramos es modulo de $u$ por modulo de $v$ por el seno que es el angulo que forman
+
+<div class = "center">
+![<l class = "phototext">Interpretación geométrica del producto vectorial</l>](Images/vector18.png)
+</div>
+
+**Producto vectorial como determinante.**
+
+Esta es la regla **Nemotecnica** que es para aprenderse mas facil la formula del Producto Vectorial, es calcularla como un determinante, primero tenemos la formula normal que ya la habiamos visto arriba
+
+$$\vec{u}\wedge\vec{v} = (u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)$$ 
+Ahora se escribe como tres numero multiplicando a los Vectores $i$(Este indica que todo lo que multipica va en la primera coordenada), $j$(Inidca que el numero que lo acombaña va en la segunda coordenada), $k$(igual el numeor que multiplica es la tercera coordenada), estos son los vectores de la base canonica que van a aprecer mucho a partir de ahora
+
+$$\vec{u}\wedge\vec{v} = (u_2v_3-u_3v_2)\vec{i}+(u_3v_1-u_1v_3)\vec{j}+(u_1v_2-u_2v_1)\vec{k}$$
+
+La formula de arriba se puede escribir como este determinante que tenemos aqui abajo, se ponen la letras que seria las coordenadas (1°,2°.3°), las $u$ y $v$ y se puede desarrollar el determinante con la regla de sarrus
+
+$$\vec{u}\wedge\vec{v} = \begin{vmatrix}
+\vec{i} & \vec{j}& \vec{k}\\
+u_1 & u_2 & u_3\\
+v_1 & v_2 & v_3\end{vmatrix}$$
+
+**Propiedades del producto vectorial.**
+
+- Propiedad anticonmutativa (conmuta(al cambiar el orden de las letras) cambia de signo) Vemos la propiedad en el determiannte de arriba que pasa cuando cambiabamos las filas de un determinante pues este cambia de signo: $\vec{u}\wedge\vec{v} = -\vec{v}\wedge\vec{u}$
+- Propiedad distributiva (podemos quitar parenteecis de forma comoda ya que se replica el producto vectorial)
+$$\vec{u}\wedge(\vec{v}+\vec{w}) = \vec{u}\wedge\vec{v}+\vec{u}\wedge\vec{w}\\ (\vec{v}+\vec{w})\wedge\vec{u} = \vec{v}\wedge\vec{u}+\vec{w}\wedge\vec{u}$$
+- Propiedad asociativa de vectores y escalares, este nos dice que si multiplicamo el producto vectorial por un numero es lo mismo que si multiplicamos ese numero solo por la segund fila o la tercera fila del determinante $$\alpha(\vec{u}\wedge\vec{v}) = (\alpha\vec{u})\wedge\vec{v}=\vec{u}\wedge\alpha\vec{v}$$
+Propiedades de cuando se anula el producto vectorial
+- $\vec{u}\wedge\vec{0}=\vec{0}\wedge\vec{u} = \vec{0}$, si colocamos toda una fila de 0 en el determiannte, todo nos daria cero
+- $\vec{u}\wedge\vec{u} = 0$, si ponemos dos filas iguales el determinante da cero
+
+## Producto mixto
+
+Este junta producto escalar y producto vectorial
+
+**Producto mixto.** Sean $\vec{u} = (u_1,u_2,u_3), \vec{v} =(v_1,v_2,v_3)$ y $\vec{w} = (w_1,w_2,w_3)$ tres vectores de $\mathbb{R}^3$ distintos del 0. Entonces, el producto mixto de $\vec{u},\vec{v}$ y $\vec{w}$ se define como el vector que se escribe entre una especie de llaves, el prducto mixto es el producto escalar del primero $u$ contra el producto vectorial del segundo $v$ y el tercero $w$
+
+y la regla **Nemotecnica** es este determinante donde vemos como van las filas segun los vectores $u$,$v$ y $w$ si queremos ponerlo por columnas sigue siendo valido
+
+$$\{\vec{u},\vec{v},\vec{w}\} = \langle\vec{u},\vec{v}\wedge\vec{w}\rangle = \begin{vmatrix}
+u_1 & u_2 & u_3\\
+v_1 & v_2 & v_3\\
+w_1 & w_2 & w_3\end{vmatrix}$$, de resulta nos dara un numero 
+
+**Vectores coplanarios.** Son los que estan en elm mismo plano, Si nos imaginamos dos vectores y un tercer vector en el plano que formarian los dos primeros y los vectores son coplanaraios si su prodcuto Mixto es 0 $\{\vec{u},\vec{v},\vec{w}\} = 0$
+
+Esto ocurre porque si el determinante mostrado anteriormente vale 0, entonces tenemos que una de las filas es combinación lineal de las otras dos esto es porque los tres vectores estan en el mismo plano.
+
+**Propiedades del producto mixto.**
+
+- El prducto mixto es puede calcular explicitamente con esta formula esta sale del determinante por la regla de sarrus$\{\vec{u},\vec{v},\vec{w}\} = u_1v_2w_3-u_1v_3w_2+u_2v_3w_1-u_2v_1w_3+u_3v_1w_2-u_3v_2w_1$
+- Si cambiamos dos filas de orden el determinante cambia de signo pero si cambiamos las tres de golpe se mantiene el signo y en este ultimo caso aunque los desplazemos siempre dara lo mismo, Vemos que Cambia de Signo Cuando de deja una de las letras en su mismo Sitio$\{\vec{u},\vec{v},\vec{w}\} = \{\vec{v},\vec{w},\vec{u}\} = \{\vec{w},\vec{u},\vec{v}\} = -\{\vec{v},\vec{u},\vec{w}\} = -\{\vec{u},\vec{w},\vec{v}\} = -\{\vec{w},\vec{v},\vec{u}\}$
+- Si los tres vectores son coplanarios el producto mixmo nos da 0 por la cominacion lineal, entonces algun vector es 0 o los tres son complanarios$\{\vec{u},\vec{v},\vec{w}\} = 0$
+- Si $\{\vec{u},\vec{v},\vec{w}\} = 0$, entonces o algún vector es $\vec{0}$ o los tres vectores son coplanarios
+
+Lo que Vemos en la Siguente imagen es que los tres vectore $u$, $v$ y $w$ con complanarios, $u$ y $v$  definene las direcciones del plano y $w$ vive dentro de ese plano y si hiiceramos el prodcuto vectorial de estos tres nos daria cero, ademas en la flecha Azul tenemos representado el producto vectorial, vemos que el producto vectorial de $v$ con $w$ es perpendicular a este plano en la flecha azul pero tambien por eso es perpendicular al vector $u$ por lo tanto cuando hacemos el producto escalar de $u$ con el vectorial de $v$ y $w$ nos va a dar cero
+
+<div class = "center">
+![<l class = "phototext">3 vectores coplanarios</l>](Images/vector19.png)
+</div>
+
+**Propiedades del producto mixto.** Geométricamente representa el volumen el producto mixto, $\{\vec{u},\vec{v},\vec{w}\}$, representa el volumen del paralelepípedo determinado por los tres vectores
+
+**Observación.** $\{\vec{u},\vec{v},\vec{w}\} = ||\vec{u}||\cdot||\vec{v}\wedge\vec{w}||\cdot\cos(\alpha)$ donde $||\vec{v}\wedge\vec{w}||$ es el área de la base del paralelepipedo y $||\vec{u}||\cos(\alpha)$ seria la altura ya que es la proyección escalar del vector $\vec{u}$ sobre la dirección perpendicular a la base, es decir, la altura, en si la formula seria Area de la base por la Altura y este es el volumne paraesta figura
+
+<div class = "center">
+![<l class = "phototext">Interpretación geométrica del producto mixto</l>](Images/vector20.png)
+</div>
+
+# Vectores con `R`
+
+Para definir vectores con `R`, simplemente utilizamos la función `c()` 
+
+```{r}
+x = c(1,2,3,4,5,6,7,8,9,0)#Agrupamos numeros en una tira (vector)
+x
+```
+
+Para saber la longitud de un vector (la dimensión), utilizamos la función `length()`
+
+```{r}
+length(x)# podemos declarar vectores de grandes dimenciones
+```
+
+## Operaciones con vectores en `R`
+
+Sumar y restar dos o más vectores es muy simple, siempre y cuando sean de la misma dimensión (lonigutd):
+
+```{r}
+x = c(0,3,-1,3,5)
+y = c(1,2,3,-1,0)
+x+y # la suma es compoente a componente
+x-y # del mismo modo
+```
+
+El producto por un escalar también funciona de forma sencilla:
+
+```{r}
+x = c(1,0,-1,0,2,0,-2)
+2*x# a partir del vector que tenemos aqui tipicamente el numero por delante
+-2*x
+5*x
+```
+
+## Producto escalar en `R`
+
+El producto escalar no está definido en `R`, pero es sencillo crear una función que nos lo calcule:
+
+```{r}
+# El producto escalar no es mas que multiplicar coordenada a coordenada, la entradas de los vectores y luego sumar los elementos
+productoEscalar = function(x,y){ #Como argumentos los dos vectores a pasarle
+  if (length(x) == length(y)){ # parapoder hacerlo tienene que ser de la misma longitud
+    sum(x*y) # nos retorna la suma del prducto x*y, en este caso el producto nos va a devolver un vector de la misma longitud de x o y en la que entrada sera el producto de las entradas por la pocicion en la que esta cada numero de x*y al final se suman los elemenots
+  }else{
+    print("ERROR: No se puede calcular el producto escalar de estos dos vectores porque 
+          no son de la misma dimensión")
+  }
+}
+```
+
+Simplemente, lo que hace la función anterior es calcular el producto escalar de dos vectores, siempre y cuando estos tengan la misma dimensión. 
+
+Si no, salta un mensaje explicando el error cometido.
+
+```{r}
+# declaramos los dos vectores
+x = c(0,3,-1,3,5)
+y = c(1,2,3,-1,0)
+productoEscalar(x,y)
+```
+
+
+## Norma Euclídea con `R`
+
+Para calcular la norma euclídea de un vector, utilizamos la función `Norm()`
+
+```{r}
+x = c(1,2,0,3,-1,1)
+Norm(x)
+```
+
+## Calcular Distancia Euclídea entre dos puntos con `R`
+
+La distancia entre dos puntos $x,y$, se define como la norma del vector $\vec{xy}$ (Que empieza en X y acaba en Y, es decir la distancia de $\text{d}(x,y) = ||x-y||$ seria la norma. Para calcularla, definimos la función `distancia()` del siguiente modo:
+
+```{r}
+distancia = function(x,y){# en este caso los parametros van a ser punto pero en realidad seran vectores ya que aqui en R son lo mismo
+  if (length(x) == length(y)){
+    Norm(x-y)# calcula la norma del la diferencia entre vectores
+  }else{
+    print("ERROR: No se puede calcular la distancia entre estos dos puntos porque 
+          no son de la misma dimensión")
+  }
+}
+```
+
+```{r}
+# Uso de la funcion anterior
+x = c(0,3,-1,3,5)# por la longitud de estos vectores estariamos hablando de 5 dimenciones
+y = c(1,2,3,-1,0)
+distancia(x,y)
+```
+
+Simplemente, lo que hace la función anterior es calcular la distancia Euclídea entre dos puntos, siempre y cuando estos tengan la misma dimensión. 
+
+Si no, salta un mensaje explicando el error cometido.
+
+## Ángulo entre dos vectores en `R`
+
+Si queremos calcular el ángulo entre dos vectores, debemos definir nosotros mismos la función 
+
+```{r}
+# El angulo entre dos vectores es un numero real tal que su coseno coincide con el producto escalar de los dos vectores dividido enrtre la norma de uno por la norma del otro
+angleRad = function(x,y){# el resultado es el angulo en radianes
+  if (length(x) == length(y)){
+    acos(productoEscalar(x,y)/(Norm(x)*Norm(y)))# sacamos directamente el inverso del coseno que seria el ArcoCoseno y volvemos a utilizar la funcion que ya habiamos creado
+  }else{
+    print("ERROR: No se puede calcular el ángulo entre estos dos vectores porque no son de la misma dimensión")
+  }
+}
+angleRad(x,y)
+```
+
+Nuestra función nos devuelve el resultado en Radianes. En caso de querer el resultado en grados, lo que podemos hacer es una pequeña conversión:
+
+```{r}
+angleGrad = function(x,y){
+  if (length(x) == length(y)){
+    acos(productoEscalar(x,y)/(Norm(x)*Norm(y)))*360/(2*pi)
+  }else{
+    print("ERROR: No se puede calcular el ángulo entre estos dos vectores porque 
+          no son de la misma dimensión")
+  }
+}
+angleGrad(x,y)# el resultado nos da 90° (son perpendiculares) y esto es porque cuando hacemos el prducto escalar nos daba cero y esto lo da cuando estos son perpendiculares
+```
+
+## Calcular la proyección ortogonal de $\vec{v}$ sobre $\vec{u}$ con `R`
+
+```{r}
+proyeccionOrt = function(u,v){
+  if (length(u) == length(v)){
+    productoEscalar(u,v)/Norm(u)^2*u# esta la fomula de la proyeccion orotgonal
+  }else{
+    print("ERROR: No se puede calcular la proyección ortogonal de v sobre 
+          u porque no son de la misma dimensión")
+  }
+}
+# Como Ejemplo si queremos proyectar V (este seria el Segundo Parametro, el vector que vamos a proyeectar) sobre U (Es seria el Primer Parametro, el vector sobre el que proyectamos ), el orden Si Importa proyectamos el segundo sobre el primero
+u = c(3,1)
+v = c(1,2)
+proyeccionOrt(u,v)
+```
+
+## Producto vectorial con `R`
+
+```{r}
+# Esta es una Implementacion, se podria hacer con las demas propiedades que habiamos visto
+productoVectorial= function(x,y){
+  if (length(x) == length(y) & length(x) == 3){# aparte de las longitudes tambein comprueba que la dimencion de X sea de 3 porque el Vectorial y mixto Solo se puede calcular para esta dimencion
+    c(x[2]*y[3] - x[3]*y[2], -(x[1]*y[3]-x[3]*y[1]), x[1]*y[2]-x[2]*y[1]) # Vemos las operaciones de las coordenadas segun su pocicon que esta entre [] y esto es justo como la formula vista en teoria
+  }else{
+    print("No se cumplen las condiciones necesarias para calcular el 
+          producto vectorial de estos dos vectores")
+  }
+}
+```
+
+```{r}
+# La implementacion de la funcion
+x = c(1,2,3)
+y = c(0,-1,1)
+productoVectorial(x,y)
+```
+
+## Producto mixto con `R`
+
+```{r}
+# En este caso para implemntar el prodcuto Mixto
+productoMixto = function(x,y,z){
+  if (length(x) == length(y) & length(x) == length(z) & length(x) == 3){
+    det(rbind(x,y,z))# aqui se usa la funcion det de determinante declarando por rbind(es por filas) por los tres vectores que se le pasan a la funcion
+  }else{
+    print("No se cumplen las condiciones necesarias para calcular el 
+          producto mixto de estos tres vectores")
+  }
+}
+```
+
+```{r}
+# pasamos los tres vectores
+x = c(1,2,3)
+y = c(0,-1,1)
+z = c(2,0,-3)
+productoMixto(x,y,z)
+```
+
+# Vectores con `Python`
+
+Para crear un vector en `Python`, utilizamos `numpy.array()`
+
+```{python}
+import numpy as np
+x = np.array([1,2,3,4,5,6,7,8,9,0]) # para crear un vector dentro se le da una lista de numeros
+x
+```
+
+Para calcular la longitud (la dimensión), utilizamos la función `len()`
+
+```{python}
+len(x)
+```
+
+## Operaciones con vectores en `Python`
+
+Sumar y restar dos o más vectores es muy simple, siempre y cuando sean de la misma dimensión:
+
+```{python}
+# se declaran vectores con la misma dimencion
+x = np.array([0, 3, -1, 3, 5])
+y = np.array([1, 2, 3, -1, 0])
+x+y
+x-y
+```
+
+El producto por un escalar también funciona de forma sencilla:
+
+```{python}
+x = np.array([1,0,-1,0,2,0,-2])
+# solo tenemos que poner el numero por delante, multiplicando este numero por cada elemntos del vector
+2*x
+-2*x
+5*x
+```
+
+## Producto escalar en `Python`
+
+```{python}
+# no existe ya una funcion polo que se tienen que crear una funcion nosotros
+def productoEscalar(x,y):# los arguemntos a pasarle son los vectores 'x' y 'y'
+  if len(x) == len(y):# verificamos las longitudes que sean iguales
+    suma = 0# se crea esta varaible que acumulara las sumas
+    for i in range(0,len(x)):# Para cada posision del vector empezando en 0
+      suma = suma + x[i]*y[i]# va sumando el producto de los vectores por la pocicion de i
+    return suma
+  else:
+   return "ERROR: las longitudes de los vectores no coinciden"
+# Uso de la Funcion   
+x = np.array([0, 3, -1, 3, 5])
+y = np.array([1, 2, 3, -1, 0])
+productoEscalar(x,y)# nos da 0 es decir estos vectores son perpendiculares
+```
+
+Simplemente, lo que hace la función anterior es calcular el producto escalar de dos vectores, siempre y cuando estos tengan la misma dimensión. 
+
+Si no, salta un mensaje explicando el error cometido.
+
+
+## Norma Euclídea con `Python`
+
+Para calcular la norma de un vector, lo que hacemos es utilizar la función `numpy.linalg.norm()`:
+
+```{python}
+# para calcular la norma de un vector
+x = np.array([1,2,0,3,-1,1])
+np.linalg.norm(x)
+```
+
+
+## Calcular Distancia Euclídea entre dos puntos con `Python`
+
+Para calcular la distancia entre dos puntos, la definimos como la norma(lonigutd) del vector que los une, es decir $d(x,y)=||x−y||$ (Esto es de x-y es quese restan los vectores OX - OY). En nuestro caso vamos a utilizar la función `distancia()`, la cual definimos del siguiente modo:
+
+```{python}
+def distancia(x,y):
+  import numpy as np
+  if len(x) == len(y):# esta es una regla para poder calcular correctamnente sin errores
+    dist =  np.linalg.norm(x-y)# calculamos la distancia entre puntos con la funcion Norm de la resta x - y
+    return dist
+  else:
+   return "ERROR: las longitudes de los vectores no coinciden" # porque los puntos viven en espacion diferentes 
+```
+
+```{python}
+# se declaran los puntos(aunque sean vectores), estos son coordenadas
+x = np.array([0, 3, -1, 3, 5])
+y = np.array([1, 2, 3, -1, 0])
+distancia(x,y)#podriamos aplicarlo al revez y nos dara el mismo resultado
+```
+
+
+## Ángulo entre dos vectores en `Python`
+
+```{python}
+# Angulo que forman dos vectores es ese numero real tal que su coseno coincide con el producto escalar de los vectores dividido entre las normas de cada vector
+def angleRad(x,y):
+  import numpy as np# este es para usar la funcion Norma
+  import math# para usar las funciones trigonometricas
+  if len(x) == len(y):
+    angle = math.acos(productoEscalar(x,y)/(np.linalg.norm(x)*np.linalg.norm(y)))# aplicamos ArcoCoseno
+    return angle
+  else:
+    return "ERROR: Las dimensiones no coinciden" 
+# Hacemos uso de la Funcion          
+x = np.array([0, 3, -1, 3, 5])
+y = np.array([1, 2, 3, -1, 0])
+angleRad(x,y)# el agulo lo da en radianes
+```
+
+Si lo que queremos es el resultado en grados,
+
+```{python}
+def angleGrad(x,y):
+  import numpy as np
+  import math# Aqui tamien es para usar PI
+  if len(x) == len(y):
+    angle = math.acos(productoEscalar(x,y)/(np.linalg.norm(x)*np.linalg.norm(y)))
+    return angle/(2*math.pi)*360# Aqui lo convertimos a grados el resultado uardado en radianes que tienela varaible angle
+  else:
+    return "ERROR: Las dimensiones no coinciden" 
+# Uso de los mismos vectores          
+x = np.array([0, 3, -1, 3, 5])
+y = np.array([1, 2, 3, -1, 0])
+angleGrad(x,y)
+```
+
+
+## Calcular la proyección ortogonal de $\vec{v}$ sobre $\vec{u}$ con `Python`
+
+```{python}
+# Vamos a implemntar la foormula que ya conocemos
+def proyeccionOrt(u,v):# le especificamos los argumentos y el orden de como los ingresemos SI IMPORTA
+  import numpy as np# la importamos porque vamos a usar la funcion Norm
+  if len(u) == len(v):# si vivien en el mismo espacio
+    proy = (productoEscalar(u,v)/pow(np.linalg.norm(u),2))*u# usamos una fucnnion declarada antes pasandole los mismo parametros y usamos la funcion 'pow' para hacer la norma al Cuadrado (Primero se calculo la norma del vector) , todo eso seria el escalar (lambda) todo se multiplica por 'u'
+    return proy
+  else:
+    return "ERROR: Las dimensiones no coinciden"
+#Declaramos los vectores, Queremos proyectar 'v' sobre 'u', el segundo que le pasemos como el parametro se proyectara sobre el primero
+u = np.array([3,1])
+v = np.array([1,2])
+proyeccionOrt(u,v)
+```
+
+
+## Producto vectorial con `Python`
+
+```{python}
+# Una vercion de la Implementacion de las funciones
+def productoVectorial(x,y):
+  import numpy as np
+  if len(x) == len(y) and len(x) == 3:# solo son validos para vectores con dimencion de 3(tienen que vivir ahi)
+    z = np.array([x[1]*y[2] - x[2]*y[1], -(x[0]*y[2]-x[2]*y[0]), x[0]*y[1]-x[1]*y[0]])# se aplica por compoenntes por los vectores segun las pociciones entre [] aplicando la formula del producto vectorial
+    return z# el resultado es un vector de tres compoenntes
+  else:
+    return "ERROR"
+```
+
+```{python}
+# Uso de  la funcion
+x = np.array([1,2,3])
+y = np.array([0,-1,1])
+productoVectorial(x,y)
+```
+
+## Producto mixto con `Python` 
+
+```{python}
+# Una de las implemntacion del Producto Mixto este es el escalar del primero contra el vectorial del segundo y el tercero pero qui hacemos la implementacion desde cero
+def productoMixto(x,y,z):
+  import numpy as np
+  if len(x) == len(y) and len(x) == len(z) and len(z) == 3:# que todos los vectores sean de la misma dimencion 3
+    return np.linalg.det(np.array([x,y,z]))# usamos del paquete numpy con la funcion 'det' calculamos el determinante del array que definimos de la primera fila 'x' y la segund 'y' y la tercera 'z', creamos esta matriz 3x3 le calculamos el determinante
+  else:
+    return "ERROR"
+```
+
+```{python}
+# tenemos los tres vectores iguales
+x = np.array([1,2,3])
+y = np.array([0,-1,1])
+z = np.array([2,0,-3])
+productoMixto(x,y,z)
+```

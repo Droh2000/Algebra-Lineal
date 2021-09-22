@@ -1,0 +1,852 @@
+---
+title: "Matrices"
+author: "yo"
+date: "22/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Matrices
+
+Dado un cuerpo(K), conmutativo (Suma y el producto), siendo m y n dos numero >=1 enteros.
+Se define una matriz mxn sobre K como una tabla siendo m(Columnas) y n(Filas), ordenadas y llenadas con elementos del cuerpo K, *Una matriz es una coleccion ordenada de filas y columnas de numeros*
+
+*Coeficientes o entrada de la Matriz: *es cada uno esos numeros que tiene la matriz
+
+Para ubicar los terminos se hace con `aij` donde 'i' es la fila y la 'j' la columna donde se encuentra.
+
+El tamaño de la matriz es numero de filas por el numero de columna (mxn) que tambien indica la forma de la matriz, Ejemplo una matriz es 2x3 porque tiene 2 filas y 3 columnas
+
+**Conjunto de Matrices: **Se denota por una "M" con subindices mxn
+
+Cuando m=n significa que la matriz es cuadrada seria de orden nxn,con el conjunto `M subindice nxn` en este caso se sobre entiende por lo que solo se pone
+`M subindice n`,*Cuando solo se da una dimencion es porque la matriz es cuadrada*
+
+**Cuando las Matrices Van a ser iguales: ** Tienen que ser del mimso Orden: `mxn` y cada elemento de una matriz con otra es igual `aij`==`bij`
+
+## Tipos de Matrices
+
+**Matriz Fila: **Consta de una unica Fila:
+
+- A = [a11 a12 a13 ... ain], Donde seria `M subindcide 1xn donde n es la longitud de esa fila`
+
+**Matriz Columna: **Consta de una unica Columna
+
+- `M Subindice mx1 `
+
+**Matriz Nula: **Es aquella que todos sus coeficientes son Cero `M mxn`
+
+**Matriz Cuadrada: **De orden n por n a que consta de n filas y n columnas `M n`
+
+*Tipos particulares de Matrices: *
+
+- `Diagonal Principal: `En UNA matriz cuadrada a los elementos `aii` (Diagonal Principal) donde i es [1,2,..,n]
+
+**Matriz Diagonal: ** es aquella que tiene `aij=0`, siempre que i sea diferente de j, Es la quie tiene Ceros Fuera de la Diagonal ya que lo que tenga en la diagonal No Importa, pero lo demas dee ser cero, `Esta seria como una matriz nula`
+
+**Matriz Escalar: **Si en su digonal tiene `aii=Lambda`, en un caso tiene el mismo numero repetido en toda la diagonal
+
+**Matriz Identidad: **o Matriz Unidad que tiene que ser Matriz Cuadrada(orden n) y se denota como `In` en la que tiene en su diagonal puros "1"
+
+**Matriz Triangular Superior: **Si por debajo de la diagonal Son puros Ceros para una matriz de orden n
+
+**Matriz Triangular Inferior: **Si por Arriba de la diagonal Son puros Ceros para una matriz de orden n
+
+Esto tambien se puede en matrices que no son Cuadradas se llamaran `Matrices Escalonadas`(Salen del metodo de Gauss), En particular las `Matrices tirangulares superiores` si NO son cuadradas los casos, la diagonal no existe como tal pero si se pueden ver los Ceros por debajo de una,ya depende si estan superior o inferior
+
+## Operaciones Con Matrices
+
+**Suma de Matrices**: La suma de dos matrices A y B solo es pocible si ambas son del mismo orden mxn, entonces se suma termino a termino de la misma posicion:
+`A = (aij)mxn y B = (bij)MxN -- (aij) + (bij)`, *Las dos matrices deben de tener las mismas filas y columnas*
+
+**Producto de un Escalar: **El producto de un matriz con un numero, cada uno de los elemntos de la matriz se multiplicarian con ese numero, conservando la matriz el mxn
+
+**Producto de Mariz: **De una Matris A con una Matriz B para eso el numero de columnas de A ah de coincidir con el numero de filas de B, entonces cada entrada `ij` de la matris del producto se obtiene multiplicando la fila `i` de A por la columna `j` de B y sumando los numeros resultantes.
+
+- A `M mxn` y B `M nxp` (Vemos como coincide la columnas n de A con las filas de B) y el producto de AB nos da como resultado una matriz `M mxp` (que son el mismo numero de filas de `A(m)` y las mismas columnas de `B(p)`)
+
+- Multiplicamos con la primera fila de A con la primera columna de B, Termino por termino, el resultado de cada multiplicacion de termino de va sumando
+  
+  - Cij=`[a11b11 + a12b21 + a13b31 + a1nbn1]`, Este seria el primer elemento
+  
+  - `A mxn * B nxp = C mxp`
+  
+**Traza: **(Solo existe para matrices diagonales) Seria la suma de los elemntos de la diagonal principal, enuna matriz cuadrada de orden n 
+
+**Matriz Opuesta: **Seria la Matriz A y con los mismo terminos pero con sentido contrario seria -A, Matriz A + (-A) = 0 Da la Matriz Nula
+
+*La Matriz cumple las misma propiedades de la Suma de un Cuerpo*
+
+**Propiedad Asociativa del Producto: **Tenemos (AB)C=A(BC)
+
+- Siendo Matrices: `A mxn, B nxp y C pXq`
+
+Si realizamos el producto de AB de resultado sale una Matriz `Mxp` y esa se puede multiplicar por C y saldria una matriz `Mxq`, de laotra igualdad multiplicamos BC y saldria una matriz `nxq` y esa multiplicandola con A de resultado tenemos `Mxq` y vemos como el tamaño es igual en ambos lados de la igualdad
+
+**Propiedad Distributiva del Producto respecto ala Suma: **A(B+C)=AB+AC
+
+**Elemento Neutro o Unidad**: Cualquier matriz por la identidad `In` da la Misma Matriz, Siendo A una Matriz `mxn` y B una Matriz `nxp`, Se hace el producto `A*In` el resultado es la misma matriz `mxn`, lo mismo por delante con `In*B`,La n de la I es el tamaño de la Matriz identidad, *(Matriz Identidad: es aquella que tiene puros Unos en su diagonal y losdemas son Ceros, (In) )*
+
+***Excepciones: ***
+
+**La Propiedad Conmutativa del Producto NO se cumple**, El rpoducto de Matrices no es Conmutativo: AB es Diferente que BA, Tampoco se cuample la *Ley de Simplificacion (Tachar lo que se repite)* en un producto: AB = AC pero B es diferente de C.Tambien tenemos los *Divisores de Cero*, seriam multiplicacion de matrices que de resultado dan cero a pesar de que ninguna de esas es una matriz de ceros
+
+## Matrices Diagonales y Triangulares
+
+Si A y B son dos matrices cuadradas de Orden n
+
+- Si A y B Son matrices diagonales entonces A y B conmutan y la Matriz producto AB=BA tambien es diagonal,*Elproducto de matrices diagonales es diagonal y conmutativo*
+
+- Si A y B son Matrices Triangulares Superiores(Inferiores) las dos del mismo tipo, entonces el producto AB es tambien una matriz triangular superior(Inferior),*En el Algebra Linear se trata de ir buscando Matrices Diagonales o triangulares que Simplifiquen los  calculos porque hacen que exista conmutatividad *
+
+En **Matrices Diagonales** y **Matrices Triangular Superior o Inferior** hace posible la conmutatividad de AB = BA
+
+## Matriz Transpuesta
+
+Se A una Matriz de orden `nxm`; `A= a(ij)Mxn`, se denomina la Transpuesta de A y se denota como $A^t$ que seria: `A^t=(aji)Nxm`, *La transpuesta se Intercambian Filas Y Columnas* y tambien cambian los terminos `a(ij) -- a(ji)`, La primera fila se convierte en la Primera columna y asi sucecivamente.
+
+una **Propiedad** es que si hacemmos la tranpuesta de la Transpuesta ($(A^t)^t=A$) obtendremos la *Matriz Original*
+
+**La suma de Transpuesta: **Si A y B son matrices del mismo Orden mxn, entonces $(A + B)^t = A^t + B^t$, esto es validad para cualquier cantidad de suma de matrices, *Para que se cumpla esto, todas las matrices deben de ser en el Mismo Orden*
+
+**El producto de Transpuesta: **Si `A=(aij)Mxn` y `B=(bij)Nxp`, entonces la transpuesta del producto AB es elproducto de las transpuestas pero con el orden cambiado:
+
+- $(AB)^t=B^tA^t$ Dando Una matriz de orden `PxM`
+
+Es necesario ya que si transponemos A seria `NxM` y B `PxN` Aqui vemos como para poder multiplicar la B tiene que ir adelante de A
+
+## Mas tipos de Matrices Cuadradas
+
+Si transponemos una Matriz cuadrada de resultado sigue siendo una matriz cuadrada lo que se llama como **Transposicion como operacion Interna: **, Que no sale del conjunto con el que operamos
+
+**Matriz Simetrica: **Sea A una matriz `A=(aij) de orden n` osea cuadrada,*A es simetrica si coincide con su transpuesta*, Esto causa la simetria de la matriz con respecto a su diagonal principal, **Tomando la diagonal como un espejo, lo que hay arriba y abajo de la matriz son los mismos numeros**
+
+ - `A es simetrica entonces A=A^t y su diagonal es igual (aij=aji)`
+ 
+**Matriz Antisimetrica: **Si su transpuesta coinside con su Opuesta,lo cual exije que su diagonal este copuesta por puros Ceros y que los elementos simetricos sean opuestos entre si,*Igual si tomamos la diagonal como un reflejo vemos que los numeros de arriba son igual que los de abajo pero con signo contrario*
+
+ - `A es Antisimetrica entonces A^t=-A y su diagonal son ceros (aij=-aji)`
+
+ **Matriz Invertible o Regular: **Si existe otra Matriz cuadrada tal que el producto de: `A * A^-1 = A^-1 * A = ln` vemos como al final es igual ala Identidad "ln",*Basicamente es con una matriz encontrar otra que multiplicando por delante y por detras da la Matriz Identidada*, Cuando existe esta Matriz `-A` es unica, no pueden existir dos y se llamara la matriz inversa de A, *Vemos Tambien como las matriceses al no ser en general el producto conmutativo es por eso que paraque se cumpla esta propiedad tienen que multiplicarse de* **Ambos Lados** y no basta con cumplir solo una de las dos
+ 
+**Matriz Singular: **Es cuando no tiene **Inversa** es decir que No es regular
+
+**Matriz Ortogonal: **Es Regular y su Inversa coincide con la Transpuerta
+
+- `A es Ortogonals si A*A^t = A^t*A = In`
+
+Estas matrices son las mejores que podemos Encontrar por las mejores propiedades y las mejor alahora de trabajar en algebra y estadistica
+
+*Propocision: *Sea A y B matrices cuadradas de Orden N, Si A y B son Invertivles, tambien lo es su producto y se cumple
+
+- $(AB)^{-1} = B^{-1}A^{-1}$, La inversa de AB es la inversa de B por la Inversa de A,(Se gira el orden del producto como en la Transpocicion)
+
+***Aplicacion de Ecuaciones con Matrices***
+
+A la hora de resolver ecuaciones con matrices podemos seguir aplicando las misma propiedades del algebra con numeros, sin dejar de tomar en cuenta las propiedades de las matrices,**Ejemplo: **
+
+Encontrar una Matriz X tal que A + `Lambda`X = `Mu`B, donde A y B son Matrices conocidas y `Lambda` es un numero diferente de cero y `Mu` es un valor del cuerpo conocido, *La Solucion seria Despejando X*: X = 1/`Lambda`(`Mu`B - A)
+
+Pero si tenemos una Ecuacion de la forma **Ax=B**, NO se puede pasar a dividir, salvo que la matriz A sea cuadrada y regular invertivle ya que con eso podemos multiplicar de ambos lados: *Se despeja: *`X = A^-1 * B` En ese Orden no valdria si lo hicieramos al reves con A ya que depende de laecuacion iniciaial *Ax=B*, Si tubieramos la ecuacion como: **xA=B**, Despejada si A es invertible tendriamos: `X = B * A^-1`, en este caso seria multiplicancdo ala derecha por A
+
+**Tambien se pueden calcular las Potencias** `n-esimas` de las matricees como en los numeros, en el caso de $(A+B)^{n}$, Solo se verifica que A y B conmuten, *Ejemplo:* $(A+B)^{2}=A^2+AB+BA+B^2$ y si A y B conmutan Quedaria $A^2+2AB+B^2$
+
+## Operaciones Elementales y Matrices Escalonadas
+
+*Matrices Escalonadas*: Son un tipo de matriz triangular superior o inferior,hay dos tipos: Matriz escalonada por Fila o Matriz escalonada por Columnas
+
+**Matriz escalonada por Fila: **Una Matriz A de orden `Mxn` es escalonada por filas cuando se cumplen estas dos Condiciones:
+
+- El primer Elemento no nulo de cada fila que llamaremos pivote, esta siempre ala derecha del pivote inmediatemente de la fila superior. *Ejemplo:* `Si tenemos el pivote en la primera columna, el segundo ya tendira que estar por lomenos en la segunda o en la tercera o en la cuarta`
+
+- En las filas Nulas estaran en la parte inferior de la matriz
+
+**Ejemplo de Matriz Esalonada Por filas: **
+
+$\begin{equation}\begin{pmatrix}2 & 1 & -1 & 2\\0 & 1 & -2 & 1\\0 & 0 & 0 & 2\end{pmatrix}\end{equation}$
+
+Aqui tenemos 3 Pivotes, el `2` en la primera Columna, en lasegunda fila tenemos el `1` que esta ala derecha del anterior y en la tercera fila tenemos el`2` que todabia esta mas ala deracha, *los pivotes estan siempre mas ala derecha que el de la fila anterior, que seria el elemnto NO nula*
+
+$\begin{equation}\begin{pmatrix}3 & 2 & 2 & 5 & 8\\0 & 2 & -1 & 9 & -3\\0 & 0 & 5 & 3 & 2\end{pmatrix}\end{equation}$
+
+Esta es otra matriz escalonada, iniciandocon el `3` y justo en la segunda fila es el `2` y justo en la otra fila tenemos el `5`
+
+**Matriz escalonada por Columna: **Una Matriz A de orden `Mxn` es escalonada por Columnas cuando se cumplen estas dos Condiciones:
+
+- El primer Elemento no nulo de cada columna que llamaremos pivote, esta siempre ala derecha del pivote inmediatemente de la fila superior
+
+- En las Columnas no Nulas estaran en la parte Superior de la matriz
+
+**Dos Ejemplos: **
+
+$\begin{equation}\begin{pmatrix}2 & 0 & 0 & 0\\1 & 3 & 0 & 0\\-1 & 5 & -1 & 0\\2 & 7 & 4 & 0\end{pmatrix}\end{equation}$
+
+En este primer ejemplo, el primer elemnto de cada columna NO nulo esta justo debajo y ala derecha al pivote inmediatamente anterior y Toda la parte superior de la Matriz es NULA
+
+$\begin{equation}\begin{pmatrix}2 & 0 & 0 \\0 & 3 & 0\\5 & 7 & -9\end{pmatrix}\end{equation}$
+
+Aqu igual, Tenemos los pivotes `2,3,-9` y la parte superior de la matriz es Nula
+
+
+**Matriz escalonada Reducida: **A una matriz A(mxn) es escalona reducida por filas si es escalonada y cumple:
+
+- Los pivotoes son todos 1
+
+- Todos los elemntos que estan en la misma columna del pivote `Del 1` son nulos `0`
+
+**Matriz escalonada Reducida por Columnas: **A una matriz A(mxn) es escalona reducida por columnas si es escalonada y cumple:
+
+- Los pivotoes son todos 1
+
+- Todos los elemntos que estan en la misma fila del pivote `Del 1` son nulos `0`
+
+**Dos Ejemplos: **
+
+$\begin{equation}\begin{pmatrix}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 0\end{pmatrix}\end{equation}$
+
+En este caso solo tenemos 3 Pivotes que son 1, la ultima fila es nula, pero lo que nos interesa es que tanto por debajo de cada pivote como por encima la Matriz es Nula
+
+$\begin{equation}\begin{pmatrix}1 & 0 & 0 \\0 & 1 & 0\\0 & 0 & 1\\7 & 4 & 3\\0 & 3 & 5\\9 & 7 & 1\end{pmatrix}\end{equation}$
+
+Aqui No es tan faci de ver pero aun asi lo cumple, Ya que encima de cada pivote 1 y por debajo son Puros Ceros,Y las ultimas filas no nos interesan
+
+**Operaciones elementales por Filas**
+
+- Solo una fila de la matriz se multiplica por un Numero
+
+- Intercambiar dos filas De Orden (La primera pasa ala segunda y la segunda ala primera)
+
+- Sumar a una fila uun multiplo de Otra
+
+**Matrices Equivalentes por filas: ** Dadas dos matrices A y B de `Mxn` que son equivalentes por filas o por Columnas, si una de ellas se puede obtener apartir de la otra mediante un numero finito de operaciones elementales por filas o por columnas, *Es decir:* Si tenemos una matriz y le aplicamos alguna de las `Operaciones Elementales por filas`conseguimos que una se transforme en la otra se dice que esas dos matrices son equivalentes por filas
+
+*En este caso: *
+
+- Toda matriz es equivalente por filas (o columnas) a una matriz escalonada por filas (o columnas)
+
+- Toda matriz es equivalente por filas (o columnas) a una unica matriz escalonada reducida por filas (o columnas)
+
+Si nos dan una matriz solo existe una matriz escalonada reducida por filas equivalente  ala matriz original
+
+*Escalonadas puede haber muchas*, **Escalonadas Reducidas solo puede Haber Una**
+
+Con el `Metodo de Gauss` se encuentra la Matriz Escalonada Reducida
+
+*Pasos: *
+
+Se una Matris `A = a(ij) de Mxn`
+
+- 1.- Si a11(el primer elemento) es diferente de Cero, se divide toda la primera fila por ese elemento `a11` y se Obtiene una Matriz equivalente (Porque lo que hicimos fue multiplicar o dividir por un numero) donde el primer elemnto `a11` ahora si `a11 = 1`. Este nuevo `a11` sera el primer *pivote* de la Matriz, A continuacion se resta a cada una de las filas (de la segunda en adelante) la primera fila multiplicada por el `ai1`. *Ejemplo: * si en la segunda fila habia un 2 (Multiplicamos la primera fila por 2 y restamos,como tenemos un 1, qeudaria: `1 * 2 = 2` y le restamos `2 - 2 = 0`, con esto vamos a eliminar), Esa es la idea hacer ceros por debajo multiplicando la primera fila `Que ya tiene un 1` por ai1, *Asi la primera resta de elemntos de la primera columna sera toda 0 y en este caso podremos pasar al punto 4*
+
+- 2.- Si `a11 = 0` buscamos el primer pivote de la propia columna, tal que `ai1 NO se Cero`, En este caso se intercambian la primera fila y la fila i-esima llevando el cero mas abajo y obteniendo una matriz equivalente con un nuevo pivote `a11 diferente de 0` y *A partir de aqui volvemos a repetrir el proceso del punto 1*
+
+- 3.- Si `ai1 = 0 para todo i = 1 , .. , m`, entonces dejamos toda esa primera columna de ceros y se aplica el algoritmo del *Paso 1* a la matriz resultante de eliminar la primera columna, *Como ya tenemos ceros en toda esa columna, se deja de lado y pasamos a la siguiente*
+
+Si ya tenemos ceros por todos lados menos en el propio Pivote
+
+- 4.- Repetimos el proceso de ala matriz obtenida de eliminar la primera fila y la primera columna de nuestra matriz *De modo que reducimos el orden en una fila y una columna*
+
+Y lo que obtenemos es una matriz escalonada reducida por esta construccion que es unica equivalente por filas cuyos pivotes son todos unos
+
+Para obtener la Matriz escalonada reducida,si hay algun elemnto `aij`, diferente de cero por encima de algunos de los pivotes, solo hay que restar la fila de ese elemento (La fila i-esima) restarle la fila del pivote, multiplicada por el `aij` que nos molesta
+
+De modo que repitiendo el paso anterior tantas veses como sea necesario, se llega asi ala matriz escalonada reducida equivalente
+
+## Ejercicio Calcular Matriz Escalonada
+
+Considerando la matriz A de 3x4: 
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\2 & 4 & 3 & -2\\-2 & 2 & -1 & 3\end{pmatrix}\end{equation}$
+
+**Calcular La Matriz Escalonada**
+
+Como en `a11` tenemos un `1` (en la primera columna) y abajo de este tenemos un `2` lo que debemos hacer es ala segunda fila restarle dos veses la primera fila, *Por lo tanto: *
+
+- 2-(1x2)=0, 4-(1x2)=2, 3-(3x2)=-6, -2-(5x2)=-12
+
+**Despues de esta operacion Quedaria: **
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\0 & 2 & -3 & -12\\-2 & 2 & -1 & 3\end{pmatrix}\end{equation}$
+
+A continuacion ala tercera Fila le tenemos que sumar dos veces la primera, para asi quitarnos ese `-2` de esta Fila
+
+*Por lo tanto: *
+
+- -2+(1x2)=0, 2+(1x2)=4, -1+(3x2)=5, 3+(5x2)=13
+
+**Despues de esta operacion Quedaria: **
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\0 & 2 & -3 & -12\\0 & 4 & 5 & 13\end{pmatrix}\end{equation}$
+
+Ahora lo que nos interesa es convertir ese pivote `2` (Esta en la segunda fila),convertirlo a un 1, Asi que dividimos toda esa fila entre 2 o mejor por 1/2
+
+*Por lo tanto: *
+
+- 0x(1/2)=0, 2x(1/2)=1, -3x(1/2)=-3/2, -12x(1/2)=-6
+
+**Despues de esta operacion Quedaria: **
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\0 & 1 & -3/2 & -6\\0 & 4 & 5 & 13\end{pmatrix}\end{equation}$
+
+Ya nececitamos que en la tercera fila donde esta un `4`convertirlo a un 0. por lo tanto ala tercera fila le tenemos que restar 4 veses la segunda fila
+
+*Por lo tanto: *
+
+- 0-(0x4)=0, 4-(1x4)=0, 5-(-3/2x4)=11, 13-(-6x4)=37
+
+**Despues de esta operacion Quedaria: **
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\0 & 1 & -3/2 & -6\\0 & 0 & 11 & 37\end{pmatrix}\end{equation}$
+
+**La Matriz escalonada equivalente A es: **$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\0 & 1 & -3/2 & -6\\0 & 0 & 11 & 37\end{pmatrix}\end{equation}$
+
+**Para encontrar la Matriz escalonada reducida POR Filas** Debemos seguir con esta ultima Matriz que ubtuvimos aplicarle alguna operaciones para conseguir hacer ceros por encima y por debajo en cada uno de los pivotes y si no son `1` hacerlos Unos
+
+En este caso partimos de la tercera fila, dividimos entre 11 para convertir este a Uno, Y nos queda 
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\0 & 1 & -3/2 & -6\\0 & 0 & 1 & 37/11\end{pmatrix}\end{equation}$
+
+Ahora comenzamo a conceguir Ceros, empezando por el -3/2 en la segunda fila, Por lo que ala segunda fila le sumamos 3/2 de la tercera, ASI:
+
+*Por lo tanto: *
+
+- (0x3/2)+(1)=1, (1x3/2)+(-3/2)=0, (37/11x3/2)+(-6)=-21/22, Estos resultados se ponen en la segunda fila
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5\\0 & 1 & 0 & -21/22\\0 & 0 & 1 & 37/11\end{pmatrix}\end{equation}$
+
+Ahora hay que poner un cero en `3` que esta en la tercera columna primer fila, Para esto ala primera fila le restamos 3 veses la tercera fila
+
+**Seria: **
+
+- 1-(3x0)=1, 1-(3x0)=1, 3-(3x1)=0, 5-(3*37/11)=-56/11
+
+$A = \begin{equation}\begin{pmatrix}1 & 1 & 0 & -56/11\\0 & 1 & 0 & -21/22\\0 & 0 & 1 & 37/11\end{pmatrix}\end{equation}$
+
+Finalmente nos queda poner un cero en el `1` que esta en la segunda columna primera fila, ya que asi cumplimos de poner un cero por encima de cada uno de los pivotes, Y para esto ala primera fila le restamos la segunda fila
+
+**Ya con la Operacion Efectuada: **
+
+$A = \begin{equation}\begin{pmatrix}1 & 0 & 0 & -91/22\\0 & 1 & 0 & -21/22\\0 & 0 & 1 & 37/11\end{pmatrix}\end{equation}$
+
+**La matriz Reducida Equivalente es: **$A = \begin{equation}\begin{pmatrix}1 & 0 & 0 & -91/22\\0 & 1 & 0 & -21/22\\0 & 0 & 1 & 37/11\end{pmatrix}\end{equation}$
+
+## Calcular Matriz escalonada y reducida por filas
+
+Con la siguente Matriz A (3x5):
+
+$A = \begin{equation}\begin{pmatrix}0 & 0 & 3 & 5 & -1\\1 & 0 & 4 & -1 & 2\\2 & 3 & 0 & -2 & 3\end{pmatrix}\end{equation}$
+
+Primeramente lo que nececitamos es que el primer elemnto de la primera fila sea diferente de 0, y Aqui tenemos que es cero,**La Solucion: ** Es intercambiar esta primera fila por la primera que tenga el elemnto de la primera columna diferente de cero,*En este caso es: * `Intercambiar la primera fila por la segunda fila`, y **Esto queda como: ** $A = \begin{equation}\begin{pmatrix}1 & 0 & 4 & -1 & 2\\0 & 0 & 3 & 5 & -1\\2 & 3 & 0 & -2 & 3\end{pmatrix}\end{equation}$
+
+Ahora Nececitamos que debajo del primer pivote hayan puros ceros, *La segunda fila ya tiene un cero, entonces pasamos directamente ala tercera* y para hcer un cero ala tercer fila restarle dos veses la Primera:
+
+- 2-(2x1)=0, 3-(2x0)=3, 0-(2x4)= -8, -2-(2x-1)=0, 3-(2x2)=-1,**Asi quedaria: **$A = \begin{equation}\begin{pmatrix}1 & 0 & 4 & -1 & 2\\0 & 0 & 3 & 5 & -1\\0 & 3 & -8 & 0 & -1\end{pmatrix}\end{equation}$
+
+Tenemos el  mismo problema que al principio ya que el segundo pivote es `0`, por lo ue tenemos que cambiar la fila 2 por la 3 (Por que no hay Otra opcion).
+
+*Nececitamos que el primer elemnto (Pivote) de la segunda fila sea distinto de cero *$A = \begin{equation}\begin{pmatrix}1 & 0 & 4 & -1 & 2\\0 & 3 & -8 & 0 & -1\\0 & 0 & 3 & 5 & -1\end{pmatrix}\end{equation}$
+
+El paso que seguiria seria poner ceros debajo de todos los pivotes, **Pero** eso ya lo tenemos, *Por lo que: *
+
+**Esta es la Matriz Escalonada por filas equivalente: **$A = \begin{equation}\begin{pmatrix}1 & 0 & 4 & -1 & 2\\0 & 3 & -8 & 0 & -1\\0 & 0 & 3 & 5 & -1\end{pmatrix}\end{equation}$
+
+*Ahora Para sacar la ***Matriz escalonada reducida por filas**
+
+En primer lugar nececitamos que todos los pivotes sean `1`,En este caso las filas: `2 y 3` son las que tenemos que convertirlas y eso lo hacemos con:  `La filas 2 la dividimos entre 3 (Para convertir ese pivote 3 en 1) como La fila 3 `
+
+*Nos queda: *$A = \begin{equation}\begin{pmatrix}1 & 0 & 4 & -1 & 2\\0 & 1 & -8/3 & 0 & -1/3\\0 & 0 & 1 & 5/3 & -1/3\end{pmatrix}\end{equation}$
+
+Ahora Necicitamos hacer ceros los numero que esten arriva de los pivotes, en este caso solo nececitamos convertir a cero `-8/3 y 4` y para eso, Ala fila 2 hay que sumarle `8/3 por la fila 3`:
+
+- 0 + (8/3x0)=0, 1 + (8/3x0)=1, -8/3 + (8/3x1)=0, 0+(8/3x5/3)=40/9, -1/3 + (8/3x-1/3) =  5/9
+
+$A = \begin{equation}\begin{pmatrix}1 & 0 & 4 & -1 & 2\\0 & 1 & 0 & 40/9 & 5/9\\0 & 0 & 1 & 5/3 & -1/3\end{pmatrix}\end{equation}$
+
+Ya nomas nos faltaria hacer 0 en la tercera columna de la primera fila `4`, Para eso ala primera fila le tenemos que restar 4 veces la fila 3,
+
+Con las operaciones los primeros digitos el `0` y el `1`se pasan igual, Ahora con `4-(4*1)=0`, `-1-(4*5/3)=-23/3`, salen 23/3 porque -1 = -3/3 y la suma seria `-3/3 + -20/3`, por ultimo `2-(4*-1/3)=10/3` porque 2 es igual que 6/3 y si lo sumamos `6/3 + 4/3`. *Despues de hacer esta operacion Nos queda: * $A = \begin{equation}\begin{pmatrix}1 & 0 & 0 & -23/3 & 10/3\\0 & 1 & 0 & 40/9 & 5/9\\0 & 0 & 1 & 5/3 & -1/3\end{pmatrix}\end{equation}$
+
+**Esta es la Matriz escalonada reducida por filas: **$A = \begin{equation}\begin{pmatrix}1 & 0 & 0 & -23/3 & 10/3\\0 & 1 & 0 & 40/9 & 5/9\\0 & 0 & 1 & 5/3 & -1/3\end{pmatrix}\end{equation}$, Porque todos los pivotes con unos y tanto por encima como por debajo de los pivotes hay ceros
+
+## Rango de Una Matriz
+
+Se pueden definir conceptos por la matriz escalonada reducida (por filas o columnas) de una Matriz A,*Uno de estos conceptos es: *
+
+**Rango: **Sea A una Matriz (mxn), se denomina al Rango de A y se denota como `rg(A)` o `Range(A)`. Al Numero de filas No nulasque tiene su unica matriz escalonada reducida (por filas o columnas) Equivalente, *Entonces el rango es su numero de filas que no sean puros Ceros*
+
+***Teorema: ***El rango de A coincidira con el numero de columnas no nulas de su unica matriz escalonada reducida por columnas equivalente.
+
+En realidad el numero de filas o de columnas no nulas es siempre el mismo en cualquier matriz equivalente por filas o columnas ala matriz original, por tanto para poder calcular el rango de la matriz A bastara con encontrar otra matriz B que sea escalonada reducida por filas o por columnas equivalente ala original y contar el numero de filas o de columnas dependiendo de como hayamos escalonado (por filas o columnas)
+
+**Para calcular el Rango de una matriz: **
+
+- Primero hay que calcular la matriz escalonada o escalonada reducida (por filas o columnas)
+
+- Contar cuantas filas o columnas son NO nulas en el resultado final 
+
+## Ejercicio:
+
+**Calcular el rango de La Siguente Matriz: **$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5 \\2 & 4 & 3 & -2 \\-2 & 2 & -1 & 3\end{pmatrix}\end{equation}$
+
+Vamos a calcular la Matriz escalonada por filas equivalente y al final conter el numero de filas No nulas
+
+En primer lugar nececitamos ceros por debajo del primer pivote `1`, Para esto ala `Segunda fila le restamos dos veses la primera fila` y esto nos queda: $A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5 \\0 & 2 & -3 & -12 \\-2 & 2 & -1 & 3\end{pmatrix}\end{equation}$
+
+A continuacion `Ala tercera fila le sumamos dos veces la primera`, para asi obtener $A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5 \\0 & 2 & -3 & -12 \\0 & 4 & 5 & 13\end{pmatrix}\end{equation}$
+
+Nececitamos que el pivote de la segunda fila de la segunda columna ose el `2` convertirlo a un `1` para mejor operavilidad y para esto `Dividir la segunda fila entre 2` y asi lo que obtenenmos $A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5 \\0 & 1 & -3/2 & -6 \\0 & 4 & 5 & 13\end{pmatrix}\end{equation}$
+
+Ahora nececitamos los ceros por debajo de este pivote en este caso esta el `4` que esta en la tercera fila, entonces `ala tercera fila restarle cuatroveses la segunda fila` y de resultado obtenemos: $A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5 \\0 & 1 & -3/2 & -6 \\0 & 0 & 11 & 37\end{pmatrix}\end{equation}$
+
+**Esta es la matriz escalonada por filas equivalente **$A = \begin{equation}\begin{pmatrix}1 & 1 & 3 & 5 \\0 & 1 & -3/2 & -6 \\0 & 0 & 11 & 37\end{pmatrix}\end{equation}$, Ahora cuantas filas no nulas hay. Pues **Todas** por que no hay ninguna con puros ceros Y para el resultado se pone:
+
+**rg(A)=3**
+
+## Ejercicio 2:
+
+$B = \begin{equation}\begin{pmatrix}1 & 3 & 1\\0 & 3 & -2\\2 & 2 & 3\end{pmatrix}\end{equation}$
+
+## Calculo de una Matriz Inversa
+
+Con las matrices escalonada no solo se puede calcular el rango si no que tambien se puede calcular la Inversa de una matriz
+
+El primer aporte que pueden hacer es la carecterizacion de las matrices invertibles atravez de su rango y de su matriz escalonada reducida, de modo que el resultado grande es:
+
+Dada A una matriz cuadrada de orden `N` es equivalente decir que:
+
+- 1.- A es invertible *(Que tiene una inversa que multiplicada por la matriz original da la matriz identidad)*
+
+- 2.- rg(A) = n *(Es decir la Matriz A es de Rango Maximo osea que despues de hacer la matriz escalonada reducida no queda alguna fila o columna llena de ceros)*
+
+- 3.- La matriz escalonada reducida por filas o por columnas equivalente a `A` es la matriz identidad `Ln` *Si calculamos la matriz escalonada reducida da la Identidad*
+
+Ademas la tercer equivalencia aporta un metodo para calcular la matriz inversa de una matriz invertible A de orden n, que consiste en escribir la matriz identidad `Ln` justo ala derecha de la matriz,*De modo que quedaria: *`(A|Ln)`, es como si escribiriamos una matriz nx2n donde la parte izquierda seria la matriz original y la parte derecha es la Identidad. Y apartir de aqui si sabemos que es invertible a traves de transformaciones elementales por filas o por columnas se trata de calcular la escalonada reducida de esa matriz, *Como sabemos que A es invertivle en la parte izquierda nos quedara la identidad por este teorema:*, **Si es invertivle su matriz escalonada por filas o columnas es la identidad**, Demodo que no quedaria escrito `Ln|B` pero resulta que esta matriz B es precisamente la inversa de A es decir: $A^{-1}=B$, ***Con esta Tecnica podemos calcular de forma explicita la inversa de una matriz si esta es invertible o lo que es lo mismo de Rango maximo***
+
+**En pocas palabras los Pasos: **
+
+Una pista para saber si una matriz es Invertible, **Fijarnos en el tamaño 'n' de la matriz nececitamos que el rango sea igual a 'n'**
+
+- Hacer la escalonada y ver que no haiga ninguna fila y niguna columna con puros ceros
+
+- Ya cuando se cumpla lode arriba: para calcular la Inversa: **Tenemos que escribir justo ala derecha de la matriz, la Matriz identidad**
+
+- Empezamos a obtener la matriz identidad con la matriz original de la izquierda y lo que nos quedara ala derecha donde al inicio teniamos la identidad sera la **Matriz inversa**
+
+## Ejercicio:
+### Sacar la Inversa de Una Matriz
+
+Ala matriz A cuadrada de orden 3, ver si es Invertivle y si esa asi calcular la inversa
+
+$A = \begin{equation}\begin{pmatrix}1 & 3 & -1\\0 & 2 & 3\\-1 & 0 & 2\end{pmatrix}\end{equation}$
+
+Para que sea invertible tiene que ser de `rango = 3`
+
+*Vamos a calcular la inversa Usando el ***Metodo de Gauss**
+
+Empezamos poniendo la Matriz A con el | y enseguida ponemos la matriz de identidad con el mismo orden de A
+
+$A = \begin{equation}\begin{pmatrix}1 & 3 & -1 & | & 1 & 0 & 0\\0 & 2 & 3 & | & 0 & 1 & 0\\-1 & 0 & 2 & | & 0 & 0 & 1\end{pmatrix}\end{equation}$
+
+Lo que nececitamos hacer es que ala Matriz de la Izquierda (La que seria A), `Convertirla ala Matriz identida` e ir realizando las misma transformaciones que hagamos en la parte Izquierda aplicarselo tambien ala parte de la derecha (Donde esta la identidad)
+
+*En primer lugar* nececitamos ceros por debajo del primer pivote de la matriz A que seria el pivote `1` y en donde no tenemos cero es ala tercera fila donde esta el `-1`,por lo tanto **Ala fila 3 hay  que sumarle la fila 1**, Asi nos queda:
+
+**Recordemos que lo que le vamos a aplicar ala fila 3 seria incluyendo toda las dos matrices hasta la identidad: ** $A = \begin{equation}\begin{pmatrix}1 & 3 & -1 & | & 1 & 0 & 0\\0 & 2 & 3 & | & 0 & 1 & 0\\0 & 3 & 1 & | & 1 & 0 & 1\end{pmatrix}\end{equation}$
+
+Ahora Necitamos converitir ese pivote `2` a `1`, Por lo cual hay que dividir la segunda fila *Seria toda hasta la identida* entre ese `2`, Y nos quedaria:
+
+$A = \begin{equation}\begin{pmatrix}1 & 3 & -1 & | & 1 & 0 & 0\\0 & 1 & 3/2 & | & 0 & 1/2 & 0\\0 & 3 & 1 & | & 1 & 0 & 1\end{pmatrix}\end{equation}$
+
+Nececitamos un cero por debajo del segundo pivote, que es donde esta el `3`,Para eso lo que hay que hacer es `Ala tercera fila restarle 3 veces la segunda fila`.
+
+**~F3 - 3xF2: **$A = \begin{equation}\begin{pmatrix}1 & 3 & -1 & | & 1 & 0 & 0\\0 & 1 & 3/2 & | & 0 & 1/2 & 0\\0 & 0 & -7/2 & | & 1 & -3/2 & 1\end{pmatrix}\end{equation}$
+
+Ahora nececitamos que al pivote de la tercera fila `Es donde esta el -7/2` convertirlo a un `1` y para eso hay que multiplicarlo por su inversa que es `-2/7`, que seria multiplicar toda la fila por `-2/7`
+
+**~ -2/7xF3: **$A = \begin{equation}\begin{pmatrix}1 & 3 & -1 & | & 1 & 0 & 0\\0 & 1 & 3/2 & | & 0 & 1/2 & 0\\0 & 0 & 1 & | & -2/7 & 3/7 & -2/7\end{pmatrix}\end{equation}$
+
+Continuamos conviertiendo los todos los numeros a cero que esten arriba de los pivotes que no sean ceros
+
+En este caso vamos a cambiar de una vez a los numeros `-1 (de la primer fila tercer columna)` y `3/2 de la tercer y fila tercer columna`, Para el `-1` solo hay que sumarle a toda su fila la Tercer fila: **~ F1+F3** y con `3/2` vamos a restarle 3/2 con la tercera fila: **~ F2 - 3/2xF3**
+
+**Tip: ** como vamos a usar la tercea fila con estas operaciones donde este `0` no va a afectar nada a los numeros de arriba
+
+$A = \begin{equation}\begin{pmatrix}1 & 3 & 0& | & 5/7 & 3/7 & -2/7\\0 & 1 & 0 & | & 6/14 & -1/7 & 6/14\\0 & 0 & 1 & | & -2/7 & 3/7 & -2/7\end{pmatrix}\end{equation}$
+
+Ahora ya solo nos queda el `3` de la primera fila segunda columna que tenemos que convertir a cero y para eso `Ala primera fila restarle 3 veses la segunda fila: `**F1 - 3F2**
+
+$A = \begin{equation}\begin{pmatrix}1 & 0 & 0& | & -4/7 & 6/7 & -11/7\\0 & 1 & 0 & | & 6/14 & -1/7 & 6/14\\0 & 0 & 1 & | & -2/7 & 3/7 & -2/7\end{pmatrix}\end{equation}$
+
+Y como ya hemos conseguido la matriz identidad donde antes estaba la matriz original de A, Hemos terminado
+
+**Con lo cual podemos afirmar que la matriz inversa de A **`Podemos Sacar factor comun de toda la matriz de la derecha que es `**1/7**: $A^{-1}=1/7 \begin{equation}\begin{pmatrix}-4 & 6 & -11\\3 & -1 & 3\\-2 & 3 & -2\end{pmatrix}\end{equation}$, Se puede simplificar `6/14` en `3/7` es por eso que tenemos un `3` en la segunda fila
+
+Para comprobar el resultado podemos multiplicar $AA^{-1} = A^{-1}A = I3$, que nos dara La Identidad de orden 3
+
+## Matrices en `R`
+
+Para crear Una Matriz se usa la funcion `matrix()` en donde los datos se introducen en forma de vector `c()`
+
+```{r}
+#Para Crear Una Matriz
+
+row = matrix(c(1,2,3,4), nrow = 1)# Le metemos un vector por los elemntos 1 al 4 y con ese `nrow` le indicamos el numero de filas
+row# Nos creaunamatriz Fila
+
+#Por contrasi queremos construir una matriz Columna
+col = matrix(c(5,6,7,8,9), ncol = 1)
+col
+
+# En general la funcion `matrix()` se le pueden especifiar 3 Parametros
+  # Numero de filas, Numero de Columnasa y si la informacion va introducida por filas o No
+
+# Ejemplo 1
+A = matrix(c(1,1,3,5,2,4,3,-2,-2,2,-1,3), nrow = 3, ncol = 4, byrow = TRUE)# Le indicamos que esos 12 elemntos dentro de c(), van a ser distribuidos en 3 filas y cuatro columnas y que la informaicion que le hemos dado (esos 12 elementos) es por filas(byrow)
+A# de modo que hay que leer esta informacion por filas (1 1 3 5) es la primera fila y asi nos vamos con los otros 
+
+B = matrix(c(1,0,2,3,3,2,1,-2,3), nrow = 3, byrow = FALSE)# Introducimos 9 Elementos, le decimos el numero de filas 3, NO le indicamos el numero de columnas, Como sabe que hay 9 elemntos, si los quieremos distribuir de 3 en 3 esta claro que con 3 filas debe haber 3 columnas
+#Hay que tener cuidado si ponemosun numero de elementos que no sea divisible por el numero filas o columnas, R nosdara un ERROR, ejemplo:
+#Si aqui tenemos 9 elemntos y le ponemos nrow = 4, ahi da error porque 9 no es divisivle por 4
+B# Al ponerele byrow=FALSE, esta informacion que tenemos dentro de la matriz en lugar de ser leido por filas sera leido por columnas: 1 0 2 es la primera columna y asi de 3 en 3
+```
+
+**Resumen**
+
+- Los datos de la matriz deben de ir dentro de un vector `c()`
+
+- Hay que indicar el numero de filas y/o columnas con `nrow` o `ncol`
+
+- Debemos usar el parametro logico `byrow` para indicar si hemos escrito los numeros del vector en filas(TRUE) o por columnas(FALSE) **Es importante que tanto el numero de filas como el del columnas sea divisible por el numero de elementos que contienen el vector **
+
+Tambien se pueden crear matrices atravez de la funcion `bind()`
+
+- La funcion `rbind()` que hay que leerla como *row bind* que quiere decir unir filas, nos permite escribir vectoresy unirlos por filas
+
+```{r}
+# Aqui tenemos 3 vector unidos medientela funcion rbind para funtarlos en filas en una matriz
+c = rbind(c(1,2,3),c(4,5,6),c(7,8,9))
+c # La Union por filas los pone uno encima de otro
+```
+
+- Con `cbind()` se lee como *column bind* une a los vectores por columnas
+
+```{r}
+# estos tres vectores los une por coumnas
+d = cbind(c(1,2,3),c(4,5,6),c(7,8,9))
+d
+
+# Estos metodos nos sirven para en caso de que tengamos informacion externa por filas o por columnas ya sabemos como unirlas
+```
+
+**Para acceder a un elemnto por fila o columna de una matriz** Se usa la sintaxis de: Nombre de la Matriz A: `A=[i,j]` donde `i` indica la fila y `j` indica la columna
+
+**EJEMPLO: **
+
+Con A[3,3] estariamos accediendo al elemento a33
+
+Si solo especificamos la fila asi: `A[1,]`, Nos saldran todo los elementos de esa fila
+
+por el contrario solo especificamos la columna `A[,2]` nos muestra todos los elemntos de esa columna
+
+**A la hora de acceder a un elemento **no necesariamente tiene que ser un numero, tambien puede ser un vector que indique que filas y que columnas queremos obtener
+
+**Crear Diferentes Matrices**
+
+Para crear una matriz de ceros,*en lugar de ponder un vector solo ponemos el cero*
+
+```{r}
+#Crear una matriz de ceros
+o = matrix(0,nrow = 3,ncol = 3)
+o
+
+#En el caso de una matriz de unos
+unos = matrix(1,nrow = 3,ncol = 3)
+unos
+
+#Para crear una Matriz diagonal con la funcion `diag()` donde lepasamos todo un vector de numeros que queremos que salgan en la digonal
+E = diag(c(1,2,3,4,5,6))
+E# Por la cantidad de numeros en el vector Automaticamente nos crea una Matriz 6x6
+```
+
+Para obtener **los elemntos de la diagonal** de la matriz usamos la funcion `diag()` introduciendo por parametro una matriz
+
+```{r}
+# Aqui creamos una matriz usando rbind()
+M = rbind(c(1,0,1),c(2,-1,5),c(3,3,2))
+diag(M) # Aqui esamos usando la funcion no intrudicendole un vector sino toda la matriz y nos devolvera todos los numeros de la diagonal
+```
+
+Para obtener **el numero de filas o columnas** de una matriz,usaos las funciones `nrow()` o `ncol()`, *Como comienzan con n, hay que traducrilas como***Numero de** ya sea filas ocolumnas
+
+- nrow(), Obtener el numero de filas
+
+- ncol(), Obtener el numero columnas
+
+Si queremos la **Dimencion de una Matriz** usamos la funcion `dim()` la cual nos devuelve un vector de dos entradas. El primero el numero de filasy el segundo el de columnas
+
+```{r}
+M = rbind(c(1,0,1),c(2,-1,5),c(3,3,2))
+dim(M)
+```
+
+## Manipulacion de Matrices en R
+
+Todas las funciones se aplican directamente ala matriz que hemos construido
+
+Con `sum()` calcula la suma de todos los elemntos de dicha matriz
+
+```{r}
+M = rbind(c(1,0,1),c(2,-1,5),c(3,3,2))
+sum(M)
+
+# La suma por filas o por columnas se calcula
+
+rowSums(M)# Suma por filas
+
+colSums(M)# Suma por columnas
+
+# Calcular el producto de todos los elemntos de la matriz
+prod(M)
+
+# Calcular la media aritmetica de todos los elementos
+mean(M)
+
+# Sacar la media por filas
+rowMeans(M)
+
+# La media por columnas
+colMeans(M)
+
+```
+
+## Operaciones con Matrices en R
+
+La transpuesta de una Matriz se aplica con la funcion `t()`
+
+```{r}
+M = rbind(c(1,0,1),c(2,-1,5),c(3,3,2))
+#Aplicar la transpuesta ala matris M
+t(M)
+
+# Calcular la traza de una matriz(La suma de todos sus elemntos en la diagonal)
+sum(diag(M))
+```
+
+
+```{r}
+# Suma de dos matrices
+A = rbind(c(1,2,3),c(4,5,6),c(7,8,9))
+B = rbind(c(1,0,2),c(3,0,4),c(5,0,6))
+A+B
+# la suma esconmutativa y da lo mismo
+B+A
+
+# Multiplicar una matriz por un escalar
+5*A
+
+# El producto de Matrices (Primero hay que asegurarse que se pueden multilplicar), No vasta con escribir directamente el astedisco '*' hay que hacerlo hasi:
+A%*%B
+# vemos como el producto noes conmutativo
+B%*%A
+
+# si solo aplicamos el '*' nos devolvera un producto pero hecho numero a numero de cada matriz en su misma pocicion pero no el producto correcto de Arriba
+A*B
+
+#Para comprovar si dos matrices son iguales
+A+B == B+A# Aqui salen puros TRUE
+
+A%*%B == B%*%A# AQUI PUOS FALSE
+#Con que salga un FALSE es que ya hay una diferencia
+
+#Para calcular la potencia n-esima(Aproximada) de una matriz usamos lafuncion 'mtx.expl()' se lee como 'Matrix Exponencial'
+#mtx.exp(A,4)         Se tiene que instalar el paquete Biodem
+#Esta es un aproximadoya que computacionalmete es pesado hacerlo
+
+# Tambian para calcular la potencia de Un Modo aproximado se usa `%^%` del paquete expm
+# A%^%4 -- En este caso es elevado al 4 todos los elemntos dela matriz
+```
+
+## Rango e Inversa de una Matriz en R
+
+```{r}
+# El rango se calcula con la funcion qr()$rank
+A = rbind(c(1,2,3),c(4,5,6),c(7,8,9))
+qr(A)$rank# qr() es un metodo que sirve para operar con matrices y usando el $ se le puede aplicar una serie de propiedades
+
+#La inversa (Aproximada) de una Matriz (Que tenga inversa) se calcula medinte la funcion solve()
+solve(M)
+
+#Una vez calculado comprobamos que M producto Matriciar con la inversa de M da la matriz identidad, Usamos round porque puede que no salga los numeros exactos
+round(M%*%solve(M))
+
+#Y tambien si lo multiplicamos de la otra forma
+round(solve(M)%*%M)
+
+```
+
+## Matrices con Python
+
+Todo lo que tiene que ver con matrices en python depende de la libreria `numpy`
+
+```{python}
+# Aqui no estamos usando numpy este es el formato estandar de python para trabajr con vector o listas
+
+# Para crear una Matriz Fila
+row = [1,2,3]
+row
+
+# Para crear una Matriz Columna
+col = [[1],[2],[3]]
+col
+
+# Creando con varias listas, Equivaldria a una Matriz 3x3
+M = [[1,2,3],[4,5,6],[7,8,9]]
+M
+
+#Para llamar a un elemntos (En python las pociciones empiezan en 0)
+M[1][1]# indica la fila 1 columna 1(serian pociciones)
+
+M[0][0]# este seria el primer elemntos de fila y columna
+
+#Para llamar a toda una fila
+M[0]
+
+#Pero para llamar a las columnas no es tan facil
+#Aqui es donde nos interesa trabajar correctamente y para eso se usa numpy
+import numpy as np
+M = np.array([[1,2,3],[4,5,6],[7,8,9]])# con esto ya no es una lista de python ahora es una matriz de numpy
+print(M)
+
+#La funcion np.array() tiene un unico parametro: 'dtype' donde le podemos indicar el tipo de dato de la matriz
+#Redefiniendo la matriz M con tipo de dato Complex (complejo), nos cambia
+M = np.array([[1,2,3],[4,5,6],[7,8,9]],dtype = complex)
+print(M)# Matriz de numeros complejos
+
+#Para llamar a un elemntos
+M[0][1]
+
+#Para llamar a una fila
+print(M[1])
+
+#Tambien nos sirve toda la siguente sintaxis, ese : significa todos los elemntos
+M[1,:]#Aqui es todos los elemntos de la fila en 1
+
+#Para llamar a una columna
+M[:,0]#todos los elementos de la columna 0
+
+#Para crear matrices existen diferentes funciones
+
+#Usando la funcion np.zeros((Fila,Columna))
+#Una marz de 5 filas y 7 columnas
+print(np.zeros((5,7)))#Estan encerrados entre parentecis los numeros porque son una tupla, (Ya que estos metodos aceptan una tupla de entrada)
+
+#Para crear una Matriz con puros Unos
+print(np.ones((5,10)))
+
+#Crear una matriz diagonal
+#Vamos a usar la funcion 'diag' donde como entrada se le pasa una lista
+x = [1,2,3,4]
+N = np.diag(x)#Ala funcion se le pasa la lista x
+N# Obtenemos una matriz con todos esos numeros de la lista en la diagonal de la matriz
+
+# si usamos esta misma funcion pero en lugar de pasarle una lista le pasamos una matriz
+np.diag(N)#Nos devolvera una lista con todos los elemntos de la diagonal
+
+#Para saber la dimencion(tamaño u orden) de una matriz se usa la funcion 'shape'
+np.shape(M)# le pasamos una matriz y nos devuelve una tupla donde el primer elemntos son las filas y el otro numero son las columnas
+```
+
+## Manipulacion de Matrices Python
+
+```{python}
+#Si queremos la suma de los elemntos de una matriz
+import numpy as np
+M = np.array([[1,2,3],[4,5,6],[7,8,9]])
+#IMPORTANTE: Al estar todas ls funciones con numpy, la matriz debe estar creada con numpy como es en este caso la matriz M, si usaramos matrices creadas con pyhon como las primeras NO SE PUEDE
+
+#Si queremos la suma de todos los elemntos de la matriz
+np.sum(M)
+
+#La suma por filas(con la misma funicion Pero en este caso le agregamos un parametro) el 'axis' se traduce como eje
+np.sum(M, axis = 0)# igual a cero es el eje horizontal el de las (X)
+
+#La suma por columnas
+np.sum(M, axis = 1)# igual a uno es eje vertical el eje (y)
+
+#Si queremos el producto de todos los elemntos de una matriz
+np.prod(M)
+
+#Si queremos la maedia aritmetica de todos los elementos de una Matriz
+np.mean(M)
+
+#La media aritmetica por filas(de nuevo aplicando el parametro axis)
+np.mean(M, axis = 0)
+
+#La media aritmetica por columnas
+np.mean(M, axis = 1)
+```
+
+## Operaciones con matrices en python
+
+```{python}
+import numpy as np
+M = np.array([[1,2,3],[4,5,6],[7,8,9]])
+
+#Para calcular la transpuesta de una matriz se usa la funcion '.transpose()'
+#Esta vez se aplica de forma diferente, ASI:
+print(M.transpose())
+
+# Calcular la traza de una Matriz(La suma de los elemntos de la diagonal de la matriz)
+print(M.trace())
+
+# La traza de una matriz y su transpuesta siempre es la misma si la matriz es cuadrada
+
+# Suma de Matrices (Las matrices tienen que ser creadas con la msima liberia no se puede sumar una que esta creada con numpy con una de python)
+A = np.array([[1,2],[2,0]])
+B = np.array([[3,0],[1,4]])
+print(A+B)
+
+# producto de un escalar por una matriz
+print(5*A)
+
+# Multilpicar dos matrices se usa la funcion '.dot()' aplicada a una matriz y entre parentecis la matriz con la que se va a multiplicar
+print(A.dot(B))
+
+# si hacemos directo asi pasa lo mismo que con R
+A*B
+
+#Para calcular la potencia de una matriz con numpy se accede a 'linalg' en ingles seria algebra lineal y de ahi se accede 'matrix_power()' que acepta como parametro la matriz a elevar y el exponente
+print(np.linalg.matrix_power(A,5))
+```
+
+## Rango e inversa en Python
+
+```{python}
+import numpy as np
+A = np.array([[1,2],[2,0]])
+B = np.array([[3,0],[1,4]])
+
+# Para calcular el rango(Es el mayor numero de filas no nulas que podemos obtener despues de haber obtenido la matriz equivalente por filas o columnas,la escalonada o escalonada reducida) se una matriz se usa lo siguente
+np.linalg.matrix_rank(A)
+
+np.linalg.matrix_rank(B)#Vemos que la dos nos sale que el rango es el mismo numero de filas de lamatriz originl por lo que si se puede sacar inversa
+
+#Para sacar la inversa la  matriz
+print(np.linalg.inv(A))
+
+#Comprovamos multilicamos la invesras con .dot con la matriz original y eso nos tiene que dar la identiad
+print(np.linalg.inv(A).dot(A))
+
+```
+
+
+
+
+
+
+
+
+
